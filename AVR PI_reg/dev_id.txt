@@ -1,0 +1,3 @@
+Dev				1st	2nd	3rd	4th		3rd (bin)	4th (bin)	# Int.Chip	Cell Lvl.	# Sim.Pgs.	Pgm.Ilv.	Pgm.Cach.	
+K9K8G08U0M		EC	D3	51	95		1101 0001	0001 0101	2			2			2			+			+
+K9LAG08U0M		EC	D5	55	25

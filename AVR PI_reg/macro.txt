@@ -1,0 +1,9 @@
+sti		addr,byte	|	a	|	[addr]<-byte
+stiw	addr,word	|	a	|	[addr]<-low(word); [addr+1]<-high(word)
+
+ldaw	addr		|		|	al<-[addr]; ah<-[addr+1]
+ldzw	addr		|		|	zl<-[addr]; zh<-[addr+1]
+staw	addr		|		|	[addr]<-al; [addr+1]<-ah
+stzw	addr		|		|	[addr]<-zl; [addr+1]<-zh
+
+staa	addr		|		|	[addr]<-a; [addr+1]<-a
