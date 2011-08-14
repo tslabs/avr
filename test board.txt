@@ -1,0 +1,112 @@
+
+STK200/STK300 port
+------------------
+Port	sig	LPT	sig	2313	sig		m128	sig		m16	sig
+
+1	+5V	-	-	20	Vcc			Vcc		10	Vcc
+2	MOSI	7	D5	17	PB5/MOSI	2	PE0/PDI	6	PB5/MOSI
+3	GND	21	GND	10	GND			GND		11,31	GND
+4    	LED.B1 8	D6	-	-		-	-		-	-
+5	-	-	-	-	-		-	-		-	-
+6	~RES	9	D7	1	~RES		20	~RES		9	~RES
+7	-	-	-	-	-		-	-		-	-
+8	SCK	6	D4	19	PB7/SCK	11	PB1/SCK	8	PB7/SCK
+9	-	-	-	-	-		-	-		-	-
+10	MISO	10	-ACK	18	PB6/MISO	3	PE1/PDO	7	PB6/MISO
+
+
+2313 pins map
+----------------
+2313	sig	m16	used at
+
+1	~RES	9	STK200.~RES
+2	PD0	(14)	-
+3	PD1	(15)	LCD.RS
+4	XTAL2	(12)	-
+5	XTAL1	13	(Fin)
+6	PD2	16	LCD.D7
+7	PD3	17	LCD.D6
+8	PD4	18	LCD.D5
+9	PD5	19	LCD.D4
+10	GND	11	(GND)
+11	PD6	20	LCD.E
+12	PB0	1	-
+13	PB1	2	-
+14	PB2	3	-
+15	PB3	4	-
+16	PB4	5	LED.Anode
+17	PB5	6	STK200.MOSI
+18	PB6	7	STK200.MISO
+19	PB7	8	STK200.SCK
+20	Vcc	10	(+5V)
+
+
+VGA port
+--------
+port	sig	VGA	m16	sig
+
+1	GND	6
+2	R	1	18	PD4
+3	GND	7
+4	G	2	20	PD6
+5	GND	8
+6	B	3	19	PD5
+7	GND	5
+8	Hsync	13	17	PD3
+9	-key-
+10	Vsync	14	16	PD2
+
+
+
+LCD port
+--------
+port	sig	2313	sig
+
+1	D7	6	PD2	
+2	D6	7	PD3
+3	D5	8	PD4
+4	D4	9	PD5
+5	D3	-	-
+6	D2	-	-
+7	D1	-	-
+8	D0	-	-
+9	E 	11	PD6
+10	R/-W	10	GND
+11	RS	3	PD1
+12	Vlc	10	GND
+13	GND	10	GND
+14	+5V	20	Vcc
+
+
+LED pins
+---
+Port	sig		STK200	sig		2313	sig	m16	sig	m128	sig
+A1-A5	+Green		
+B1			4		LPT.D6	-	-	-	-	-	-
+B2			-		-		16	PB4	5	PB4	14	PB4
+B3			-		-		-	-	-	-	-	-
+B4			-		-		-	-	-	-	-	-
+B5			-		-		-	-	-	-	-	-
+C1-C5	+Red		
+
+
+LCD LPT port
+-------------
+Port	LPT	sig
+
+1	9	D7
+2	8	D6
+3	7	D5
+4	6	D4
+5	5	D3
+6	4	D2
+7	3	D1
+8	2	D0
+9	17	~SELIN
+10	14	~AUTOFD
+11	1	~STB
+12	23	GND
+13	21	GND
+14	-	+5V
+15	-	-
+16	Key	-
