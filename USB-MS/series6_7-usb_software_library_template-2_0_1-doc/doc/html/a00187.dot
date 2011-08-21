@@ -1,0 +1,26 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  Node1 [label="usb_drv.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="device_template_task.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00025.html"];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="host_template_task.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00027.html"];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="usb_descriptors.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00046.html"];
+  Node1 -> Node5 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="usb_specific_request.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00058.html"];
+  Node1 -> Node6 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="usb_drv.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00050.html"];
+  Node1 -> Node7 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node7 [label="usb_device_task.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00048.html"];
+  Node1 -> Node8 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node8 [label="usb_standard_request.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html"];
+  Node1 -> Node9 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node9 [label="usb_host_enum.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00052.html"];
+  Node1 -> Node10 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node10 [label="usb_host_task.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00054.html"];
+  Node1 -> Node11 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node11 [label="usb_task.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html"];
+}

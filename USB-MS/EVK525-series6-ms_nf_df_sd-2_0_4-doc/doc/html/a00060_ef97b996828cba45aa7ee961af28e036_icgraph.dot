@@ -1,0 +1,13 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nfc_check_status",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_cleanup_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00064.html#4111df3ea1a2e262cdc7b853bad4543f",tooltip="Cleanup the memory by erasing all the management blocks."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_write_fbb",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#020f4fb7d7d55f3fad9c368ac04cabf3",tooltip="Writes the Free-blocks block into the Nand Flash."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nf_write_lut",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#4033ef04a3cbd39dc9d6071c6d7c2a9b",tooltip="Writes a LUT in memory from a buffer."];
+}

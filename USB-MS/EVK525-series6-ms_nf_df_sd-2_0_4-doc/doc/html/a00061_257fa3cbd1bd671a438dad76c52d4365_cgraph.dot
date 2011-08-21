@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nfc_detect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_XMCR_disable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#6008aafe936bca7bfc39a8db231c1e7b",tooltip="Disable the XMCR module of the AVR, to allow access to others peripherals that may..."];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_XMCR_enable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#2888ee8b7b2aad2f3e86eeff599729ca",tooltip="Enable the XMCR (Extending Memory Module) of the AVR to drive the NAND Flash."];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nfc_nf_is_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#23257b9ef0081e82db5b955ffe5f348a",tooltip="Check the status Ready/Busy of the Nand Flash."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="nfc_read_id",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#2d5cf1d9c2243be1a253d5b0fd9147dd",tooltip="Read the ID of the Nand-Flash."];
+  Node1 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="nfc_reset_nands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#ec96d29ad256f2dfc2ebfceddf08d6a9",tooltip="Reset all the NF devices."];
+}

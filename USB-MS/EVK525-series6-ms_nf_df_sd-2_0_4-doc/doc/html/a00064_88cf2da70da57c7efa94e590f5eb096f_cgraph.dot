@@ -1,0 +1,26 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_scan",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_block_2_page",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#f713bee0ed464d2bfa6876cd9d4ef296"];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_refine_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00064.html#4cb35ca11603f17d6237063f1cc31ea9",tooltip="Refines the position of the &#39;block&#39; index according to a particular pattern..."];
+  Node3 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nfc_open_page_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#a0a322a0237ff247248591adb2b10fab",tooltip="Opens a page for read."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="nfc_read_spare_byte",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#37641716cd31a827e214a2d0ec1f5c66",tooltip="Reads the number spare bytes specified and stores them in a array."];
+  Node1 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="trace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#33937de27cd71c4dab3027caaae4fdf9",tooltip="Fonction used for send a texte on OCD/Serial Debug Interface."];
+  Node1 -> Node7 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node7 [label="trace_hex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#bbfb5f9378070c8db4ea4fda3df5cce5",tooltip="Fonction used to display a byte value in the hex form on OCD/Serial Debug Interface..."];
+  Node1 -> Node8 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node8 [label="trace_hex16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#b2fa7a964f1f12c6d41357ac95c452a9"];
+  Node1 -> Node9 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node9 [label="trace_nl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#9b606c2b7ffbe1b46600f9719fc6caa6"];
+  Node1 -> Node10 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node10 [label="trace_u32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#38868090cbfb5610c03d7a472f161c35",tooltip="Fonction used to display a byte value in the decimal form (16 bits) on OCD/Serial..."];
+}

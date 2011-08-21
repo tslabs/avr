@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="usb_host_task",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="host_auto_configure_endpoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00097.html#gef82869f4fd052f7ca4b566937863070"];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="host_check_class",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00097.html#gaaf832167b2cadf3eefabf30ce58dffb",tooltip="host_check_class"];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="host_check_VID_PID",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00097.html#g08394bbb55b8aad2c2a53447b8718a6e",tooltip="host_check_VID_PID"];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="unfreeze_user_periodic_pipe",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00097.html#g7ec93e06da874bd5a114a1cd779a7b7b"];
+}

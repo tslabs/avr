@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_swap",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="trace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#33937de27cd71c4dab3027caaae4fdf9",tooltip="Fonction used for send a texte on OCD/Serial Debug Interface."];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="trace_hex32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#1f752dbcd0990c4943d2a3e6cb757748"];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="trace_nl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#9b606c2b7ffbe1b46600f9719fc6caa6"];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="trace_u8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#d4bede103a48a856e8360af858be6c7a",tooltip="Fonction used to display a byte value in the decimal form on OCD/Serial Debug Interface..."];
+}

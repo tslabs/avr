@@ -1,0 +1,25 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_swap",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_translate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#4a1dd64acf67b8ab91e9ea1c0b976c4f",tooltip="Translate a logical sector to physical parameters."];
+  Node2 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_dfc_write_stop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#4278d426a2907921c797422de0a14247",tooltip="This function must be called when a write10 operation (from USB) is finished Last..."];
+  Node2 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nf_open_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#e55b89875aaa8140a7cba32fa683671a",tooltip="Prepare a read session on the flash memory."];
+  Node4 -> Node5 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="nf_nf_2_ram",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#18cf312e26c74a2f8ff049bf172a56d4",tooltip="This fonction read 1 sector from NF to ram buffer."];
+  Node4 -> Node6 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="nf_read_10",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#1c583c1d616f3af3e57ebe914cf747e9",tooltip="This function initializes the Nand Flash for a read operation."];
+  Node2 -> Node7 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node7 [label="nf_open_write",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#470f7324aee0b5c64aec2c8ec7f35e3f",tooltip="Prepare a write session on the flash memory."];
+  Node7 -> Node8 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node8 [label="nf_ram_2_nf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#c0569fdce920e24874d30f1b25dfe3c8",tooltip="This fonction initialise the memory for a write operation from ram buffer."];
+  Node7 -> Node9 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node9 [label="nf_write_10",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#fd80e982702f51b6ad94632856b980e1",tooltip="This function initializes the Nand Flash for a write operation."];
+  Node2 -> Node8 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 -> Node9 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+}

@@ -1,0 +1,16 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="df_read_open",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="df_chipselect_current",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00045.html#a5ce3b7c55df296782fa748c782c70cf",tooltip="This function physically selects the current addressed memory."];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="df_chipselect_memzone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00045.html#e29a521e9a1ec9ea380a6c41a25383d9",tooltip="This function selects a DF memory according to the sector pointer."];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="df_translate_addr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00045.html#4b342016a045dc46831fecaca66afda0",tooltip="This function translates the logical sector address to the physical byte address..."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="df_wait_busy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00045.html#58303393c416a654cfc0e2e0422a795a",tooltip="This function waits until the DataFlash is not busy."];
+  Node5 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+}

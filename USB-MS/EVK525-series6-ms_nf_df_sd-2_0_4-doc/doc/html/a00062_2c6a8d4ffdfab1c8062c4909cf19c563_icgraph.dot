@@ -1,0 +1,13 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_erase_old_blocks",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_copy_tail",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#a38cbc2641b27ca8fe33b40dbfdd7486"];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_dfc_write_stop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#4278d426a2907921c797422de0a14247",tooltip="This function must be called when a write10 operation (from USB) is finished Last..."];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nf_write_10",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html#fd80e982702f51b6ad94632856b980e1",tooltip="This function initializes the Nand Flash for a write operation."];
+}

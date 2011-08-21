@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_read_capacity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_get_sectors_number",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#f935b5cf31febdb455f0b157944ae27b",tooltip="Returns a pointer on the internal buffer address."];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_verify",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#5bc1ea382d755aa7efeffbd008c3347a",tooltip="Ensure that the memory is in a good state before starting to use it."];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nf_XMCR_disable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#6008aafe936bca7bfc39a8db231c1e7b",tooltip="Disable the XMCR module of the AVR, to allow access to others peripherals that may..."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="nf_XMCR_enable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#2888ee8b7b2aad2f3e86eeff599729ca",tooltip="Enable the XMCR (Extending Memory Module) of the AVR to drive the NAND Flash."];
+}

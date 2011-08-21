@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="storage_task",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="usb_mass_storage_cbw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00051.html#8ad8d2f18d5af0ed75b541ab3ca9a7ff"];
+  Node2 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="get_cur_lun",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00031.html#76c903dae1ac07d6ef569b5c44e1644b",tooltip="This function return the current logical unit."];
+  Node2 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="scsi_decode_command",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00047.html#ffa6469099cc7713cfbfd73f6c5dd022"];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="usb_mass_storage_csw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00051.html#ed223d0bc3ba362c7f3cc8766ff614f0"];
+  Node5 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="usb_process_request",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00095.html#g3a56939c3d898bcbbc8208297dccfe93"];
+}

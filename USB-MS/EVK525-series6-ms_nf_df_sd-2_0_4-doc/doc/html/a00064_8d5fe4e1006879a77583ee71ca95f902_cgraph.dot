@@ -1,0 +1,40 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="nf_rebuild",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="nf_block_2_page",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#f713bee0ed464d2bfa6876cd9d4ef296"];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="nf_copy_tail",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#a38cbc2641b27ca8fe33b40dbfdd7486"];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="nf_fetch_free_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00064.html#37eae1e822625455c74c1cf5bb71fa95",tooltip="Returns the first free block seen, scanning downstream."];
+  Node4 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="nfc_erase_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#4a7f7eed66f5eb678e4a96ae5dc32486",tooltip="Erases a block."];
+  Node4 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="nfc_read_spare_byte",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#37641716cd31a827e214a2d0ec1f5c66",tooltip="Reads the number spare bytes specified and stores them in a array."];
+  Node1 -> Node7 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node7 [label="nf_init_buffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00064.html#00f06ce988c51eb7f1b0ffac47c1e605",tooltip="Clears the internal buffer."];
+  Node1 -> Node8 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node8 [label="nf_write_fbb",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#020f4fb7d7d55f3fad9c368ac04cabf3",tooltip="Writes the Free-blocks block into the Nand Flash."];
+  Node1 -> Node9 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node9 [label="nf_write_lut",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00062.html#4033ef04a3cbd39dc9d6071c6d7c2a9b",tooltip="Writes a LUT in memory from a buffer."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node10 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node10 [label="nfc_mark_bad_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#baa6a09d1819325c231e3735177a2179",tooltip="Mark a block as &#39;invalid&#39; by clearing it entirely."];
+  Node1 -> Node11 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node11 [label="nfc_open_page_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00060.html#a0a322a0237ff247248591adb2b10fab",tooltip="Opens a page for read."];
+  Node1 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node12 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node12 [label="trace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#33937de27cd71c4dab3027caaae4fdf9",tooltip="Fonction used for send a texte on OCD/Serial Debug Interface."];
+  Node1 -> Node13 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node13 [label="trace_hex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#bbfb5f9378070c8db4ea4fda3df5cce5",tooltip="Fonction used to display a byte value in the hex form on OCD/Serial Debug Interface..."];
+  Node1 -> Node14 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node14 [label="trace_hex16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#b2fa7a964f1f12c6d41357ac95c452a9"];
+  Node1 -> Node15 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node15 [label="trace_hex32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#1f752dbcd0990c4943d2a3e6cb757748"];
+  Node1 -> Node16 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node16 [label="trace_nl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html#9b606c2b7ffbe1b46600f9719fc6caa6"];
+}

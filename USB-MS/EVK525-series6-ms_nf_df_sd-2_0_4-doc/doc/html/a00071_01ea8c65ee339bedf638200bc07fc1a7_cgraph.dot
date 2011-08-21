@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  rankdir=LR;
+  Node1 [label="sbc_test_unit_ready",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="mem_test_unit_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00040.html#51555be425eeacfd88e603b9cba97049",tooltip="This function test the state of memory, and start the initialisation of the memory..."];
+  Node1 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="sbc_lun_status_is_busy_or_change",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00070.html#070e6444e67e90bc02263d8c7120f639",tooltip="This fonction send the UFI status busy and change."];
+  Node1 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="sbc_lun_status_is_fail",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00070.html#8f9fe80f550dbf8d9c3c60516bb6dad6",tooltip="This fonction send the UFI status FAIL."];
+  Node1 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="sbc_lun_status_is_good",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00070.html#6a32a04cfe5f86c7200512a2dee798f8",tooltip="This fonction send the UFI status GOOD."];
+  Node1 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="sbc_lun_status_is_not_present",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00070.html#03f2e185631cefb98ce3076deb698640",tooltip="This fonction send the UFI status &quot;lun not present&quot;."];
+}

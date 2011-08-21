@@ -1,0 +1,45 @@
+digraph G
+{
+  edge [fontname="FreeSans.ttf",fontsize=10,labelfontname="FreeSans.ttf",labelfontsize=10];
+  node [fontname="FreeSans.ttf",fontsize=10,shape=record];
+  Node1 [label="usb_specific_request.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node2 [label="config.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00024.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node3 [label="lib_mcu/compiler.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00021.html"];
+  Node2 -> Node4 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node4 [label="conf/conf_scheduler.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00022.html"];
+  Node2 -> Node5 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node5 [label="lib_board\\stk_525\\stk_525.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00036.html"];
+  Node5 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node6 [label="conf_usb.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00023.html"];
+  Node6 -> Node7 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node7 [label="modules/usb/usb_commun.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00041.html"];
+  Node6 -> Node8 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node8 [label="modules/usb/usb_commun_hub.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00044.html"];
+  Node6 -> Node9 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node9 [label="modules/usb/usb_commun_hid.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00043.html"];
+  Node6 -> Node10 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node10 [label="modules/usb/usb_commun_ms.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00045.html"];
+  Node6 -> Node11 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node11 [label="modules/usb/usb_commun_cdc.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00042.html"];
+  Node1 -> Node12 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node12 [label="lib_mcu/usb/usb_drv.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00051.html"];
+  Node1 -> Node13 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node13 [label="usb_descriptors.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00047.html"];
+  Node13 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node13 -> Node14 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node14 [label="modules/usb/device_chap9/usb_standard_request.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00061.html"];
+  Node14 -> Node15 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node15 [label="modules/usb/usb_task.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00063.html"];
+  Node15 -> Node7 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node14 -> Node13 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node13 -> Node6 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node14 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node16 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node16 [label="usb_specific_request.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$a00059.html"];
+  Node16 -> Node2 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node1 -> Node17 [color="midnightblue",fontsize=10,style="solid",fontname="FreeSans.ttf"];
+  Node17 [label="lib_mcu/flash/flash_drv.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}
