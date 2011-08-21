@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\avr309.res \
+    $(_OBJ_DIR)\alpha\iusbdbg.obj \
+    $(_OBJ_DIR)\alpha\isousb.obj \
+    $(_OBJ_DIR)\alpha\isopnp.obj \
+    $(_OBJ_DIR)\alpha\isopwr.obj \
+    $(_OBJ_DIR)\alpha\ioctliso.obj \
+    $(_OBJ_DIR)\alpha\isostrm.obj \
+    $(_OBJ_DIR)\alpha\ocrwiso.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\avr309.res \
+    $(_OBJ_DIR)\axp64\iusbdbg.obj \
+    $(_OBJ_DIR)\axp64\isousb.obj \
+    $(_OBJ_DIR)\axp64\isopnp.obj \
+    $(_OBJ_DIR)\axp64\isopwr.obj \
+    $(_OBJ_DIR)\axp64\ioctliso.obj \
+    $(_OBJ_DIR)\axp64\isostrm.obj \
+    $(_OBJ_DIR)\axp64\ocrwiso.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\avr309.res \
+    $(_OBJ_DIR)\i386\iusbdbg.obj \
+    $(_OBJ_DIR)\i386\isousb.obj \
+    $(_OBJ_DIR)\i386\isopnp.obj \
+    $(_OBJ_DIR)\i386\isopwr.obj \
+    $(_OBJ_DIR)\i386\ioctliso.obj \
+    $(_OBJ_DIR)\i386\isostrm.obj \
+    $(_OBJ_DIR)\i386\ocrwiso.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\avr309.res \
+    $(_OBJ_DIR)\ia64\iusbdbg.obj \
+    $(_OBJ_DIR)\ia64\isousb.obj \
+    $(_OBJ_DIR)\ia64\isopnp.obj \
+    $(_OBJ_DIR)\ia64\isopwr.obj \
+    $(_OBJ_DIR)\ia64\ioctliso.obj \
+    $(_OBJ_DIR)\ia64\isostrm.obj \
+    $(_OBJ_DIR)\ia64\ocrwiso.obj
+
+PASS0_IA64_OBJECTS=
+

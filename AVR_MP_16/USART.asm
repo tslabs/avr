@@ -54,9 +54,11 @@ M_INTRO:
 			.db $d,"AVR MOD Player, v.003",$d,$a
 			.db "(c)2010 TS-Labs inc.",$d,$a,$d,$a
 #if			chip==16
-			.db "ATmega16, 128kB ROM, 4kB RAM",$d,$a,$d,$a,0,0
+			.db "ATmega16, 16kB ROM, 4kB RAM",$d,$a,$d,$a,0
 #elif		chip==128
 			.db "ATmega128, 128kB ROM, 4kB RAM "
+#elif		chip==1287
+			.db "AT90USB1287, 128kB ROM, 8kB RAM "
 CRLF:
 			.db $d,$a,$d,$a,0,0
 #endif

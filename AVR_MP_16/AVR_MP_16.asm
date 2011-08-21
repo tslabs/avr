@@ -8,9 +8,9 @@
 
 //----------------- Setup -----------------
 
-#define		chip	16						;16 - ATmega16; 128 - ATmega128
-#define		xmem	0						;1 - Use memory addressing >64k (for MCU's >64 Flash)
-#define		rs232	0						;1 - use USART (115200, 8 data, 1 stop, no parity)
+#define		chip	1287					;16 - ATmega16; 128 - ATmega128; 1287 - USB1287
+#define		xmem	1						;1 - Use memory addressing >64k (for MCU's >64 Flash)
+#define		rs232	1						;1 - use USART (115200, 8 data, 1 stop, no parity)
 #define		f_clk	19000					;Main CLK, kHz
 #define		baud	115200					;RS232 USART Baud Rate
 

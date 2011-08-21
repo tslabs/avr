@@ -1,0 +1,828 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Description of AVR309 USB library</title>
+</head>
+
+<body>
+
+<h2 align="center"><u>AVR309 DLL description</u></h2>
+<p align="right">&nbsp;</p>
+<p><b><i><font color="#FF0000">Function prototypes in &quot;AVR309.dll&quot;
+library:</font></i></b></p>
+<hr>
+<p><b><u>Delphi:</u></b></p>
+<p><font color="#000080">const<br>
+</font><font color="#000080">&nbsp; </font><i><font color="#800000">AVR309DLL</font></i>=
+'AVR309.dll';<br>
+&nbsp; <i>//return values from AVR309DLL functions:</i><br>
+&nbsp; <i><font color="#800000">NO_ERROR </font></i>= 0;<br>
+&nbsp; <i><font color="#800000">DEVICE_NOT_PRESENT <b> </b></font></i>= 1;<br>
+&nbsp; <i><font color="#800000">NO_DATA_AVAILABLE <b> </b></font></i>= 2;<br>
+&nbsp; <i><font color="#800000">INVALID_BAUDRATE <b> </b></font></i>= 3;<br>
+&nbsp; <i><font color="#800000">OVERRUN_ERROR <b> </b></font></i>= 4;<br>
+&nbsp; <i><font color="#800000">INVALID_DATABITS</font></i> = 5;<br>
+&nbsp; <i><font color="#800000">INVALID_PARITY</font></i> = 6;<br>
+&nbsp; <i><font color="#800000">INVALID_STOPBITS</font></i> = 7;<br>
+<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetInfraCode">DoGetInfraCode</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>TimeCodeDiagram</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>DiagramLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetInfraCode</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirection</a></b>(<font color="#800000"><i><b>DirectionByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoSetDataPortDirection</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirection</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataDirectionByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080">
+external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetDataPortDirection</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoSetOutDataPort">DoSetOutDataPort</a></b>(<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font>
+name '<font color="#FF00FF">DoSetOutDataPort</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetOutDataPort">DoGetOutDataPort</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetOutDataPort</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetInDataPort">DoGetInDataPort</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetInDataPort</font>';</p>
+<p><font color="#000080">function</font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirections</a></b>(<font color="#800000"><i><b>DirectionByteB</b></i></font>,
+<font color="#800000"><i><b>DirectionByteC</b></i></font>, <font color="#800000"><i><b>DirectionByteD</b></i></font>,
+<b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoSetDataPortDirections</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirectio</a><a href="#DoSetDataPortDirection">ns</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataDirectionByteB</b></i></font>, <font color="#800000"><i><b>DirectionByteC</b></i></font>,
+<font color="#800000"><i><b>DirectionByteD</b></i></font>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080">
+external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetDataPortDirections</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoSetOutDataPort">DoSetOutDataPorts</a></b>(<font color="#800000"><i><b>DataOutByteB</b></i></font>,
+<font color="#800000"><i><b>DataOutByteC</b></i></font>, <font color="#800000"><i><b>DataOutByteD</b></i></font>,
+<b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font>
+name '<font color="#FF00FF">DoSetOutDataPorts</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetOutDataPort">DoGetOutDataPorts</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataOutByteB</b></i></font>, <font color="#800000"><i><b>DataOutByteC</b></i></font>,
+<font color="#800000"><i><b>DataOutByteD</b></i></font>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetOutDataPorts</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetInDataPort">DoGetInDataPorts</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByteB</b></i></font>, <font color="#800000"><i><b>DataInByteC</b></i></font>,
+<b><i><font color="#800000">DataInByteD</font></i></b>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetInDataPorts</font>';<br>
+<br>
+<font color="#000080">
+function</font> <b><a href="#DoEEPROMRead">DoEEPROMRead</a></b>(<font color="#800000"><i><b>Address</b></i></font>:<font color="#000080"><b>word</b></font>;
+<font color="#000080"> var</font> <font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080">
+external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoEEPROMRead</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoEEPROMWrite">DoEEPROMWrite</a></b>(<font color="#800000"><i><b>Address</b></i></font>:<font color="#000080"><b>word</b></font>;
+<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoEEPROMWrite</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoRS232Send">DoRS232Send</a></b>(<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name
+'<font color="#FF00FF">DoRS232Send</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoRS232Read">DoRS232Read</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font>
+name '<font color="#FF00FF">DoRS232Read</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetRS232Baud">DoSetRS232Baud</a></b>(<font color="#800000"><i><b>BaudRate</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font>
+name '<font color="#FF00FF">DoSetRS232Baud</font>';<br>
+<font color="#000080">
+function</font> <b><a href="#DoGetRS232Baud">DoGetRS232Baud</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>BaudRate</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetRS232Baud</font>';<br>
+<font color="#000080">function</font> <a href="#DoGetRS232Buffer"><b>DoGetRS232Buffer</b></a>(<font color="#000080">var</font>
+<font color="#800000"><i><b>RS232Buffer</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>RS232BufferLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetRS232Buffer</font>';<br>
+<font color="#000080">function</font> <a href="#DoRS232BufferSend"><b>DoRS232BufferSend</b></a>(<font color="#000080">var</font>
+<font color="#800000"><i><b>RS232Buffer</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>RS232BufferLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoRS232BufferSend</font>';<br>
+<font color="#000080">function</font> <a href="#DoSetRS232DataBits"><b>DoSetRS232DataBits</b></a>(<font color="#800000"><i><b>DataBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoSetRS232DataBits</font>';<br>
+<font color="#000080">function</font> <a href="#DoGetRS232DataBits"><b>DoGetRS232DataBits</b></a>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataBits</b></i></font>:<font color="#000080"><b>byte</b></font>):integer;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetRS232DataBits</font>';<br>
+<font color="#000080">function</font> <a href="#DoSetRS232Parity"><b>DoSetRS232Parity</b></a>(<font color="#800000"><i><b>Parity</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoSetRS232Parity</font>';<br>
+<font color="#000080">function</font> <a href="#DoGetRS232Parity"><b>DoGetRS232Parity</b></a>(<font color="#000080">var</font>
+<font color="#800000"><i><b>Parity</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetRS232Parity</font>';<br>
+<font color="#000080">function</font> <a href="#DoSetRS232StopBits"><b>DoSetRS232StopBits</b></a>(<font color="#800000"><i><b>StopBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoSetRS232StopBits</font>';<br>
+<font color="#000080">function</font> <a href="#DoGetRS232StopBits"><b>DoGetRS232StopBits</b></a>(<font color="#000080">var</font>
+<font color="#800000"><i><b>StopBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i>AVR309DLL</i></font> name '<font color="#FF00FF">DoGetRS232StopBits</font>';</p>
+<hr>
+<p><b><u>C++ Builder / Microsoft Visual C++:</u></b></p>
+<p><font color="#000080">#ifdef __cplusplus<br>
+    extern "C" {<br>
+#endif<br>
+<br>
+#define </font><font color="#800000"><i>AVR309DLL<b>&nbsp;&nbsp;&nbsp;</b></i></font>
+&quot;AVR309.dll&quot;;<br>
+&nbsp; <i>//return values from AVR309DLL functions:</i><br>
+<font color="#000080">#define </font><font color="#800000"><i>NO_ERROR<b>&nbsp;&nbsp;&nbsp;</b></i></font>
+0;<font color="#000080"><br>
+#define </font><i><font color="#800000">DEVICE_NOT_PRESENT<b>&nbsp;&nbsp;&nbsp; </b></font></i>1;<br>
+<font color="#000080">#define </font><i><font color="#800000">NO_DATA_AVAILABLE<b>&nbsp;&nbsp;&nbsp;
+</b></font></i>2;<br>
+<font color="#000080">#define </font><i><font color="#800000">INVALID_BAUDRATE<b>&nbsp;&nbsp;&nbsp;
+</b></font></i>3;<br>
+<font color="#000080">#define </font><font color="#800000"><i>OVERRUN_ERROR<b>&nbsp;&nbsp;&nbsp;</b></i></font>
+4;<br>
+<font color="#000080">#define </font><font color="#800000"><i>INVALID_DATABITS&nbsp;&nbsp;&nbsp;</i></font>
+5;<br>
+<font color="#000080">#define </font><font color="#800000"><i>INVALID_PARITY&nbsp;&nbsp;&nbsp;</i></font>
+6;<br>
+<font color="#000080">#define </font><font color="#800000"><i>INVALID_STOPBITS&nbsp;&nbsp;&nbsp;</i></font>
+7;<br>
+<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080"> __stdcall</font> <b><a href="#DoGetInfraCode">DoGetInfraCode</a></b>(<font color="#000080"><b>uchar
+</b>*</font>
+<font color="#800000"><i><b>TimeCodeDiagram</b></i></font>, <font color="#000080"><b>int</b></font> <font color="#800000"><i><b>DummyInt</b></i></font>,
+<font color="#000080"><b>int
+*</b></font> <font color="#800000"><i><b>DiagramLength</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirection</a></b>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DirectionByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirection</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataDirectionByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoSetOutDataPort">DoSetOutDataPort</a></b>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataOutByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetOutDataPort">DoGetOutDataPort</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataOutByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetInDataPort">DoGetInDataPort</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataInByte</b></i></font>);</p>
+<p><font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirections</a></b>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DirectionByteB</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DirectionByte</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DirectionByte</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>UsedPorts</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirections</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataDirectionByteB</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataDirectionByteC</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataDirectionByteD</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>UsedPorts</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoSetOutDataPort">DoSetOutDataPorts</a></b>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataOutByteB</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataOutByteC</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataOutByteD</b></i></font>, <font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>UsedPorts</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetOutDataPort">DoGetOutDataPorts</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataOutByteB</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataOutByteC</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataOutByteD</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>UsedPorts</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetInDataPort">DoGetInDataPorts</a></b>(<font color="#000080"><b>uchar
+*</b></font>  <font color="#800000"><i><b>DataInByteB</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataInByteC</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>DataInByteD</b></i></font>, <font color="#000080"><b>uchar
+*</b></font>   <font color="#800000"><i><b>UsedPorts</b></i></font>);</p>
+<p>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoEEPROMRead">DoEEPROMRead</a></b>(<font color="#000080"><b>ushort
+</b></font><font color="#800000"><i><b>Address</b></i></font>, <font color="#000080"><b>uchar
+*</b></font> <font color="#800000"><i><b>DataInByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoEEPROMWrite">DoEEPROMWrite</a></b>(<font color="#000080"><b>ushort
+</b></font><font color="#800000"><i><b>Address</b></i></font>, <font color="#000080"><b>uchar
+</b></font>
+<font color="#800000"><i><b>DataOutByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoRS232Send">DoRS232Send</a></b>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataOutByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoRS232Read">DoRS232Read</a></b>(<font color="#000080"><b>uchar
+*</b></font> <font color="#800000"><i><b>DataInByte</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetRS232Baud">DoSetRS232Baud</a></b>(<b><font color="#000080">int
+</font></b><font color="#800000"><i><b>BaudRate</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> <b><a href="#DoGetRS232Baud">DoGetRS232Baud</a></b>(<b><font color="#000080">int</font></b><font color="#000080"><b>
+*</b></font> <font color="#800000"><i><b>BaudRate</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoGetRS232Buffer"><b>DoGetRS232Buffer</b></a>(<font color="#000080"><b>uchar
+</b>*</font><font color="#000080"> </font><b><i><font color="#800000">RS232Buffer</font></i></b>, <font color="#000080"><b>int</b></font> <font color="#800000"><i><b>DummyInt</b></i></font>, <font color="#000080"><b>int
+*</b></font> <font color="#800000"><i><b></b></i></font><font color="#800000"><i><b>RS232BufferLength</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoRS232BufferSend"><b>DoRS232BufferSend</b></a>(<font color="#000080"><b>uchar
+</b>* </font><font color="#800000"><i><b>RS232Buffer</b></i></font><font color="#000080">,</font> <font color="#000080"><b>int</b></font> <font color="#800000"><i><b>DummyInt</b></i></font>,<font color="#000080">
+<b>int
+*</b></font>&nbsp;<font color="#800000"><i><b></b></i></font><font color="#000080">
+</font><font color="#800000"><i><b>RS232BufferLength</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoSetRS232DataBits"><b>DoSetRS232DataBits</b></a>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>DataBits</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoGetRS232DataBits"><b>DoGetRS232DataBits</b></a>(<font color="#000080"><b>uchar
+</b>* </font><font color="#800000"><i><b>DataBits</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoSetRS232Parity"><b>DoSetRS232Parity</b></a>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>Parity</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoGetRS232Parity"><b>DoGetRS232Parity</b></a>(<font color="#000080"><b>uchar
+</b>* </font><font color="#800000"><i><b>Parity</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoSetRS232StopBits"><b>DoSetRS232StopBits</b></a>(<font color="#000080"><b>uchar
+</b></font><font color="#800000"><i><b>StopBits</b></i></font>);<br>
+<font color="#0000FF"><b>int</b></font><font color="#000080">  __stdcall</font> 
+<a href="#DoGetRS232StopBits"><b>DoGetRS232StopBits</b></a>(<font color="#000080"><b>uchar
+</b>* </font><font color="#800000"><i><b>StopBits</b></i></font>);<br>
+<br>
+<font color="#000080">#ifdef __cplusplus<br>
+&nbsp;&nbsp;&nbsp; }<br>
+#endif</font></p>
+<hr>
+<p><b><u>Visual Basic:</u></b></p>
+<p><font color="#000080">&nbsp;
+</font><font color="#000080">Public Const</font><font color="#000080"> </font><font color="#800000"><i>AVR309DLL</i></font>=&quot;AVR309.dll&quot;;<br>
+&nbsp; <i>'return values from AVR309DLL functions:</i><br>
+&nbsp; <font color="#000080">Public Const</font><font color="#000080"> </font><i><font color="#800000">NO_ERROR <b>
+</b></font></i>= 0;<br>
+&nbsp; <font color="#000080">Public Const</font><font color="#000080"> </font><i><font color="#800000">DEVICE_NOT_PRESENT <b>
+</b></font></i>= 1;<br>
+&nbsp; <font color="#000080">Public Const</font><font color="#000080"> </font><i><font color="#800000">NO_DATA_AVAILABLE <b>
+</b></font></i>= 2;<br>
+&nbsp; <font color="#000080">Public Const</font><font color="#000080"> </font><i><font color="#800000">INVALID_BAUDRATE <b>
+</b></font></i>= 3;<br>
+&nbsp; <font color="#000080">Public Const</font><font color="#000080"> </font><i><font color="#800000">OVERRUN_ERROR <b>
+</b></font></i>= 4;<br>
+&nbsp; <font color="#000080">Public Const </font><font color="#800000"><i>INVALID_DATABITS</i></font><i><font color="#800000">
+</font></i>= 5;<br>
+&nbsp; <font color="#000080">Public Const </font><font color="#800000"><i>INVALID_PARITY</i></font><i><font color="#800000">
+</font></i>= 6;<br>
+&nbsp; <font color="#000080">Public Const </font><font color="#800000"><i>INVALID_STOPBITS</i></font><i><font color="#800000">
+</font></i>= 7;</p>
+<p><font color="#000080">Public Declare Function</font> <b><a href="#DoGetInfraCode">DoGetInfraCode
+</a></b>Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>TimeCodeDiagram</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Any</font></b>, <font color="#000080">ByVal</font> 
+<font color="#800000"><i><b>DummyInt</b></i></font>
+<b><font color="#000080">As Long</font></b>, <font color="#000080">ByRef</font><font color="#800000">
+<b><i>DiagramLength </i></b></font><b><font color="#000080">As Long</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirection</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>DirectionByte</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirection</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataDirectionByte
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoSetOutDataPort">DoSetOutDataPort</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>DataOutByte</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoGetOutDataPort">DoGetOutDataPort</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataOutByte</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoGetInDataPort">DoGetInDataPort</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataInByte
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font></p>
+<p><font color="#000080">Public Declare Function </font> <b><a href="#DoSetDataPortDirection">DoSetDataPortDirections</a><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>DirectionByte</b></i></font><b><font color="#800000"><i>B
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> <font color="#800000"><i><b>DirectionByteC</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> <font color="#800000"><i><b>DirectionByte</b></i></font><b><font color="#800000"><i>D
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> 
+<font color="#800000"><i><b>UsedPorts</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <b><a href="#DoGetDataPortDirection">DoGetDataPortDirections</a><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataDirectionByteB
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataDirectionByteC
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataDirectionByteD
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> 
+<font color="#800000"><i><b>UsedPorts</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <b><a href="#DoSetOutDataPort">DoSetOutDataPorts</a><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>DataOutByte</b></i></font><b><font color="#800000"><i>B
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> <font color="#800000"><i><b>DataOutByteC</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> <font color="#800000"><i><b>DataOutByteD</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByVal</font> 
+<font color="#800000"><i><b>UsedPorts</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <b><a href="#DoGetOutDataPort">DoGetOutDataPorts</a><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataOutByteB</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataOutByteC</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataOutByteD</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> 
+<font color="#800000"><i><b>UsedPorts</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <b><a href="#DoGetInDataPort">DoGetInDataPorts</a><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataInByteB
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataInByteC
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> <font color="#800000"><i><b>DataInByteD
+</b></i></font><b><font color="#000080">As Byte</font></b>, <font color="#000080">ByRef</font> 
+<font color="#800000"><i><b>UsedPorts</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font></p>
+<p>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoEEPROMRead">DoEEPROMRead</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>Address</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Word</font></b>, <font color="#000080">ByRef</font><font color="#800000">
+<i><b>DataInByte</b></i></font><b><font color="#800000"><i> </i></font></b><b><font color="#000080">As Byte</font></b>)
+<font color="#0000FF"><b>As Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoEEPROMWrite">DoEEPROMWrite</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>Address</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Word</font></b>, <font color="#000080">ByVal</font><font color="#800000">
+<i><b>DataOutByte</b></i></font><b><font color="#800000"><i> </i></font><font color="#000080">As Byte</font></b>)
+<font color="#0000FF"><b>As Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoRS232Send">DoRS232Send</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <font color="#800000"><i><b>DataOutByte</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoRS232Read">DoRS232Read</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>DataInByte</b></i></font><b><font color="#800000"><i>
+</i></font></b><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long<br>
+</b></font><font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoGetRS232Baud">DoSetRS232Baud</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByVal</font> <b><i><font color="#800000">BaudRate</font></i></b>
+<b><font color="#000080">As Long</font></b>) <font color="#0000FF"><b>As Long</b></font><br>
+<font color="#000080">Public </font><font color="#000080">Declare Function</font> <b><a href="#DoGetRS232Baud">DoGetRS232Baud</a></b><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font> <font color="#800000"><i><b>BaudRate
+</b></i></font><b><font color="#000080">As Long</font></b>) <font color="#0000FF"><b>As
+Long<br>
+</b></font><font color="#000080">Public Declare Function </font><a href="#DoGetRS232Buffer"><b>DoGetRS232Buffer</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font>  <font color="#800000"><i><b>RS232Buffer</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Any</font></b>, <font color="#000080">ByVal</font> 
+<font color="#800000"><i><b>DummyInt</b></i></font>
+<b><font color="#000080">As Long</font></b>, <font color="#000080">ByRef</font> 
+<font color="#800000"><i><b>RS232BufferLength</b></i></font><font color="#800000">
+<b><i> </i></b></font><b><font color="#000080">As Long</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoRS232BufferSend"><b>DoRS232BufferSend</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font>  <font color="#800000"><i><b>RS232Buffer</b></i></font><b><font color="#800000"><i>
+</i></font><font color="#000080">As Any</font></b>, <font color="#000080">ByVal</font> 
+<font color="#800000"><i><b>DummyInt</b></i></font>
+<b><font color="#000080">As Long</font></b>, <font color="#000080">ByRef</font> 
+<font color="#800000"><i><b>RS232BufferLength</b></i></font><font color="#800000">
+<b><i> </i></b></font><b><font color="#000080">As Long</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoSetRS232DataBits"><b>DoSetRS232DataBits</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#800000"><i><b>DataBits</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoGetRS232DataBits"><b>DoGetRS232DataBits</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font>  <font color="#800000"><i><b>DataBits</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoSetRS232Parity"><b>DoSetRS232Parity</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#800000"><i><b>Parity</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoGetRS232Parity"><b>DoGetRS232Parity</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font>  <font color="#800000"><i><b>Parity</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font><br>
+<font color="#000080">Public Declare Function </font> <a href="#DoSetRS232StopBits"><b>DoSetRS232StopBits</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#800000"><i><b>StopBits</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long<br>
+</b></font><font color="#000080">Public Declare Function </font> <a href="#DoGetRS232StopBits"><b>DoGetRS232StopBits</b></a><b><a href="#DoGetInfraCode">
+</a></b> Lib &quot;AVR309.dll&quot; (<font color="#000080">ByRef</font>  <font color="#800000"><i><b>StopBits</b></i></font><font color="#800000"><i><b>
+</b></i></font><b><font color="#000080">As Byte</font></b>) <font color="#0000FF"><b>As
+Long</b></font></p>
+<hr>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoGetInfraCode">DoGetInfraCode</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>TimeCodeDiagram</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>DiagramLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font> <font color="#000080"> external</font>  <font color="#800000"><i><b>AVR309DLL</b></i></font> name '<font color="#FF00FF">DoGetInfraCode</font>';</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads last received Infrared Code from
+microcontrollers infrared buffer and frees this infrared buffer.<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>TimeCodeDiagram</i>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Array of bytes for infrared
+code storing. Every byte in this array represents duration of one signal level (H or
+L level). Duration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is in 85.3us steps (e.g. number 10
+represents 853us duration of L or H level). Last number in array (with index <i>DiagramLength</i>)
+has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; L level and the levels alternates in array (LHL.....HLHLHL).
+Maximum length of this array is 256.<br>
+&nbsp;&nbsp;&nbsp; <i>DiagramLength<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>[out] Length of returned <i>TimeCodeDiagram</i>
+array.
+If <i>DiagramLength=0</i> then no code was received since last request.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:</u><br>
+&nbsp;&nbsp;&nbsp; Microcontroller stores infrared code into its internal
+buffer. If another code was received before reading stored code from
+microcontroller<br>
+&nbsp;&nbsp;&nbsp; by this function, then the second (3-th, 4-th, ...) code are
+lost.</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoSetDataPortDirection">DoSetDataPortDirection</a></b>(<font color="#800000"><i><b>DirectionByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;<br>
+<font color="#000080">
+function</font> <b>DoSetDataPortDirections</b>(<font color="#800000"><i><b>DirectionByteB</b></i></font>,
+<font color="#800000"><i><b>DirectionByteC</b></i></font>, <font color="#800000"><i><b>DirectionByteD</b></i></font>,
+<b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function sets transfer direction of microcontroller data
+pins (D0-D7).<br>
+Parameters<br>
+&nbsp;&nbsp; <i>DirectionByte</i>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Byte which bits represents
+direction of given microcontroller pin. Bit value 1 represents output and bit
+value 0 represents input.<br>
+&nbsp;&nbsp; <i>UsedPorts</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] bit mask: which ports to set (combination
+of : <i>1=PortB</i>, <i>2=PortC</i>, <i>4=PortD</i>).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoGetDataPortDirection">DoGetDataPortDirection</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataDirectionByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall;<br>
+function</font> <b>DoGetDataPortDirections</b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataDirectionByteB</b></i></font>, <font color="#800000"><i><b>DirectionByteC</b></i></font>,
+<font color="#800000"><i><b>DirectionByteD</b></i></font>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>; </p>
+<p>&nbsp;&nbsp;&nbsp; Function reads transfer direction of microcontroller data
+pins (D0-D7).<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>DataDirectionByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Byte which bits represents
+direction of microcontroller data pins.&nbsp;Bit value 1 represents output and bit
+value 0 represents input.<br>
+&nbsp;&nbsp; <i>UsedPorts</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] bit mask: which ports was
+readed (combination of : <i>1=PortB</i>, <i>2=PortC</i>, <i>4=PortD</i>). </p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoSetOutDataPort">DoSetOutDataPort</a></b>(<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;<br>
+<font color="#000080">
+function</font> <b>DoSetOutDataPorts</b>(<font color="#800000"><i><b>DataOutByteB</b></i></font>,
+<font color="#800000"><i><b>DataOutByteC</b></i></font>, <font color="#800000"><i><b>DataOutByteD</b></i></font>,
+<b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function sets given state on microcontroller output data
+pins or set pull-up resistors on microcontroller input data pins (D0-D7).<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>DataOutByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Byte which bits represents
+output levels on data pins - if pins are in output direction. If data pin(s) are in input
+direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then bit value 1 switch on pull-up
+resistor and bit value 0 switch off pull-up resistor (high impedance input) on
+input data pin.<br>
+&nbsp;&nbsp; <i>UsedPorts</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] bit mask: which ports to set (combination
+of : <i>1=PortB</i>, <i>2=PortC</i>, <i>4=PortD</i>).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoGetOutDataPort">DoGetOutDataPort</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;<br>
+<font color="#000080">
+function</font> <b>DoGetOutDataPorts</b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataOutByteB</b></i></font>, <font color="#800000"><i><b>DataOutByteC</b></i></font>,
+<font color="#800000"><i><b>DataOutByteD</b></i></font>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads state of microcontroller output level/pull-up
+values.<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>DataOutByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Byte which bits represents
+output levels written to data pins - if pins are in output direction. If pin(s) are
+in input direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then bit value 1 represent switched
+on pull-up resistor and bit value 0 represent switched off pull-up resistor (high&nbsp;impedance<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; input) on input data pin.<br>
+&nbsp;&nbsp; <i>UsedPorts</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] bit mask: which ports was
+readed (combination of : <i>1=PortB</i>, <i>2=PortC</i>, <i>4=PortD</i>).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:</u><br>
+&nbsp;&nbsp;&nbsp; The output values are not read from physical pins, but from
+internal register (stored value). For reading true physical values<br>
+&nbsp;&nbsp;&nbsp; on output data pins use function <b><a href="#DoGetInDataPort">DoGetInDataPort</a></b>.</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoGetInDataPort">DoGetInDataPort</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;<br>
+<font color="#000080">
+function</font> <b>DoGetInDataPorts</b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByteB</b></i></font>, <font color="#800000"><i><b>DataInByteC</b></i></font>,
+<b><i><font color="#800000">DataInByteD</font></i></b>, <b><i><font color="#800000">UsedPorts</font></i></b>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads state of microcontroller data pins (D0-D7).<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>DataOutByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Byte which bits represents levels on data pins
+(level on physical pins).<br>
+&nbsp;&nbsp; <i>UsedPorts</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] bit mask: which ports was
+readed (combination of : <i>1=PortB</i>, <i>2=PortC</i>, <i>4=PortD</i>).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoEEPROMRead">DoEEPROMRead</a></b>(<font color="#800000"><i><b>Address</b></i></font>:<font color="#000080"><b>byte</b></font>;
+<font color="#000080"> var</font> <font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads byte from given address of microcontroller data EEPROM.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>Address</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Byte which bits represents
+address of internal EEPROM (valid address range: 0 to 127).<br>
+&nbsp;&nbsp; <i>DataInByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Value from EEPROM.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoEEPROMWrite">DoEEPROMWrite</a></b>(<font color="#800000"><i><b>Address</b></i></font>:<font color="#000080"><b>byte</b></font>;
+<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>
+&nbsp;&nbsp;&nbsp; Function writes byte to given address of microcontroller data
+EEPROM.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>Address</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Byte which bits represents
+address of internal EEPROM (valid address range: 0 to 127).<br>
+&nbsp;&nbsp; <i>DataOutByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] New value to write to EEPROM.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function waits for storing byte to EEPROM (write time is
+cca 4ms).</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoRS232Send">DoRS232Send</a></b>(<font color="#800000"><i><b>DataOutByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function sends byte to microcontroller RS232 line at
+current baudrate.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>DataOutByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Value to send to microcontroller
+RS232 line.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function waits for transmitting given byte: all data bits + stop
+bit are transmitted before function end.</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoRS232Read">DoRS232Read</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataInByte</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads byte received by microcontroller RS232
+line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>DataInByte</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Byte received from
+microcontroller RS232 line.</p>
+<p><u>Return values</u><b><br>
+</b>&nbsp;&nbsp;&nbsp; The return values are:<br>
+&nbsp;&nbsp;&nbsp; <i>NO_ERROR</i> - one byte received (returned in <i>DataInByte</i>)<br>
+<i>&nbsp;&nbsp;&nbsp; NO_DATA_AVAILABLE - </i>no data was received (value <i>DataInByte</i>
+is not valid)<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>OVERRUN_ERROR</i>&nbsp; - more bytes was received, but
+another received bytes was lost: in <i>DataInByte</i>  is returned only the first received
+byte<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>DEVICE_NOT_PRESENT -</i> error: device is
+disconnected</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoSetRS232Baud">DoSetRS232Baud</a></b>(<font color="#800000"><i><b>BaudRate</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function sets speed of microcontroller RS232 line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>BaudRate</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Required baudrate of
+microcontroller RS232 line (in bps).</p>
+<p><u>Return values</u><b><br>
+</b>&nbsp;&nbsp;&nbsp; The return values are:<br>
+&nbsp;&nbsp;&nbsp; <i>NO_ERROR</i> - baudrate was set (error between required
+and set baudrate is less than 4%)<br>
+<i>&nbsp;&nbsp;&nbsp; INVALID_BAUDRATE - </i>not supported baudrate - baudrate
+was not set (error from required baudrate is more than 4%)<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>DEVICE_NOT_PRESENT -</i> error: device is
+disconnected</p>
+<p><u>Notes:</u><br>
+&nbsp;&nbsp;&nbsp; Valid baudrates are cca from 2900 Baud to 780 000 Baud.<br>
+&nbsp;&nbsp;&nbsp; Supported &quot;standard&quot; baudrates for AT90S2313 are 4800,
+9600, 19200, 38400, 57600<br>
+&nbsp;&nbsp;&nbsp; Supported &quot;standard&quot; baudrates for ATmega8 are 600,
+1200, 4800, 9600, 19200, 28800, 38400, 57600, 115200<br>
+&nbsp;&nbsp;&nbsp; To know internal baudrate - use function <b><a href="#DoGetRS232Baud">DoGetRS232Baud</a></b>.<br>
+&nbsp;&nbsp;&nbsp; After power on - the baudrate is set to 57600.</p>
+<hr>
+<p><font color="#000080">
+function</font> <b><a name="DoGetRS232Baud">DoGetRS232Baud</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>BaudRate</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function reads current baudrate of microcontroller RS232
+line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>BaudRate</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Exact value of current baudrate
+of microcontroller RS232 line.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:</u><br>
+&nbsp;&nbsp;&nbsp; Function returns exact current baudrate value - may be
+slightly different from the required value (error up to 4%).</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoGetRS232Buffer">DoGetRS232Buffer</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>RS232Buffer</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>RS232BufferLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall;</font> </p>
+<p>&nbsp;&nbsp;&nbsp; Function reads data from microcontrollers internal RS232
+buffer (into this buffer is received data from RS232 line).<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>RS232Buffer</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Array of bytes for received
+RS232 bytes storing.<br>
+&nbsp;&nbsp;&nbsp; <i>RS232BufferLength<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>[in/out] Maximum number to return
+(input to function). Number of bytes returned in <i>RS232Buffer</i> array.
+If <i>RS232BufferLength=0</i> then no data was received from RS232 line.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.</p>
+<p><u>Notes:</u><br>
+&nbsp;&nbsp;&nbsp; Microcontroller stores received data from RS232 line into its internal
+buffer. From this FIFO buffer then computer reads the data.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoRS232BufferSend">DoRS232BufferSend</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>RS232Buffer</b></i></font>:<font color="#000080"><b>array of
+byte</b></font>; <font color="#000080"> var</font> <font color="#800000"><i><b>RS232BufferLength</b></i></font>:<font color="#000080"><b>integer</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall;</font></p>
+<p>&nbsp;&nbsp;&nbsp; Function sends data buffer to microcontrollers RS232 line.<br>
+<u>Parameters</u><br>
+&nbsp;&nbsp; <i>RS232Buffer</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Array of bytes to send to RS232
+line.<br>
+&nbsp;&nbsp;&nbsp; <i>RS232BufferLength<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>[in/out] Number of bytes to send
+from <i>RS232Buffer</i>. Returns number of bytes succesfully written to RS232
+line.</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> If the function
+fails, the return value is <i>DEVICE_NOT_PRESENT</i> (device is disconnected).</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function waits for transmitting all bytes: including stop
+bit of last byte.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoSetRS232DataBits">DoSetRS232DataBits</a></b>(<font color="#800000"><i><b>DataBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function set the number of data bits used on RS232
+communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>DataBits</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Number of data bits to use
+(5,6,7,8).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>INVALID_DATABITS</i> - unsupported number of
+databits.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoGetRS232DataBits">DoGetRS232DataBits</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>DataBits</b></i></font>:<font color="#000080"><b>byte</b></font>):integer;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function returns the number of data bits currently used on RS232
+communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>DataBits</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Number of data bits currently
+used (5,6,7,8).</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoSetRS232Parity">DoSetRS232Parity</a></b>(<font color="#800000"><i><b>Parity</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall;</font> </p>
+<p>&nbsp;&nbsp;&nbsp; Function set the parity used on RS232 communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>Parity</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Parity value used on RS232 line:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; None = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Odd = 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Even = 2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark = 3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Space = 4;</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>INVALID_PARITY</i> - unsupported parity number.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoGetRS232Parity">DoGetRS232Parity</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>Parity</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function returns the parity currently used on RS232
+communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>Parity</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Parity currently used
+(0,1,2,3,4). - see <a href="#DoSetRS232Parity"><b>DoSetRS232Parity</b></a></p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoSetRS232StopBits">DoSetRS232StopBits</a></b>(<font color="#800000"><i><b>StopBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function set the number of stopbits used on RS232
+communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>StopBits</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] Number of stop bits used on
+RS232 line:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 stop bit =
+0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 stop bits =
+1;</p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.<br>
+<i>&nbsp;&nbsp;&nbsp;</i> <i>INVALID_STOPBITS</i> - unsupported stopbits number.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p><font color="#000080">function</font> <b><a name="DoGetRS232StopBits">DoGetRS232StopBits</a></b>(<font color="#000080">var</font>
+<font color="#800000"><i><b>StopBits</b></i></font>:<font color="#000080"><b>byte</b></font>):<font color="#0000FF"><b>integer</b></font>;
+<font color="#000080"> stdcall</font>;</p>
+<p>&nbsp;&nbsp;&nbsp; Function returns the number of stop bits currently used on RS232
+communication line.<br>
+<u>Parameters<br>
+</u>&nbsp;&nbsp; <i>StopBits</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] Number of stop bits currently
+used (0,1). - see <a href="#DoSetRS232StopBits"><b>DoSetRS232StopBits</b></a></p>
+<p><u>Return values</u><b><br>
+&nbsp;&nbsp;&nbsp; </b>If the function succeeds, the return value is <i>NO_ERROR</i>.<br>
+<i><b><font color="#800000">&nbsp;&nbsp;&nbsp;</font></b></i> <i>DEVICE_NOT_PRESENT</i> 
+- device is disconnected.</p>
+<p><u>Notes:<br>
+</u>&nbsp;&nbsp;&nbsp; Function is supported only on ATmega8 microcontroller.</p>
+<hr>
+<p>For more information see also file <b><i>AVR309.dpr</i></b> .</p>
+<p><i><b>Author&nbsp; Ing. Igor Cesko, Slovakia, <a href="http://www.cesko.host.sk">www.cesko.host.sk</a>
+</b>
+</i></p>
+
+</body>
+
+</html>

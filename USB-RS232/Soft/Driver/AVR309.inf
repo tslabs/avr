@@ -1,0 +1,64 @@
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+provider=%MB%
+LayoutFile=layout.inf
+
+[Manufacturer]
+%MfgName%=IgorCeskoCompany
+
+[IgorCeskoCompany]
+%USB\VID_03EB&PID_21FF.DeviceDesc%=AVR309Prj.Dev, USB\VID_03EB&PID_21FF
+%USB\VID_03EB&PID_21FE.DeviceDesc%=AVR309Prj.Dev, USB\VID_03EB&PID_21FE
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+AVR309Prj.Files.Ext = 10,System32\Drivers
+AVR309Prj.Files.Inf = 10,INF
+AVR309Prj.Files.Dll = 25
+
+[AVR309Prj.Dev]
+CopyFiles=AVR309Prj.Files.Ext, AVR309Prj.Files.Inf, AVR309Prj.Files.Dll
+AddReg=AVR309Prj.AddReg
+
+[AVR309Prj.Dev.NT]
+CopyFiles=AVR309Prj.Files.Ext, AVR309Prj.Files.Inf, AVR309Prj.Files.Dll
+AddReg=AVR309Prj.AddReg
+
+[AVR309Prj.Dev.NT.Services]
+Addservice = AVR309Prj, 0x00000002, AVR309Prj.AddService
+
+[AVR309Prj.AddService]
+DisplayName    = %AVR309Prj.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\AVR309.sys
+LoadOrderGroup = Base
+
+[AVR309Prj.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,AVR309.sys
+HKLM,"System\Currentcontrolset\Services\AVR309Prj\Parameters","MaximumTransferSize",0x10001,256
+HKLM,"System\Currentcontrolset\Services\AVR309Prj\Parameters","DebugLevel",0x10001,2
+
+
+[AVR309Prj.Files.Ext]
+AVR309.sys
+
+[AVR309Prj.Files.Inf]
+AVR309.inf
+
+[AVR309Prj.Files.Dll]
+AVR309.dll
+
+;---------------------------------------------------------------;
+
+[Strings]
+MB="Ing. Igor Cesko and Atmel corporation"
+MfgName="Ing. Igor Cesko Company, Slovakia"
+USB\VID_03EB&PID_21FF.DeviceDesc="AVR309:USB to UART protocol converter"
+USB\VID_03EB&PID_21FE.DeviceDesc="AVR309:USB to UART protocol converter (simple)"
+AVR309Prj.SvcDesc="AVR309:USB to UART device driver"

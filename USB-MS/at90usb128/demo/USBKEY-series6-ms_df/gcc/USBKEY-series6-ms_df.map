@@ -1,0 +1,1115 @@
+Archive member included because of file (symbol)
+
+c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+                              c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o (exit)
+c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+                              default/usb_device_task.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+endpoint_status     0x7               default/usb_standard_request.o
+ms_multiple_drive   0x1               default/usb_specific_request.o
+g_scsi_data_remaining
+                    0x4               default/scsi_decoder.o
+usb_LUN             0x1               default/storage_task.o
+g_scsi_command      0x10              default/scsi_decoder.o
+ms_data_direction   0x1               default/storage_task.o
+cpt_sof             0x1               default/storage_task.o
+usb_configuration_nb
+                    0x1               default/usb_standard_request.o
+g_scsi_status       0x1               default/scsi_decoder.o
+data_to_transfer    0x1               default/usb_standard_request.o
+pbuffer             0x2               default/usb_standard_request.o
+g_scsi_sense        0x3               default/scsi_decoder.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+ .bss           0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+ .text          0x00000000        0x0 default/wdt_drv.o
+ .data          0x00000000        0x0 default/wdt_drv.o
+ .bss           0x00000000        0x0 default/wdt_drv.o
+ .text.wdtdrv_enable
+                0x00000000        0x0 default/wdt_drv.o
+ .text.wdtdrv_interrupt_enable
+                0x00000000        0x0 default/wdt_drv.o
+ .text.wdtdrv_interrupt_reset_enable
+                0x00000000        0x0 default/wdt_drv.o
+ .text          0x00000000        0x0 default/main.o
+ .data          0x00000000        0x0 default/main.o
+ .bss           0x00000000        0x0 default/main.o
+ .text          0x00000000        0x0 default/ctrl_access.o
+ .data          0x00000000        0x0 default/ctrl_access.o
+ .bss           0x00000000        0x0 default/ctrl_access.o
+ .text.mem_sector_size
+                0x00000000        0x0 default/ctrl_access.o
+ .text.mem_name
+                0x00000000        0x0 default/ctrl_access.o
+ .text.mem_removal
+                0x00000000        0x0 default/ctrl_access.o
+ .progmem.data  0x00000000        0x0 default/ctrl_access.o
+ .text          0x00000000        0x0 default/usb_descriptors.o
+ .data          0x00000000        0x0 default/usb_descriptors.o
+ .bss           0x00000000        0x0 default/usb_descriptors.o
+ .text          0x00000000        0x0 default/usb_device_task.o
+ .data          0x00000000        0x0 default/usb_device_task.o
+ .text          0x00000000        0x0 default/usb_drv.o
+ .data          0x00000000        0x0 default/usb_drv.o
+ .bss           0x00000000        0x0 default/usb_drv.o
+ .text.usb_select_enpoint_interrupt
+                0x00000000        0x0 default/usb_drv.o
+ .text.usb_send_packet
+                0x00000000        0x0 default/usb_drv.o
+ .text.usb_read_packet
+                0x00000000        0x0 default/usb_drv.o
+ .text.usb_halt_endpoint
+                0x00000000        0x0 default/usb_drv.o
+ .text          0x00000000        0x0 default/usb_specific_request.o
+ .data          0x00000000        0x0 default/usb_specific_request.o
+ .bss           0x00000000        0x0 default/usb_specific_request.o
+ .text          0x00000000        0x0 default/usb_standard_request.o
+ .data          0x00000000        0x0 default/usb_standard_request.o
+ .text.usb_generate_remote_wakeup
+                0x00000000        0x0 default/usb_standard_request.o
+ .text          0x00000000        0x0 default/usb_task.o
+ .data          0x00000000        0x0 default/usb_task.o
+ .text          0x00000000        0x0 default/df_mem.o
+ .data          0x00000000        0x0 default/df_mem.o
+ .text.df_removal
+                0x00000000        0x0 default/df_mem.o
+ .text.df_ram_2_df
+                0x00000000        0x0 default/df_mem.o
+ .text.df_df_2_ram
+                0x00000000        0x0 default/df_mem.o
+ .text          0x00000000        0x0 default/df.o
+ .data          0x00000000        0x0 default/df.o
+ .text.df_read_sector_2_ram
+                0x00000000        0x0 default/df.o
+ .text.df_write_sector_from_ram
+                0x00000000        0x0 default/df.o
+ .text          0x00000000        0x0 default/power_drv.o
+ .data          0x00000000        0x0 default/power_drv.o
+ .bss           0x00000000        0x0 default/power_drv.o
+ .text.set_power_down_mode
+                0x00000000        0x0 default/power_drv.o
+ .text.set_idle_mode
+                0x00000000        0x0 default/power_drv.o
+ .text.set_adc_noise_reduction_mode
+                0x00000000        0x0 default/power_drv.o
+ .text.set_power_save_mode
+                0x00000000        0x0 default/power_drv.o
+ .text.set_standby_mode
+                0x00000000        0x0 default/power_drv.o
+ .text.set_ext_standby_mode
+                0x00000000        0x0 default/power_drv.o
+ .text          0x00000000        0x0 default/scheduler.o
+ .data          0x00000000        0x0 default/scheduler.o
+ .bss           0x00000000        0x0 default/scheduler.o
+ .text.scheduler_empty_fct
+                0x00000000        0x0 default/scheduler.o
+ .text          0x00000000        0x0 default/scsi_decoder.o
+ .data          0x00000000        0x0 default/scsi_decoder.o
+ .bss           0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_prevent_allow_medium_removal
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_good
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_not_present
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_busy_or_change
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_fail
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_protected
+                0x00000000        0x0 default/scsi_decoder.o
+ .text.sbc_lun_status_is_cdb_field
+                0x00000000        0x0 default/scsi_decoder.o
+ .text          0x00000000        0x0 default/storage_task.o
+ .data          0x00000000        0x0 default/storage_task.o
+ .text          0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+LOAD default/wdt_drv.o
+LOAD default/main.o
+LOAD default/ctrl_access.o
+LOAD default/usb_descriptors.o
+LOAD default/usb_device_task.o
+LOAD default/usb_drv.o
+LOAD default/usb_specific_request.o
+LOAD default/usb_standard_request.o
+LOAD default/usb_task.o
+LOAD default/df_mem.o
+LOAD default/df.o
+LOAD default/power_drv.o
+LOAD default/scheduler.o
+LOAD default/scsi_decoder.o
+LOAD default/storage_task.o
+LOAD c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
+LOAD c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a
+LOAD c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x23cc
+ *(.vectors)
+ .vectors       0x00000000       0x98 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000098       0x80 default/usb_descriptors.o
+                0x00000114                usb_user_language_id
+                0x00000098                usb_dev_desc
+                0x000000d6                usb_user_product_string_descriptor
+                0x000000f8                usb_user_serial_number
+                0x000000ca                usb_user_manufacturer_string_descriptor
+                0x000000aa                usb_conf_desc
+ .progmem.data  0x00000118       0x24 default/scsi_decoder.o
+                0x00000134                sbc_std_inquiry_data
+                0x00000118                g_sbc_vendor_id
+                0x00000130                g_sbc_revision_id
+                0x00000120                g_sbc_product_id
+                0x0000013c                . = ALIGN (0x2)
+                0x0000013c                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000013c        0x0 linker stubs
+ *(.trampolines*)
+                0x0000013c                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000013c                __ctors_start = .
+ *(.ctors)
+                0x0000013c                __ctors_end = .
+                0x0000013c                __dtors_start = .
+ *(.dtors)
+                0x0000013c                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000013c        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+                0x0000013c                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000013c        0xc c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+ *(.init2)
+ *(.init3)
+ .init3         0x00000148       0x16 default/main.o
+                0x00000148                __low_level_init
+ *(.init3)
+ *(.init4)
+ .init4         0x0000015e       0x1a c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+                0x0000015e                __do_copy_data
+ .init4         0x00000178       0x10 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+                0x00000178                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000188        0x6 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+ *(.init9)
+ *(.text)
+ .text          0x0000018e        0x2 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+                0x0000018e                __vector_22
+                0x0000018e                __vector_28
+                0x0000018e                __vector_1
+                0x0000018e                __vector_32
+                0x0000018e                __vector_34
+                0x0000018e                __vector_24
+                0x0000018e                __vector_12
+                0x0000018e                __bad_interrupt
+                0x0000018e                __vector_6
+                0x0000018e                __vector_31
+                0x0000018e                __vector_35
+                0x0000018e                __vector_3
+                0x0000018e                __vector_23
+                0x0000018e                __vector_30
+                0x0000018e                __vector_25
+                0x0000018e                __vector_11
+                0x0000018e                __vector_13
+                0x0000018e                __vector_17
+                0x0000018e                __vector_19
+                0x0000018e                __vector_7
+                0x0000018e                __vector_27
+                0x0000018e                __vector_5
+                0x0000018e                __vector_33
+                0x0000018e                __vector_37
+                0x0000018e                __vector_4
+                0x0000018e                __vector_9
+                0x0000018e                __vector_2
+                0x0000018e                __vector_21
+                0x0000018e                __vector_15
+                0x0000018e                __vector_36
+                0x0000018e                __vector_29
+                0x0000018e                __vector_8
+                0x0000018e                __vector_26
+                0x0000018e                __vector_14
+                0x0000018e                __vector_16
+                0x0000018e                __vector_18
+                0x0000018e                __vector_20
+                0x00000190                . = ALIGN (0x2)
+ *(.text.*)
+ .text.wdtdrv_disable
+                0x00000190       0x20 default/wdt_drv.o
+                0x00000190                wdtdrv_disable
+ .text.main     0x000001b0       0x20 default/main.o
+                0x000001b0                main
+ .text.get_nb_lun
+                0x000001d0        0x4 default/ctrl_access.o
+                0x000001d0                get_nb_lun
+ .text.get_cur_lun
+                0x000001d4        0x4 default/ctrl_access.o
+                0x000001d4                get_cur_lun
+ .text.usb_2_memory
+                0x000001d8       0x18 default/ctrl_access.o
+                0x000001d8                usb_2_memory
+ .text.memory_2_usb
+                0x000001f0       0x18 default/ctrl_access.o
+                0x000001f0                memory_2_usb
+ .text.mem_wr_protect
+                0x00000208        0xa default/ctrl_access.o
+                0x00000208                mem_wr_protect
+ .text.mem_read_capacity
+                0x00000212       0x14 default/ctrl_access.o
+                0x00000212                mem_read_capacity
+ .text.mem_test_unit_ready
+                0x00000226       0x12 default/ctrl_access.o
+                0x00000226                mem_test_unit_ready
+ .text.usb_device_task_init
+                0x00000238       0x1c default/usb_device_task.o
+                0x00000238                usb_device_task_init
+ .text.usb_start_device
+                0x00000254       0x3a default/usb_device_task.o
+                0x00000254                usb_start_device
+ .text.usb_device_task
+                0x0000028e       0xac default/usb_device_task.o
+                0x0000028e                usb_device_task
+ .text.usb_config_ep
+                0x0000033a       0x30 default/usb_drv.o
+                0x0000033a                usb_config_ep
+ .text.usb_init_device
+                0x0000036a       0x2c default/usb_drv.o
+                0x0000036a                usb_init_device
+ .text.usb_user_interface_get
+                0x00000396        0x4 default/usb_specific_request.o
+                0x00000396                usb_user_interface_get
+ .text.usb_user_interface_reset
+                0x0000039a       0x4c default/usb_specific_request.o
+                0x0000039a                usb_user_interface_reset
+ .text.usb_user_get_descriptor
+                0x000003e6       0x54 default/usb_specific_request.o
+                0x000003e6                usb_user_get_descriptor
+ .text.usb_user_endpoint_init
+                0x0000043a       0x26 default/usb_specific_request.o
+                0x0000043a                usb_user_endpoint_init
+ .text.usb_user_read_request
+                0x00000460       0xd6 default/usb_specific_request.o
+                0x00000460                usb_user_read_request
+ .text.usb_process_request
+                0x00000536      0x4aa default/usb_standard_request.o
+                0x00000536                usb_process_request
+ .text.__vector_10
+                0x000009e0      0x1aa default/usb_task.o
+                0x000009e0                __vector_10
+ .text.usb_task
+                0x00000b8a        0x4 default/usb_task.o
+                0x00000b8a                usb_task
+ .text.usb_task_init
+                0x00000b8e       0x18 default/usb_task.o
+                0x00000b8e                usb_task_init
+ .text.df_wr_protect
+                0x00000ba6        0x6 default/df_mem.o
+                0x00000ba6                df_wr_protect
+ .text.df_read_10
+                0x00000bac       0xe4 default/df_mem.o
+                0x00000bac                df_read_10
+ .text.df_test_unit_ready
+                0x00000c90       0x2a default/df_mem.o
+                0x00000c90                df_test_unit_ready
+ .text.df_read_capacity
+                0x00000cba       0x14 default/df_mem.o
+                0x00000cba                df_read_capacity
+ .text.df_mem_init
+                0x00000cce        0x4 default/df_mem.o
+                0x00000cce                df_mem_init
+ .text.df_write_10
+                0x00000cd2       0xe8 default/df_mem.o
+                0x00000cd2                df_write_10
+ .text.df_init  0x00000dba       0x52 default/df.o
+                0x00000dba                df_init
+ .text.df_chipselect_current
+                0x00000e0c       0x1c default/df.o
+ .text.df_mem_check
+                0x00000e28       0x4c default/df.o
+                0x00000e28                df_mem_check
+ .text.df_wait_busy
+                0x00000e74       0x2e default/df.o
+ .text.df_read_open
+                0x00000ea2      0x114 default/df.o
+                0x00000ea2                df_read_open
+ .text.df_read_close
+                0x00000fb6        0x8 default/df.o
+                0x00000fb6                df_read_close
+ .text.df_read_sector
+                0x00000fbe      0x3f2 default/df.o
+                0x00000fbe                df_read_sector
+ .text.df_write_open
+                0x000013b0      0x130 default/df.o
+                0x000013b0                df_write_open
+ .text.df_write_close
+                0x000014e0       0x66 default/df.o
+                0x000014e0                df_write_close
+ .text.df_write_sector
+                0x00001546      0x3a8 default/df.o
+                0x00001546                df_write_sector
+ .text.scheduler_tasks
+                0x000018ee        0x6 default/scheduler.o
+                0x000018ee                scheduler_tasks
+ .text.scheduler_init
+                0x000018f4        0x4 default/scheduler.o
+                0x000018f4                scheduler_init
+ .text.scheduler
+                0x000018f8        0x4 default/scheduler.o
+                0x000018f8                scheduler
+ .text.sbc_request_sense
+                0x000018fc       0xc0 default/scsi_decoder.o
+                0x000018fc                sbc_request_sense
+ .text.sbc_inquiry
+                0x000019bc       0xb6 default/scsi_decoder.o
+                0x000019bc                sbc_inquiry
+ .text.send_informational_exceptions_page
+                0x00001a72       0x26 default/scsi_decoder.o
+ .text.send_read_write_error_recovery_page
+                0x00001a98       0x3e default/scsi_decoder.o
+ .text.sbc_header_mode_sense
+                0x00001ad6       0x44 default/scsi_decoder.o
+ .text.sbc_mode_sense
+                0x00001b1a      0x168 default/scsi_decoder.o
+                0x00001b1a                sbc_mode_sense
+ .text.sbc_write_10
+                0x00001c82      0x1aa default/scsi_decoder.o
+                0x00001c82                sbc_write_10
+ .text.sbc_read_10
+                0x00001e2c      0x186 default/scsi_decoder.o
+                0x00001e2c                sbc_read_10
+ .text.sbc_read_capacity
+                0x00001fb2       0xf2 default/scsi_decoder.o
+                0x00001fb2                sbc_read_capacity
+ .text.sbc_test_unit_ready
+                0x000020a4       0x5e default/scsi_decoder.o
+                0x000020a4                sbc_test_unit_ready
+ .text.scsi_decode_command
+                0x00002102       0x92 default/scsi_decoder.o
+                0x00002102                scsi_decode_command
+ .text.sof_action
+                0x00002194        0xc default/storage_task.o
+                0x00002194                sof_action
+ .text.usb_mass_storage_csw
+                0x000021a0       0xd2 default/storage_task.o
+                0x000021a0                usb_mass_storage_csw
+ .text.usb_mass_storage_cbw
+                0x00002272      0x126 default/storage_task.o
+                0x00002272                usb_mass_storage_cbw
+ .text.storage_task
+                0x00002398       0x1c default/storage_task.o
+                0x00002398                storage_task
+ .text.storage_task_init
+                0x000023b4       0x14 default/storage_task.o
+                0x000023b4                storage_task_init
+                0x000023c8                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000023c8        0x0 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+                0x000023c8                exit
+                0x000023c8                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000023c8        0x4 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000023cc                _etext = .
+
+.data           0x00800100        0x0 load address 0x000023cc
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800100                . = ALIGN (0x2)
+                0x00800100                _edata = .
+                0x00800100                PROVIDE (__data_end, .)
+
+.bss            0x00800100       0x38
+                0x00800100                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800100        0x2 default/usb_device_task.o
+                0x00800101                usb_suspended
+                0x00800100                usb_connected
+ .bss           0x00800102        0x1 default/usb_standard_request.o
+                0x00800102                remote_wakeup_feature
+ .bss           0x00800103        0x2 default/usb_task.o
+                0x00800103                g_usb_event
+ .bss           0x00800105        0x2 default/df_mem.o
+                0x00800106                g_b_df_protected_last
+                0x00800105                g_b_df_protected
+ .bss           0x00800107        0x6 default/df.o
+ .bss           0x0080010d        0x4 default/storage_task.o
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800111        0x1 default/usb_specific_request.o
+                0x00800111                ms_multiple_drive
+ COMMON         0x00800112        0xb default/usb_standard_request.o
+                0x00800112                endpoint_status
+                0x00800119                usb_configuration_nb
+                0x0080011a                data_to_transfer
+                0x0080011b                pbuffer
+ COMMON         0x0080011d       0x18 default/scsi_decoder.o
+                0x0080011d                g_scsi_data_remaining
+                0x00800121                g_scsi_command
+                0x00800131                g_scsi_status
+                0x00800132                g_scsi_sense
+ COMMON         0x00800135        0x3 default/storage_task.o
+                0x00800135                usb_LUN
+                0x00800136                ms_data_direction
+                0x00800137                cpt_sof
+                0x00800138                PROVIDE (__bss_end, .)
+                0x000023cc                __data_load_start = LOADADDR (.data)
+                0x000023cc                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800138        0x0
+                0x00800138                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800138                PROVIDE (__noinit_end, .)
+                0x00800138                _end = .
+                0x00800138                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x418
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x38 default/wdt_drv.o
+ .debug_aranges
+                0x00000038       0x28 default/main.o
+ .debug_aranges
+                0x00000060       0x68 default/ctrl_access.o
+ .debug_aranges
+                0x000000c8       0x30 default/usb_device_task.o
+ .debug_aranges
+                0x000000f8       0x48 default/usb_drv.o
+ .debug_aranges
+                0x00000140       0x40 default/usb_specific_request.o
+ .debug_aranges
+                0x00000180       0x28 default/usb_standard_request.o
+ .debug_aranges
+                0x000001a8       0x30 default/usb_task.o
+ .debug_aranges
+                0x000001d8       0x60 default/df_mem.o
+ .debug_aranges
+                0x00000238       0x78 default/df.o
+ .debug_aranges
+                0x000002b0       0x48 default/power_drv.o
+ .debug_aranges
+                0x000002f8       0x38 default/scheduler.o
+ .debug_aranges
+                0x00000330       0xa8 default/scsi_decoder.o
+ .debug_aranges
+                0x000003d8       0x40 default/storage_task.o
+
+.debug_pubnames
+                0x00000000      0xa8d
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x75 default/wdt_drv.o
+ .debug_pubnames
+                0x00000075       0x30 default/main.o
+ .debug_pubnames
+                0x000000a5       0xd3 default/ctrl_access.o
+ .debug_pubnames
+                0x00000178       0xbc default/usb_descriptors.o
+ .debug_pubnames
+                0x00000234       0x78 default/usb_device_task.o
+ .debug_pubnames
+                0x000002ac       0x97 default/usb_drv.o
+ .debug_pubnames
+                0x00000343       0xb1 default/usb_specific_request.o
+ .debug_pubnames
+                0x000003f4       0xb1 default/usb_standard_request.o
+ .debug_pubnames
+                0x000004a5       0x51 default/usb_task.o
+ .debug_pubnames
+                0x000004f6       0xdd default/df_mem.o
+ .debug_pubnames
+                0x000005d3       0xd4 default/df.o
+ .debug_pubnames
+                0x000006a7       0xa3 default/power_drv.o
+ .debug_pubnames
+                0x0000074a       0x5f default/scheduler.o
+ .debug_pubnames
+                0x000007a9      0x23c default/scsi_decoder.o
+ .debug_pubnames
+                0x000009e5       0xa8 default/storage_task.o
+
+.debug_info     0x00000000     0x2cee
+ *(.debug_info)
+ .debug_info    0x00000000      0x14a default/wdt_drv.o
+ .debug_info    0x0000014a       0xf2 default/main.o
+ .debug_info    0x0000023c      0x318 default/ctrl_access.o
+ .debug_info    0x00000554      0x4fc default/usb_descriptors.o
+ .debug_info    0x00000a50      0x128 default/usb_device_task.o
+ .debug_info    0x00000b78      0x1f7 default/usb_drv.o
+ .debug_info    0x00000d6f      0x389 default/usb_specific_request.o
+ .debug_info    0x000010f8      0x82b default/usb_standard_request.o
+ .debug_info    0x00001923      0x10a default/usb_task.o
+ .debug_info    0x00001a2d      0x2e6 default/df_mem.o
+ .debug_info    0x00001d13      0x32e default/df.o
+ .debug_info    0x00002041       0xff default/power_drv.o
+ .debug_info    0x00002140       0xdd default/scheduler.o
+ .debug_info    0x0000221d      0x8c3 default/scsi_decoder.o
+ .debug_info    0x00002ae0      0x20e default/storage_task.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0xed6
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x8a default/wdt_drv.o
+ .debug_abbrev  0x0000008a       0x88 default/main.o
+ .debug_abbrev  0x00000112      0x12a default/ctrl_access.o
+ .debug_abbrev  0x0000023c       0xcb default/usb_descriptors.o
+ .debug_abbrev  0x00000307       0x80 default/usb_device_task.o
+ .debug_abbrev  0x00000387       0xce default/usb_drv.o
+ .debug_abbrev  0x00000455      0x140 default/usb_specific_request.o
+ .debug_abbrev  0x00000595      0x202 default/usb_standard_request.o
+ .debug_abbrev  0x00000797       0x95 default/usb_task.o
+ .debug_abbrev  0x0000082c      0x140 default/df_mem.o
+ .debug_abbrev  0x0000096c      0x166 default/df.o
+ .debug_abbrev  0x00000ad2       0x4a default/power_drv.o
+ .debug_abbrev  0x00000b1c       0x68 default/scheduler.o
+ .debug_abbrev  0x00000b84      0x266 default/scsi_decoder.o
+ .debug_abbrev  0x00000dea       0xec default/storage_task.o
+
+.debug_line     0x00000000     0x3143
+ *(.debug_line)
+ .debug_line    0x00000000      0x177 default/wdt_drv.o
+ .debug_line    0x00000177       0xda default/main.o
+ .debug_line    0x00000251      0x227 default/ctrl_access.o
+ .debug_line    0x00000478       0xac default/usb_descriptors.o
+ .debug_line    0x00000524      0x248 default/usb_device_task.o
+ .debug_line    0x0000076c      0x1ed default/usb_drv.o
+ .debug_line    0x00000959      0x2fe default/usb_specific_request.o
+ .debug_line    0x00000c57      0x5fb default/usb_standard_request.o
+ .debug_line    0x00001252      0x20e default/usb_task.o
+ .debug_line    0x00001460      0x32f default/df_mem.o
+ .debug_line    0x0000178f      0x91f default/df.o
+ .debug_line    0x000020ae      0x160 default/power_drv.o
+ .debug_line    0x0000220e      0x102 default/scheduler.o
+ .debug_line    0x00002310      0xa92 default/scsi_decoder.o
+ .debug_line    0x00002da2      0x3a1 default/storage_task.o
+
+.debug_frame    0x00000000      0x670
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x50 default/wdt_drv.o
+ .debug_frame   0x00000050       0x30 default/main.o
+ .debug_frame   0x00000080       0xb0 default/ctrl_access.o
+ .debug_frame   0x00000130       0x40 default/usb_device_task.o
+ .debug_frame   0x00000170       0x70 default/usb_drv.o
+ .debug_frame   0x000001e0       0x60 default/usb_specific_request.o
+ .debug_frame   0x00000240       0x30 default/usb_standard_request.o
+ .debug_frame   0x00000270       0x40 default/usb_task.o
+ .debug_frame   0x000002b0       0xa0 default/df_mem.o
+ .debug_frame   0x00000350       0xd0 default/df.o
+ .debug_frame   0x00000420       0x70 default/power_drv.o
+ .debug_frame   0x00000490       0x50 default/scheduler.o
+ .debug_frame   0x000004e0      0x130 default/scsi_decoder.o
+ .debug_frame   0x00000610       0x60 default/storage_task.o
+
+.debug_str      0x00000000     0x11f4
+ *(.debug_str)
+ .debug_str     0x00000000      0x143 default/wdt_drv.o
+                                0x17c (size before relaxing)
+ .debug_str     0x00000143       0x28 default/main.o
+                                0x117 (size before relaxing)
+ .debug_str     0x0000016b      0x112 default/ctrl_access.o
+                                0x217 (size before relaxing)
+ .debug_str     0x0000027d      0x360 default/usb_descriptors.o
+                                0x44f (size before relaxing)
+ .debug_str     0x000005dd       0xbd default/usb_device_task.o
+                                0x1ac (size before relaxing)
+ .debug_str     0x0000069a       0xce default/usb_drv.o
+                                0x1c9 (size before relaxing)
+ .debug_str     0x00000768       0xff default/usb_specific_request.o
+                                0x311 (size before relaxing)
+ .debug_str     0x00000867      0x1bf default/usb_standard_request.o
+                                0x588 (size before relaxing)
+ .debug_str     0x00000a26       0x43 default/usb_task.o
+                                0x169 (size before relaxing)
+ .debug_str     0x00000a69       0xf0 default/df_mem.o
+                                0x234 (size before relaxing)
+ .debug_str     0x00000b59      0x13b default/df.o
+                                0x241 (size before relaxing)
+ .debug_str     0x00000c94       0x9c default/power_drv.o
+                                0x18b (size before relaxing)
+ .debug_str     0x00000d30       0x6e default/scheduler.o
+                                0x15d (size before relaxing)
+ .debug_str     0x00000d9e      0x3d6 default/scsi_decoder.o
+                                0x533 (size before relaxing)
+ .debug_str     0x00001174       0x80 default/storage_task.o
+                                0x1f9 (size before relaxing)
+
+.debug_loc      0x00000000      0xe72
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x5a default/wdt_drv.o
+ .debug_loc     0x0000005a      0x20a default/ctrl_access.o
+ .debug_loc     0x00000264      0x101 default/usb_drv.o
+ .debug_loc     0x00000365      0x189 default/usb_specific_request.o
+ .debug_loc     0x000004ee      0x425 default/usb_standard_request.o
+ .debug_loc     0x00000913      0x205 default/df_mem.o
+ .debug_loc     0x00000b18      0x112 default/df.o
+ .debug_loc     0x00000c2a      0x1de default/scsi_decoder.o
+ .debug_loc     0x00000e08       0x6a default/storage_task.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(USBKEY-series6-ms_df.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x3f0
+ .debug_ranges  0x00000000       0x30 default/wdt_drv.o
+ .debug_ranges  0x00000030       0x20 default/main.o
+ .debug_ranges  0x00000050       0x60 default/ctrl_access.o
+ .debug_ranges  0x000000b0       0x28 default/usb_device_task.o
+ .debug_ranges  0x000000d8       0x40 default/usb_drv.o
+ .debug_ranges  0x00000118       0x38 default/usb_specific_request.o
+ .debug_ranges  0x00000150       0x50 default/usb_standard_request.o
+ .debug_ranges  0x000001a0       0x28 default/usb_task.o
+ .debug_ranges  0x000001c8       0x58 default/df_mem.o
+ .debug_ranges  0x00000220       0x70 default/df.o
+ .debug_ranges  0x00000290       0x40 default/power_drv.o
+ .debug_ranges  0x000002d0       0x30 default/scheduler.o
+ .debug_ranges  0x00000300       0xb8 default/scsi_decoder.o
+ .debug_ranges  0x000003b8       0x38 default/storage_task.o
+
+Cross Reference Table
+
+Symbol                                            File
+__bad_interrupt                                   c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__bss_end                                         c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+__data_end                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__data_load_start                                 c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__data_start                                      c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__do_clear_bss                                    c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clear_bss.o)
+                                                  default/storage_task.o
+                                                  default/scsi_decoder.o
+                                                  default/df.o
+                                                  default/df_mem.o
+                                                  default/usb_task.o
+                                                  default/usb_standard_request.o
+                                                  default/usb_specific_request.o
+                                                  default/usb_device_task.o
+__do_copy_data                                    c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__heap_end                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__init                                            c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__low_level_init                                  default/main.o
+__stack                                           c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_1                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_10                                       default/usb_task.o
+                                                  c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_11                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_12                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_13                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_14                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_15                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_16                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_17                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_18                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_19                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_2                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_20                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_21                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_22                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_23                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_24                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_25                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_26                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_27                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_28                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_29                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_3                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_30                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_31                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_32                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_33                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_34                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_35                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_36                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_37                                       c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_4                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_5                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_6                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_7                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_8                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_9                                        c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vector_default                                  c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+__vectors                                         c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+_exit                                             c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+cpt_sof                                           default/storage_task.o
+data_to_transfer                                  default/usb_standard_request.o
+                                                  default/usb_specific_request.o
+df_df_2_ram                                       default/df_mem.o
+df_init                                           default/df.o
+                                                  default/df_mem.o
+df_mem_check                                      default/df.o
+                                                  default/df_mem.o
+df_mem_init                                       default/df_mem.o
+                                                  default/storage_task.o
+df_ram_2_df                                       default/df_mem.o
+df_read_10                                        default/df_mem.o
+                                                  default/ctrl_access.o
+df_read_capacity                                  default/df_mem.o
+                                                  default/ctrl_access.o
+df_read_close                                     default/df.o
+                                                  default/df_mem.o
+df_read_open                                      default/df.o
+                                                  default/df_mem.o
+df_read_sector                                    default/df.o
+                                                  default/df_mem.o
+df_read_sector_2_ram                              default/df.o
+                                                  default/df_mem.o
+df_removal                                        default/df_mem.o
+                                                  default/ctrl_access.o
+df_test_unit_ready                                default/df_mem.o
+                                                  default/ctrl_access.o
+df_wr_protect                                     default/df_mem.o
+                                                  default/ctrl_access.o
+df_write_10                                       default/df_mem.o
+                                                  default/ctrl_access.o
+df_write_close                                    default/df.o
+                                                  default/df_mem.o
+df_write_open                                     default/df.o
+                                                  default/df_mem.o
+df_write_sector                                   default/df.o
+                                                  default/df_mem.o
+df_write_sector_from_ram                          default/df.o
+                                                  default/df_mem.o
+endpoint_status                                   default/storage_task.o
+                                                  default/usb_standard_request.o
+exit                                              c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+                                                  c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+g_b_df_protected                                  default/df_mem.o
+g_b_df_protected_last                             default/df_mem.o
+g_sbc_product_id                                  default/scsi_decoder.o
+g_sbc_revision_id                                 default/scsi_decoder.o
+g_sbc_vendor_id                                   default/scsi_decoder.o
+g_scsi_command                                    default/storage_task.o
+                                                  default/scsi_decoder.o
+g_scsi_data_remaining                             default/storage_task.o
+                                                  default/scsi_decoder.o
+g_scsi_sense                                      default/scsi_decoder.o
+g_scsi_status                                     default/storage_task.o
+                                                  default/scsi_decoder.o
+g_usb_event                                       default/usb_task.o
+                                                  default/usb_device_task.o
+get_cur_lun                                       default/ctrl_access.o
+                                                  default/storage_task.o
+get_nb_lun                                        default/ctrl_access.o
+                                                  default/usb_specific_request.o
+lun2_name                                         default/ctrl_access.o
+main                                              default/main.o
+                                                  c:/tools/prog/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtusb1287.o
+mem_name                                          default/ctrl_access.o
+mem_read_capacity                                 default/ctrl_access.o
+                                                  default/scsi_decoder.o
+mem_removal                                       default/ctrl_access.o
+mem_sector_size                                   default/ctrl_access.o
+mem_test_unit_ready                               default/ctrl_access.o
+                                                  default/scsi_decoder.o
+mem_wr_protect                                    default/ctrl_access.o
+                                                  default/scsi_decoder.o
+memory_2_usb                                      default/ctrl_access.o
+                                                  default/scsi_decoder.o
+ms_data_direction                                 default/storage_task.o
+                                                  default/scsi_decoder.o
+ms_multiple_drive                                 default/storage_task.o
+                                                  default/usb_specific_request.o
+pbuffer                                           default/usb_standard_request.o
+                                                  default/usb_specific_request.o
+remote_wakeup_feature                             default/usb_standard_request.o
+                                                  default/usb_task.o
+                                                  default/usb_device_task.o
+sbc_inquiry                                       default/scsi_decoder.o
+sbc_lun_status_is_busy_or_change                  default/scsi_decoder.o
+sbc_lun_status_is_cdb_field                       default/scsi_decoder.o
+sbc_lun_status_is_fail                            default/scsi_decoder.o
+sbc_lun_status_is_good                            default/scsi_decoder.o
+sbc_lun_status_is_not_present                     default/scsi_decoder.o
+sbc_lun_status_is_protected                       default/scsi_decoder.o
+sbc_mode_sense                                    default/scsi_decoder.o
+sbc_prevent_allow_medium_removal                  default/scsi_decoder.o
+sbc_read_10                                       default/scsi_decoder.o
+sbc_read_capacity                                 default/scsi_decoder.o
+sbc_request_sense                                 default/scsi_decoder.o
+sbc_std_inquiry_data                              default/scsi_decoder.o
+sbc_test_unit_ready                               default/scsi_decoder.o
+sbc_write_10                                      default/scsi_decoder.o
+scheduler                                         default/scheduler.o
+                                                  default/main.o
+scheduler_empty_fct                               default/scheduler.o
+scheduler_init                                    default/scheduler.o
+scheduler_tasks                                   default/scheduler.o
+scsi_decode_command                               default/scsi_decoder.o
+                                                  default/storage_task.o
+set_adc_noise_reduction_mode                      default/power_drv.o
+set_ext_standby_mode                              default/power_drv.o
+set_idle_mode                                     default/power_drv.o
+set_power_down_mode                               default/power_drv.o
+set_power_save_mode                               default/power_drv.o
+set_standby_mode                                  default/power_drv.o
+sof_action                                        default/storage_task.o
+                                                  default/usb_task.o
+storage_task                                      default/storage_task.o
+                                                  default/scheduler.o
+storage_task_init                                 default/storage_task.o
+                                                  default/scheduler.o
+usb_2_memory                                      default/ctrl_access.o
+                                                  default/scsi_decoder.o
+usb_LUN                                           default/storage_task.o
+                                                  default/scsi_decoder.o
+usb_conf_desc                                     default/usb_descriptors.o
+                                                  default/usb_standard_request.o
+usb_config_ep                                     default/usb_drv.o
+                                                  default/usb_specific_request.o
+usb_configuration_nb                              default/storage_task.o
+                                                  default/usb_task.o
+                                                  default/usb_standard_request.o
+                                                  default/usb_device_task.o
+usb_connected                                     default/usb_device_task.o
+usb_dev_desc                                      default/usb_descriptors.o
+                                                  default/usb_standard_request.o
+usb_device_task                                   default/usb_device_task.o
+                                                  default/usb_task.o
+usb_device_task_init                              default/usb_device_task.o
+                                                  default/usb_task.o
+usb_generate_remote_wakeup                        default/usb_standard_request.o
+usb_halt_endpoint                                 default/usb_drv.o
+usb_init_device                                   default/usb_drv.o
+                                                  default/usb_task.o
+                                                  default/usb_device_task.o
+usb_mass_storage_cbw                              default/storage_task.o
+usb_mass_storage_csw                              default/storage_task.o
+usb_process_request                               default/usb_standard_request.o
+                                                  default/storage_task.o
+                                                  default/usb_device_task.o
+usb_read_packet                                   default/usb_drv.o
+usb_select_enpoint_interrupt                      default/usb_drv.o
+usb_send_packet                                   default/usb_drv.o
+usb_start_device                                  default/usb_device_task.o
+usb_suspended                                     default/usb_device_task.o
+usb_task                                          default/usb_task.o
+                                                  default/scheduler.o
+usb_task_init                                     default/usb_task.o
+                                                  default/scheduler.o
+usb_user_endpoint_init                            default/usb_specific_request.o
+                                                  default/usb_standard_request.o
+usb_user_get_descriptor                           default/usb_specific_request.o
+                                                  default/usb_standard_request.o
+usb_user_interface_get                            default/usb_specific_request.o
+                                                  default/usb_standard_request.o
+usb_user_interface_reset                          default/usb_specific_request.o
+                                                  default/usb_standard_request.o
+usb_user_language_id                              default/usb_descriptors.o
+                                                  default/usb_specific_request.o
+usb_user_manufacturer_string_descriptor           default/usb_descriptors.o
+                                                  default/usb_specific_request.o
+usb_user_product_string_descriptor                default/usb_descriptors.o
+                                                  default/usb_specific_request.o
+usb_user_read_request                             default/usb_specific_request.o
+                                                  default/usb_standard_request.o
+usb_user_serial_number                            default/usb_descriptors.o
+                                                  default/usb_specific_request.o
+wdtdrv_disable                                    default/wdt_drv.o
+                                                  default/main.o
+wdtdrv_enable                                     default/wdt_drv.o
+wdtdrv_interrupt_enable                           default/wdt_drv.o
+wdtdrv_interrupt_reset_enable                     default/wdt_drv.o

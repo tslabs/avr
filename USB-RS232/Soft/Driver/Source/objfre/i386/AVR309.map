@@ -1,0 +1,89 @@
+ AVR309
+
+ Timestamp is 3fe704f4 (Mon Dec 22 15:51:32 2003)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0000112aH .text                   CODE
+ 0002:00000000 00000078H .idata$5                DATA
+ 0002:00000078 00000070H .rdata                  DATA
+ 0003:00000000 00000028H .idata$2                CODE
+ 0003:00000028 00000014H .idata$3                CODE
+ 0003:0000003c 00000078H .idata$4                CODE
+ 0003:000000b4 00000294H .idata$6                CODE
+ 0004:00000000 00000058H .rsrc$01                DATA
+ 0004:00000060 00000468H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       _DriverEntry@8             00010280 f   isousb.obj
+ 0001:0000004e       _IsoUsb_ProcessSysControlIrp@8 000102ce f   isousb.obj
+ 0001:000000a0       _IsoUsb_Unload@4           00010320 f   isousb.obj
+ 0001:000000a4       _IsoUsb_SymbolicLink@8     00010324 f   isousb.obj
+ 0001:00000124       _IsoUsb_CreateDeviceObject@12 000103a4 f   isousb.obj
+ 0001:0000020a       _IsoUsb_CallUSBD@8         0001048a f   isousb.obj
+ 0001:00000278       _IsoUsb_ConfigureDevice@4  000104f8 f   isousb.obj
+ 0001:00000330       _IsoUsb_SelectInterface@8  000105b0 f   isousb.obj
+ 0001:0000045c       _IsoUsb_DecrementIoCount@4 000106dc f   isousb.obj
+ 0001:0000049e       _IsoUsb_IncrementIoCount@4 0001071e f   isousb.obj
+ 0001:000004e4       _IsoUsb_ProcessPnPIrp@8    00010764 f   isopnp.obj
+ 0001:00000718       _IsoUsb_PnPAddDevice@8     00010998 f   isopnp.obj
+ 0001:000007b8       _IsoUsb_StartDevice@4      00010a38 f   isopnp.obj
+ 0001:00000872       _IsoUsb_RemoveDevice@4     00010af2 f   isopnp.obj
+ 0001:000008da       _IsoUsb_StopDevice@4       00010b5a f   isopnp.obj
+ 0001:00000938       _IsoUsb_IrpCompletionRoutine@12 00010bb8 f   isopnp.obj
+ 0001:0000094e       _IsoUsb_ProcessPowerIrp@8  00010bce f   isopwr.obj
+ 0001:00000b2a       _IsoUsb_PoRequestCompletion@20 00010daa f   isopwr.obj
+ 0001:00000b7e       _IsoUsb_PowerIrp_Complete@12 00010dfe f   isopwr.obj
+ 0001:00000bae       _IsoUsb_SelfSuspendOrActivate@8 00010e2e f   isopwr.obj
+ 0001:00000c04       _IsoUsb_SelfRequestPowerIrp@8 00010e84 f   isopwr.obj
+ 0001:00000c6e       _IsoUsb_PoSelfRequestCompletion@20 00010eee f   isopwr.obj
+ 0001:00000ca6       _IsoUsb_SetDevicePowerState@8 00010f26 f   isopwr.obj
+ 0001:00000cd4       _IsoUsb_QueryCapabilities@8 00010f54 f   isopwr.obj
+ 0001:00000d64       _VendorCommand@24          00010fe4 f   ioctliso.obj
+ 0001:00000dec       _IsoUsb_ProcessIOCTL@8     0001106c f   ioctliso.obj
+ 0001:00000ea8       _IsoUsb_PipeWithName@8     00011128 f   ocrwiso.obj
+ 0001:00000f2a       _IsoUsb_Close@8            000111aa f   ocrwiso.obj
+ 0001:00000f86       _IsoUsb_Create@8           00011206 f   ocrwiso.obj
+ 0001:00001056       _IsoUsb_AbortPipes@4       000112d6 f   ocrwiso.obj
+ 0001:000010fc       _IsoUsb_CanAcceptIoRequests@4 0001137c f   ocrwiso.obj
+ 0002:00000000       __imp__IoDeleteDevice@4    000113c0     wdm:NTOSKRNL.EXE
+ 0002:00000004       __imp__IoSetDeviceInterfaceState@8 000113c4     wdm:NTOSKRNL.EXE
+ 0002:00000008       __imp__IoRegisterDeviceInterface@16 000113c8     wdm:NTOSKRNL.EXE
+ 0002:0000000c       __imp__RtlFreeUnicodeString@4 000113cc     wdm:NTOSKRNL.EXE
+ 0002:00000010       __imp__KeInitializeEvent@12 000113d0     wdm:NTOSKRNL.EXE
+ 0002:00000014       __imp__IoCreateSymbolicLink@8 000113d4     wdm:NTOSKRNL.EXE
+ 0002:00000018       __imp__IoCreateDevice@28   000113d8     wdm:NTOSKRNL.EXE
+ 0002:0000001c       __imp__RtlInitUnicodeString@8 000113dc     wdm:NTOSKRNL.EXE
+ 0002:00000020       __imp__KeWaitForSingleObject@20 000113e0     wdm:NTOSKRNL.EXE
+ 0002:00000024       __imp__IoBuildDeviceIoControlRequest@36 000113e4     wdm:NTOSKRNL.EXE
+ 0002:00000028       __imp__ExFreePool@4        000113e8     wdm:NTOSKRNL.EXE
+ 0002:0000002c       __imp__ExAllocatePoolWithTag@12 000113ec     wdm:NTOSKRNL.EXE
+ 0002:00000030       __imp__KeSetEvent@12       000113f0     wdm:NTOSKRNL.EXE
+ 0002:00000034       __imp_@InterlockedDecrement@4 000113f4     wdm:NTOSKRNL.EXE
+ 0002:00000038       __imp_@InterlockedIncrement@4 000113f8     wdm:NTOSKRNL.EXE
+ 0002:0000003c       __imp_@IofCompleteRequest@8 000113fc     wdm:NTOSKRNL.EXE
+ 0002:00000040       __imp_@IofCallDriver@8     00011400     wdm:NTOSKRNL.EXE
+ 0002:00000044       __imp__IoDeleteSymbolicLink@4 00011404     wdm:NTOSKRNL.EXE
+ 0002:00000048       __imp__IoDetachDevice@4    00011408     wdm:NTOSKRNL.EXE
+ 0002:0000004c       __imp__IoAttachDeviceToDeviceStack@8 0001140c     wdm:NTOSKRNL.EXE
+ 0002:00000050       __imp__PoRequestPowerIrp@24 00011410     wdm:NTOSKRNL.EXE
+ 0002:00000054       __imp__PoCallDriver@8      00011414     wdm:NTOSKRNL.EXE
+ 0002:00000058       __imp__PoStartNextPowerIrp@4 00011418     wdm:NTOSKRNL.EXE
+ 0002:0000005c       __imp__IoFreeIrp@4         0001141c     wdm:NTOSKRNL.EXE
+ 0002:00000060       __imp__IoAllocateIrp@8     00011420     wdm:NTOSKRNL.EXE
+ 0002:00000064       \177NTOSKRNL_NULL_THUNK_DATA 00011424     wdm:NTOSKRNL.EXE
+ 0002:00000068       __imp__USBD_CreateConfigurationRequest@8 00011428     usbd:USBD.SYS
+ 0002:0000006c       __imp__USBD_GetUSBDIVersion@4 0001142c     usbd:USBD.SYS
+ 0002:00000070       __imp__USBD_ParseConfigurationDescriptorEx@28 00011430     usbd:USBD.SYS
+ 0002:00000074       \177USBD_NULL_THUNK_DATA   00011434     usbd:USBD.SYS
+ 0002:000000d8       _GUID_CLASS_I82930_ISO     00011498     isousb.obj
+ 0003:00000000       __IMPORT_DESCRIPTOR_NTOSKRNL 000114c0     wdm:NTOSKRNL.EXE
+ 0003:00000014       __IMPORT_DESCRIPTOR_USBD   000114d4     usbd:USBD.SYS
+ 0003:00000028       __NULL_IMPORT_DESCRIPTOR   000114e8     wdm:NTOSKRNL.EXE
+
+ entry point at        0001:00000000
+
+ Static symbols
+

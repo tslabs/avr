@@ -1,0 +1,233 @@
+
+demo.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000f6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000003  00800060  00800060  0000016a  2**0
+                  ALLOC
+  2 .debug_aranges 00000020  00000000  00000000  0000016a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 00000035  00000000  00000000  0000018a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000000ef  00000000  00000000  000001bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000000b7  00000000  00000000  000002ae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000125  00000000  00000000  00000365  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000040  00000000  00000000  0000048c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000000ce  00000000  00000000  000004cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	21 c0       	rjmp	.+66     	; 0x46 <__bad_interrupt>
+   4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
+   6:	1f c0       	rjmp	.+62     	; 0x46 <__bad_interrupt>
+   8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
+   a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
+   c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
+   e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
+  10:	1b c0       	rjmp	.+54     	; 0x48 <__vector_8>
+  12:	19 c0       	rjmp	.+50     	; 0x46 <__bad_interrupt>
+  14:	18 c0       	rjmp	.+48     	; 0x46 <__bad_interrupt>
+  16:	17 c0       	rjmp	.+46     	; 0x46 <__bad_interrupt>
+  18:	16 c0       	rjmp	.+44     	; 0x46 <__bad_interrupt>
+  1a:	15 c0       	rjmp	.+42     	; 0x46 <__bad_interrupt>
+  1c:	14 c0       	rjmp	.+40     	; 0x46 <__bad_interrupt>
+  1e:	13 c0       	rjmp	.+38     	; 0x46 <__bad_interrupt>
+  20:	12 c0       	rjmp	.+36     	; 0x46 <__bad_interrupt>
+  22:	11 c0       	rjmp	.+34     	; 0x46 <__bad_interrupt>
+  24:	10 c0       	rjmp	.+32     	; 0x46 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_clear_bss>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
+
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
+
+0000003c <.do_clear_bss_start>:
+  3c:	a3 36       	cpi	r26, 0x63	; 99
+  3e:	b1 07       	cpc	r27, r17
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+  42:	4e d0       	rcall	.+156    	; 0xe0 <main>
+  44:	56 c0       	rjmp	.+172    	; 0xf2 <_exit>
+
+00000046 <__bad_interrupt>:
+  46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
+
+00000048 <__vector_8>:
+#include "iocompat.h"		/* Note [1] */
+
+enum { UP, DOWN };
+
+ISR (TIMER1_OVF_vect)		/* Note [2] */
+{
+  48:	1f 92       	push	r1
+  4a:	0f 92       	push	r0
+  4c:	0f b6       	in	r0, 0x3f	; 63
+  4e:	0f 92       	push	r0
+  50:	11 24       	eor	r1, r1
+  52:	2f 93       	push	r18
+  54:	3f 93       	push	r19
+  56:	8f 93       	push	r24
+    static uint16_t pwm;	/* Note [3] */
+    static uint8_t direction;
+
+    switch (direction)		/* Note [4] */
+  58:	80 91 60 00 	lds	r24, 0x0060
+  5c:	88 23       	and	r24, r24
+  5e:	c1 f4       	brne	.+48     	; 0x90 <__vector_8+0x48>
+    {
+        case UP:
+            if (++pwm == TIMER1_TOP)
+  60:	20 91 61 00 	lds	r18, 0x0061
+  64:	30 91 62 00 	lds	r19, 0x0062
+  68:	2f 5f       	subi	r18, 0xFF	; 255
+  6a:	3f 4f       	sbci	r19, 0xFF	; 255
+  6c:	30 93 62 00 	sts	0x0062, r19
+  70:	20 93 61 00 	sts	0x0061, r18
+  74:	83 e0       	ldi	r24, 0x03	; 3
+  76:	2f 3f       	cpi	r18, 0xFF	; 255
+  78:	38 07       	cpc	r19, r24
+  7a:	09 f1       	breq	.+66     	; 0xbe <__vector_8+0x76>
+            if (--pwm == 0)
+                direction = UP;
+            break;
+    }
+
+    OCR = pwm;			/* Note [5] */
+  7c:	3b bd       	out	0x2b, r19	; 43
+  7e:	2a bd       	out	0x2a, r18	; 42
+}
+  80:	8f 91       	pop	r24
+  82:	3f 91       	pop	r19
+  84:	2f 91       	pop	r18
+  86:	0f 90       	pop	r0
+  88:	0f be       	out	0x3f, r0	; 63
+  8a:	0f 90       	pop	r0
+  8c:	1f 90       	pop	r1
+  8e:	18 95       	reti
+ISR (TIMER1_OVF_vect)		/* Note [2] */
+{
+    static uint16_t pwm;	/* Note [3] */
+    static uint8_t direction;
+
+    switch (direction)		/* Note [4] */
+  90:	81 30       	cpi	r24, 0x01	; 1
+  92:	29 f0       	breq	.+10     	; 0x9e <__vector_8+0x56>
+  94:	20 91 61 00 	lds	r18, 0x0061
+  98:	30 91 62 00 	lds	r19, 0x0062
+  9c:	ef cf       	rjmp	.-34     	; 0x7c <__vector_8+0x34>
+            if (++pwm == TIMER1_TOP)
+                direction = DOWN;
+            break;
+
+        case DOWN:
+            if (--pwm == 0)
+  9e:	20 91 61 00 	lds	r18, 0x0061
+  a2:	30 91 62 00 	lds	r19, 0x0062
+  a6:	21 50       	subi	r18, 0x01	; 1
+  a8:	30 40       	sbci	r19, 0x00	; 0
+  aa:	30 93 62 00 	sts	0x0062, r19
+  ae:	20 93 61 00 	sts	0x0061, r18
+  b2:	21 15       	cp	r18, r1
+  b4:	31 05       	cpc	r19, r1
+  b6:	11 f7       	brne	.-60     	; 0x7c <__vector_8+0x34>
+                direction = UP;
+  b8:	10 92 60 00 	sts	0x0060, r1
+  bc:	df cf       	rjmp	.-66     	; 0x7c <__vector_8+0x34>
+
+    switch (direction)		/* Note [4] */
+    {
+        case UP:
+            if (++pwm == TIMER1_TOP)
+                direction = DOWN;
+  be:	81 e0       	ldi	r24, 0x01	; 1
+  c0:	80 93 60 00 	sts	0x0060, r24
+  c4:	db cf       	rjmp	.-74     	; 0x7c <__vector_8+0x34>
+
+000000c6 <ioinit>:
+
+void
+ioinit (void)			/* Note [6] */
+{
+    /* Timer 1 is 10-bit PWM (8-bit PWM on some ATtinys). */
+    TCCR1A = TIMER1_PWM_INIT;
+  c6:	83 e8       	ldi	r24, 0x83	; 131
+  c8:	8f bd       	out	0x2f, r24	; 47
+     * Start timer 1.
+     *
+     * NB: TCCR1A and TCCR1B could actually be the same register, so
+     * take care to not clobber it.
+     */
+    TCCR1B |= TIMER1_CLOCKSOURCE;
+  ca:	8e b5       	in	r24, 0x2e	; 46
+  cc:	81 60       	ori	r24, 0x01	; 1
+  ce:	8e bd       	out	0x2e, r24	; 46
+#if defined(TIMER1_SETUP_HOOK)
+    TIMER1_SETUP_HOOK();
+#endif
+
+    /* Set PWM value to 0. */
+    OCR = 0;
+  d0:	1b bc       	out	0x2b, r1	; 43
+  d2:	1a bc       	out	0x2a, r1	; 42
+
+    /* Enable OC1 as output. */
+    DDROC = _BV (OC1);
+  d4:	82 e0       	ldi	r24, 0x02	; 2
+  d6:	87 bb       	out	0x17, r24	; 23
+
+    /* Enable timer 1 overflow interrupt. */
+    TIMSK = _BV (TOIE1);
+  d8:	84 e0       	ldi	r24, 0x04	; 4
+  da:	89 bf       	out	0x39, r24	; 57
+    sei ();
+  dc:	78 94       	sei
+}
+  de:	08 95       	ret
+
+000000e0 <main>:
+
+int
+main (void)
+{
+
+    ioinit ();
+  e0:	f2 df       	rcall	.-28     	; 0xc6 <ioinit>
+
+    /* loop forever, the interrupts are doing the rest */
+
+    for (;;)			/* Note [7] */
+        sleep_mode();
+  e2:	85 b7       	in	r24, 0x35	; 53
+  e4:	80 68       	ori	r24, 0x80	; 128
+  e6:	85 bf       	out	0x35, r24	; 53
+  e8:	88 95       	sleep
+  ea:	85 b7       	in	r24, 0x35	; 53
+  ec:	8f 77       	andi	r24, 0x7F	; 127
+  ee:	85 bf       	out	0x35, r24	; 53
+  f0:	f8 cf       	rjmp	.-16     	; 0xe2 <main+0x2>
+
+000000f2 <_exit>:
+  f2:	f8 94       	cli
+
+000000f4 <__stop_program>:
+  f4:	ff cf       	rjmp	.-2      	; 0xf4 <__stop_program>

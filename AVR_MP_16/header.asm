@@ -16,6 +16,8 @@
 #include	"m16def.inc"
 #elif		chip==128
 #include	"m128def.inc"
+#elif		chip==1287
+#include	"m128def.inc"
 #endif
 
 .macro		if_no_xm
@@ -66,6 +68,14 @@
 #define		L_DAC_d	DDRB
 #define		R_DAC 	PORTB
 #define		R_DAC.b	7
+#define		R_DAC_d	DDRB
+
+#elif		chip==1287
+#define		L_DAC 	PORTB			;For usb1287
+#define		L_DAC.b	7
+#define		L_DAC_d	DDRB
+#define		R_DAC 	PORTB
+#define		R_DAC.b	4
 #define		R_DAC_d	DDRB
 #endif
 
