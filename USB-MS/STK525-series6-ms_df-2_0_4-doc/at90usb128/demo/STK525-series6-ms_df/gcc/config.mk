@@ -4,7 +4,7 @@ PROJECT = STK525-series6-ms_df
 
 # CPU architecture : {avr0|...|avr6}
 # Parts : {at90usb646|at90usb647|at90usb1286|at90usb1287|at90usb162|at90usb82}
-MCU = at90usb1286
+MCU = at90usb1287
 
 # Source files
 CSRCS = \

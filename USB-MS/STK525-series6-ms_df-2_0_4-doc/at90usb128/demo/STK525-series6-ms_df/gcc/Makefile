@@ -42,7 +42,7 @@ include $(MAKECFG)
 
 ## Build
 .PHONY: all
-all: $(TARGET) $(PROJECT).hex size
+all: $(TARGET) ../../../../../$(PROJECT).hex size
 
 ## Clean target
 .PHONY: clean
