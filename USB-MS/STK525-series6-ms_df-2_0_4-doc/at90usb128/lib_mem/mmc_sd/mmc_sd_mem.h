@@ -1,7 +1,7 @@
 /*This file is prepared for Doxygen automatic documentation generation.*/
 //! \file *********************************************************************
 //!
-//! \brief This file contains the system configuration definition.
+//! \brief This file contains the interface routines of Data Flash memory.
 //!
 //! - Compiler:           IAR EWAVR and GNU GCC for AVR
 //! - Supported devices:  AT90USB1287, AT90USB1286, AT90USB647, AT90USB646
@@ -40,66 +40,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _MMC_SD_MEM_H_
+#define _MMC_SD_MEM_H_
 
-#ifndef _CONFIG_H_
-#define _CONFIG_H_
-
-// Compiler switch (do not change these settings)
-#include "lib_mcu/compiler.h"             // Compiler definitions
-#ifdef __GNUC__
-   #include <avr/io.h>                    // Use AVR-GCC library
-#elif __ICCAVR__
-   #define ENABLE_BIT_DEFINITIONS
-   #include <ioavr.h>                     // Use IAR-AVR library
-#else
-   #error Current COMPILER not supported
-#endif
+#include "conf/conf_access.h"
+#include "modules/control_access/ctrl_status.h"
 
 
-//! @defgroup global_config Application configuration
-//! @{
 
-#include "conf/conf_scheduler.h"          // Scheduler tasks declaration
+//_____ D E F I N I T I O N S ______________________________________________
 
-//! Enable (define) or not (undefine) the ADC usage
-#undef USE_ADC
-
-//! To include proper target hardware definitions, select target board (USBKEY)
-#define  STK525   1                       // do not change these settings
-#define  TARGET_BOARD STK525
-#include "lib_board\stk_525\stk_525.h"
-// Mass Storage Extension Board
-#include "lib_board/avr_ms_board/avr_ms_board_drv.h"
-
-//! CPU core frequency in kHz
-#define FOSC 8000
+#define   MMCSD_REMOVED       0
+#define   MMCSD_INSERTED      1
+#define   MMCSD_REMOVING      2
 
 
-// -------- END Generic Configuration -------------------------------------
+//---- CONTROL FONCTIONS ----
 
-// UART Sample configuration, if we have one ... __________________________
-#define BAUDRATE        57600
-#define USE_UART2
+// those fonctions are declared in mmc_sd_mem.h
+void           mmc_sd_spi_init(void);
+void           mmc_sd_mem_init(void);
+Ctrl_status    mmc_sd_test_unit_ready(void);
+Ctrl_status    mmc_sd_read_capacity( U32 _MEM_TYPE_SLOW_ *u32_nb_sector );
+Bool           mmc_sd_wr_protect(void);
+Bool           mmc_sd_removal(void);
 
-#define uart_putchar putchar
-#define r_uart_ptchar int
-#define p_uart_ptchar int
 
+//---- ACCESS DATA FONCTIONS ----
 
-// ADC Sample configuration, if we have one ... ___________________________
+// Standard functions for open in read/write mode the device
+Ctrl_status    mmc_sd_read_10( U32 addr , U16 nb_sector );
+Ctrl_status    mmc_sd_write_10( U32 addr , U16 nb_sector );
 
-//! ADC Prescaler value
-#define ADC_PRESCALER 64
-//! Right adjust
-#define ADC_RIGHT_ADJUST_RESULT 1
-//! AVCC As reference voltage (See adc_drv.h)
-#define ADC_INTERNAL_VREF  2
+// Standard functions for read/write 1 sector to 1 sector ram buffer
+Ctrl_status    mmc_ram_2_mmc( U32 addr, U8 *ram);
+Ctrl_status    mmc_mmc_2_ram( U32 addr, U8 *ram);
 
-#define SBC_VENDOR_ID         {'A','T','M','E','L',' ',' ',' '}      // 8 Bytes only
-#define SBC_PRODUCT_ID        {'A','T','9','0','U','S','B','1','2','8',' ','M',' ','S',' ',' '}  // 16 Bytes only
-#define SBC_REVISION_ID       {'0','.','0','0'}  // 4 Bytes only
-
-//! @}
-
-#endif // _CONFIG_H_
+#endif   // _MMC_SD_MEM_H_
 

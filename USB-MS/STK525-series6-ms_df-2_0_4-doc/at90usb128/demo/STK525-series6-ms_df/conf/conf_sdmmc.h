@@ -1,7 +1,7 @@
 /*This file is prepared for Doxygen automatic documentation generation.*/
 //! \file *********************************************************************
 //!
-//! \brief This file contains the system configuration definition.
+//! \brief This file contains the possible external configuration of the SD/MMC interface
 //!
 //! - Compiler:           IAR EWAVR and GNU GCC for AVR
 //! - Supported devices:  AT90USB1287, AT90USB1286, AT90USB647, AT90USB646
@@ -41,65 +41,53 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _CONFIG_H_
-#define _CONFIG_H_
 
-// Compiler switch (do not change these settings)
-#include "lib_mcu/compiler.h"             // Compiler definitions
-#ifdef __GNUC__
-   #include <avr/io.h>                    // Use AVR-GCC library
-#elif __ICCAVR__
-   #define ENABLE_BIT_DEFINITIONS
-   #include <ioavr.h>                     // Use IAR-AVR library
-#else
-   #error Current COMPILER not supported
-#endif
+//_____ D E F I N I T I O N ________________________________________________
 
 
-//! @defgroup global_config Application configuration
-//! @{
-
-#include "conf/conf_scheduler.h"          // Scheduler tasks declaration
-
-//! Enable (define) or not (undefine) the ADC usage
-#undef USE_ADC
-
-//! To include proper target hardware definitions, select target board (USBKEY)
-#define  STK525   1                       // do not change these settings
-#define  TARGET_BOARD STK525
-#include "lib_board\stk_525\stk_525.h"
-// Mass Storage Extension Board
-#include "lib_board/avr_ms_board/avr_ms_board_drv.h"
-
-//! CPU core frequency in kHz
-#define FOSC 8000
+//!  USB <-> SD/MMC Access Control
+//!
+//! Values: ENABLE : enable the SD/MMD functions relatives to USB transfer
+//!         DISABLE : disable the SD/MMD functions relatives to USB transfer
+//!
+#define     MMC_SD_USB              ENABLE
 
 
-// -------- END Generic Configuration -------------------------------------
 
-// UART Sample configuration, if we have one ... __________________________
-#define BAUDRATE        57600
-#define USE_UART2
-
-#define uart_putchar putchar
-#define r_uart_ptchar int
-#define p_uart_ptchar int
+//! RAM <-> SD/MMC Access Control
+//!
+//! Values: ENABLE : enable the SD/MMD functions relatives to RAM transfer (/!\ a 512 bytes buffer is created in RAM)
+//!         DISABLE : disable the SD/MMC functions relatives to RAM transfer (internal memory)
+//!
+#define     MMC_SD_RAM              ENABLE
 
 
-// ADC Sample configuration, if we have one ... ___________________________
 
-//! ADC Prescaler value
-#define ADC_PRESCALER 64
-//! Right adjust
-#define ADC_RIGHT_ADJUST_RESULT 1
-//! AVCC As reference voltage (See adc_drv.h)
-#define ADC_INTERNAL_VREF  2
+//! SD/MMC CID Register Management
+//!
+//! Values: ENABLE : the CID register is transfered from the card and stored into a special array
+//!         DISABLE : CID register unused
+//!
+#define     MMC_SD_READ_CID         DISABLE
 
-#define SBC_VENDOR_ID         {'A','T','M','E','L',' ',' ',' '}      // 8 Bytes only
-#define SBC_PRODUCT_ID        {'A','T','9','0','U','S','B','1','2','8',' ','M',' ','S',' ',' '}  // 16 Bytes only
-#define SBC_REVISION_ID       {'0','.','0','0'}  // 4 Bytes only
 
-//! @}
 
-#endif // _CONFIG_H_
+//! Function linker for NF access indications
+//!
+//! Values :   Sdmmc_access_signal_on()      The linked function is called when a read/write operation to SD/MMC starts
+//!            Sdmmc_access_signal_off()     The linked function is called when the read/write operation to SD/MMC ends
+//!
+#define  Sdmmc_access_signal_on()
+#define  Sdmmc_access_signal_off()
+
+
+
+
+
+
+
+
+
+
+
 

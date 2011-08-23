@@ -9,20 +9,22 @@ MCU = at90usb1287
 # Source files
 CSRCS = \
   ../../../../common/lib_mcu/wdt/wdt_drv.c\
-  ../../../lib_mem/df/df_mem.c\
-  ../../../modules/control_access/ctrl_access.c\
-  ../../../lib_mem/df/df.c\
   ../main.c\
-  ../usb_descriptors.c\
-  ../../../modules/usb/device_chap9/usb_device_task.c\
-  ../../../lib_mcu/usb/usb_drv.c\
-  ../usb_specific_request.c\
+  ../../../lib_mem/df/df.c\
+  ../../../modules/control_access/ctrl_access.c\
+  ../../../lib_mem/df/df_mem.c\
+  ../../../lib_mem/mmc_sd/mmc_sd.c\
+  ../../../lib_mem/mmc_sd/mmc_sd_mem.c\
   ../../../modules/usb/device_chap9/usb_standard_request.c\
   ../../../modules/usb/usb_task.c\
   ../../../lib_mcu/power/power_drv.c\
   ../../../../common/modules/scheduler/scheduler.c\
   ../../../modules/scsi_decoder/scsi_decoder.c\
   ../storage_task.c\
+  ../usb_descriptors.c\
+  ../../../modules/usb/device_chap9/usb_device_task.c\
+  ../../../lib_mcu/usb/usb_drv.c\
+  ../usb_specific_request.c\
 
 # Assembler source files
 ASSRCS = \
