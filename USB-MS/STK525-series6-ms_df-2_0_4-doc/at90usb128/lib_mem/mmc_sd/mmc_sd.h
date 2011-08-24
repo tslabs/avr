@@ -147,6 +147,7 @@
 //! Low-level functions (basic management)
 void    mmc_sd_spi_init(void);          // initializes the SPI bus and settings for SD/MMD card
 bit     mmc_sd_init (void);             // initializes the SD/MMC card (reset, init, analyse)
+bit     mmc_sd_reset (void);            // resets the SD/MMC card and send it to SPI mode
 bit     mmc_sd_check_presence(void);    // check the presence of the card
 bit     mmc_sd_mem_check(void);         // check the presence of the card, and initialize if inserted
 bit     mmc_sd_wait_not_busy (void);    // wait for the card to be not busy (exits with timeout)

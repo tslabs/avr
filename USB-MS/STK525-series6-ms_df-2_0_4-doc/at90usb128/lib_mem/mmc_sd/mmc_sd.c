@@ -117,18 +117,10 @@ bit mmc_sd_init (void)
   // RESET THE MEMORY CARD
   mmc_sd_init_done = FALSE;
   card_type = MMC_CARD;
-  retry = 0;
-  do
-  {
-    // reset card and go to SPI mode
-    r1 = mmc_sd_send_command(MMC_GO_IDLE_STATE, 0);
-    Spi_write_data(0xFF);            // write dummy byte
-    // do retry counter
-    retry++;
-    if(retry > 100)
+
+  // reset card and go to SPI mode
+  if (KO == mmc_sd_reset())
       return KO;
-  }
-  while(r1 != 0x01);   // check memory enters idle_state
 
   // IDENTIFICATION OF THE CARD TYPE (SD or MMC)
   // Both cards will accept CMD55 command but only the SD card will respond to ACMD41
@@ -145,19 +137,10 @@ bit mmc_sd_init (void)
   else
   {
     card_type = MMC_CARD;   // card has not responded, this is a MMC card
+
     // reset card again
-    retry = 0;
-    do
-    {
-      // reset card again
-      r1 = mmc_sd_send_command(MMC_GO_IDLE_STATE, 0);
-      Spi_write_data(0xFF);            // write dummy byte
-      // do retry counter
-      retry++;
-      if(retry > 100)
-        return KO;
-    }
-    while(r1 != 0x01);   // check memory enters idle_state
+  if (KO == mmc_sd_reset())
+      return KO;
   }
 
   // CONTINUE INTERNAL INITIALIZATION OF THE CARD
@@ -201,6 +184,28 @@ bit mmc_sd_init (void)
   mmc_sd_init_done = TRUE;
 
   return(OK);
+}
+
+
+//!
+//! @brief This function is to reset card and go to SPI mode
+//!/
+
+bit mmc_sd_reset(void)
+{
+U8 retry=0;
+
+  do
+  {
+    r1 = mmc_sd_send_command(MMC_GO_IDLE_STATE, 0);
+    Spi_write_data(0xFF);            // write dummy byte
+    // do retry counter
+    retry++;
+    if(retry > 100)
+      return KO;
+  }
+  while(r1 != 0x01);   // check memory enters idle_state
+	return OK;
 }
 
 
