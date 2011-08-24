@@ -81,7 +81,47 @@ extern            bit mmc_sd_init_done;
 //!/
 void mmc_sd_mem_init(void)
 {
+U8   pwd[8] = "11111111";                     // stores the Card Password
+
    mmc_sd_init();        // Init the SPI bus and the MMC/SD card
+   Leds_off();
+   if (OK == is_mmc_sd_write_pwd_locked())
+   {
+      Led2_on();
+
+	  if (KO == mmc_sd_lock_operation(OP_FORCED_ERASE, 0, 0))
+	  {
+		Leds_on();
+		return KO;
+	  }
+	  
+	  
+	  
+	  // if (KO == mmc_sd_lock_operation(OP_UNLOCK, 8, pwd))
+	  // {
+		// Led3_on();
+		// return KO;
+	  // }
+
+
+	  // if (KO == mmc_sd_lock_operation(OP_RESET_PWD, 8, pwd))
+	  // {
+		// Led3_on();
+		// return KO;
+	  // }
+	  
+   }
+   
+   // else
+   // {
+	  // if (KO == mmc_sd_lock_operation(OP_SET_PWD, 7, pwd))
+	  // {
+		// Led0_on();
+		// return KO;
+	  // }
+
+   // }
+   
 }
 
 

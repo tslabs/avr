@@ -144,7 +144,8 @@
 int main(void)
 {
    wdtdrv_disable();
-   Clear_prescaler();
+  // Clear_prescaler();
+   Set_cpu_prescaler(0);
    scheduler();
    return 0;
 }
@@ -163,7 +164,8 @@ extern "C" {
 #endif
 char __low_level_init()
 {
-  Clear_prescaler();
+  // Clear_prescaler();
+  // Set_cpu_prescaler(1);
   return 1;
 }
 #ifdef __cplusplus

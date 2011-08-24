@@ -55,6 +55,7 @@
    //! These functions allow to control the PLL
    //! @{
 #define PLLx06          ( (0<<PLLP2) | (1<<PLLP1) | (1<<PLLP0) )
+#define PLLx02          ( (1<<PLLP2) | (1<<PLLP1) | (1<<PLLP0) )		// UNDOCUMENTED!!! use with caution!
 
 #ifdef __ICCAVR__
    #if (defined(__AT90USB1287__) || defined(__AT90USB1286__)) 
@@ -94,8 +95,10 @@
    #define Pll_start_auto()   Start_pll(PLLx06)
 #elif (FOSC==16000)
    #define Pll_start_auto()   Start_pll(PLLx03)
+#elif (FOSC==24000)
+   #define Pll_start_auto()   Start_pll(PLLx02)
 #else
-   #error   "FOSC should be defined with 8000KHz or 16000KHz in config.h"
+   #error   "FOSC should be defined with 8000KHz, 16000KHz or 24000KHz in config.h"
 #endif
 #endif
 
