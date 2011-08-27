@@ -43,8 +43,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// #define _TRACE_ (ENABLE)
-
 //_____  I N C L U D E S ___________________________________________________
 #include "config.h"
 #include "debug.h"

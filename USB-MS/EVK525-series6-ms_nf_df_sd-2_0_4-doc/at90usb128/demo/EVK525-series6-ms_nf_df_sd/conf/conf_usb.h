@@ -220,12 +220,17 @@ extern void host_sof_action(void);
    // be carefull not to waste time in order not disturbing the functions
 #define Usb_sof_action()
 #define Usb_wake_up_action()
-#define Usb_resume_action()
-#define Usb_suspend_action()              nf_usb_stop()
-#define Usb_reset_action()
 #define Usb_vbus_on_action()
-#define Usb_vbus_off_action()             nf_usb_stop()
+#define Usb_resume_action()
 #define Usb_set_configuration_action()
+#define Usb_reset_action()
+#if (LUN_1 == ENABLE)
+#define Usb_vbus_off_action()             nf_usb_stop()
+#define Usb_suspend_action()              nf_usb_stop()
+#else
+#define Usb_vbus_off_action()
+#define Usb_suspend_action() 
+#endif
 
 extern void nf_usb_stop(void);
 

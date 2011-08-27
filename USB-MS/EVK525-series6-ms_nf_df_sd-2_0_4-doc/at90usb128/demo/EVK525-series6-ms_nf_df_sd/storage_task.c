@@ -52,7 +52,9 @@
 #include "usb_specific_request.h"
 #include "modules/scsi_decoder/scsi_decoder.h"
 #include "modules/control_access/ctrl_access.h"
+#if (LUN_3 == ENABLE)
 #include "lib_mem/mmc_sd/mmc_sd.h"
+#endif
 
 
 //_____ D E C L A R A T I O N S ____________________________________________
@@ -88,7 +90,9 @@ void storage_task_init(void)
 {
    Leds_init();
    Usb_enable_sof_interrupt();
+#if	(LUN_2 == ENABLE)
    df_mem_init();    // Init the hw/sw ressources required to drive the DF.
+#endif
 }
 
 

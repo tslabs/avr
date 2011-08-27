@@ -130,8 +130,8 @@
 #define ADC_INTERNAL_VREF  2
 
 #define SBC_VENDOR_ID         {'A','T','M','E','L',' ',' ',' '}      // 8 Bytes only
-#define SBC_PRODUCT_ID        {'A','T','9','0','U','S','B','1','2','8',' ','M',' ','S',' ',' '}  // 16 Bytes only
-#define SBC_REVISION_ID       {'0','.','0','0'}  // 4 Bytes only
+#define SBC_PRODUCT_ID        {'A','T','9','0','U','S','B','1','2','8','7',' ','M','S',' ',' '}  // 16 Bytes only
+#define SBC_REVISION_ID       {'1','.','0','0'}  // 4 Bytes only
 
 // MMC/SD configuration ____________________________________________
 // see conf_sdmmc.h

@@ -125,6 +125,13 @@ U8 nfc_check_type( U8 nb_dev )
       Nfc_action( NFC_ACT_ASSERT_CE, NFC_EXT_CELOW);
       Nfc_set_cmd(NF_READ_ID_CMD);
       Nfc_set_adc( 0 );
+
+      //trace("Device ID: ");
+	  //trace_hex( Nfc_rd_data_fetch_next() ); trace(" ");
+      //trace_hex( Nfc_rd_data_fetch_next() ); trace(" ");
+      //trace_hex( Nfc_rd_data_fetch_next() ); trace(" ");
+      //trace_hex( Nfc_rd_data_fetch_next() ); trace("\n\r");
+
       if(( Nfc_rd_data_fetch_next()!=G_DEV_MAKER  )
       || ( Nfc_rd_data_fetch_next()!=G_DEV_ID     ))
       {
@@ -155,10 +162,11 @@ void nfc_reset_nands( U8 nb_dev )
    Mcu_set_sfr_page_nfc();
    for( i_dev=0 ; i_dev<nb_dev ; i_dev++ )
    {
-      Nfc_action(NFC_ACT_DEV_SELECT, i_dev);
+       trace("-Nfc_action\n\r");
+	   Nfc_action(NFC_ACT_DEV_SELECT, i_dev);
       // The wait is mandatory here since the function is used to wait any
       // pending internal programmation (Cache Program cmd).
-      nfc_wait_busy();
+	  nfc_wait_busy();
       Nfc_set_cmd(NF_RESET_CMD);
       nfc_wait_busy();
    }
@@ -337,13 +345,19 @@ void nfc_read_spare_byte(
 {
    U8  i;
 
+   trace("Page: "); trace_hex32(page_addr); trace_nl();
+   trace("Bytes: "); trace_hex(n_byte); trace_nl();
+
    Mcu_set_sfr_page_nfc();
    nfc_open_page_read( page_addr, NF_SPARE_POS);
 
    for ( i=0 ; i!=n_byte ; i++ )
    {
       p_byte[i] = Nfc_rd_data_fetch_next();
+	  trace_hex(p_byte[i]);
    }
+   
+   trace_nl();
 }
 
 //! Tests the true busy. Note that we test twice the ready, since there is
@@ -354,6 +368,7 @@ void nfc_wait_busy( void )
 {
    register int Reg;
    Nfc_set_cmd(NF_READ_STATUS_CMD);
+   // trace("--Nfc_rd_status ");    trace_hex(Nfc_rd_status());    trace("\n\r");
    Reg = Nfc_rd_status();
    if( Is_nf_2k() )
    {
@@ -456,7 +471,9 @@ U8  nfc_detect( void )
 #endif
 
    // Init the Nand Flash Controller
+   trace("nfc_init\n\r");
    nfc_init(        NF_MAX_DEVICES, 0 );
+   trace("nfc_reset_nands\n\r");
    nfc_reset_nands( NF_MAX_DEVICES ); // Reset all the NF devices
 
    // Check the presence of device 0

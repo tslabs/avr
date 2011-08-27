@@ -53,12 +53,6 @@
 //! This is Compilation switches definition
 //#define SOFT_OCD          // when OCD dongle is not used, only VT100 or hyperterminal
 
-#ifndef _TRACE_
-// Disable this switch to remove the Trace code from the compilation
-// Enable it to add Traces code on compilation
-#define _TRACE_  (DISABLE) // default value
-#endif
-
 #ifndef _ASSERT_
 // Disable this switch to remove the Assert code from the compilation
 // Enable it to add the Assert code from the compilation

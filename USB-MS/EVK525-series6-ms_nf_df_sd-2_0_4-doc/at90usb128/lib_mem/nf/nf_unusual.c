@@ -49,7 +49,6 @@
 
 //_____  I N C L U D E S ___________________________________________________
 
-// #define _TRACE_        (DISABLE)
 #include "config.h"
 #include "conf_nf.h"
 #include "nf.h"              // NAND Flash informations (structure, parameters)

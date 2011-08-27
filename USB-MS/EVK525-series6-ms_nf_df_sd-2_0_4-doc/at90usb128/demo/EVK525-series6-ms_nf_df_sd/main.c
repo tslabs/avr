@@ -139,9 +139,11 @@
 #include "modules/scheduler/scheduler.h"
 #include "lib_mcu/wdt/wdt_drv.h"
 #include "lib_mcu/power/power_drv.h"
-#include "lib_mem/nf/nf_mngt.h"
 #include "lib_mcu/uart/uart_lib.h"
 #include "lib_mcu/debug.h"
+#if (LUN_1 == ENABLE)
+#include "lib_mem/nf/nf_mngt.h"
+#endif
 
 //_____ M A C R O S ________________________________________________________
 
@@ -158,7 +160,6 @@ int main(void)
 #ifdef __GNUC__
    fdevopen((int (*)(char, FILE*))(uart_putchar),(int (*)(FILE*))uart_getchar); //for printf redirection used in TRACE
 #endif
-
    trace("\x0C---  Start ---\n\r");    // trace_nl();
    
    // STK525 init
@@ -170,8 +171,8 @@ int main(void)
    // Mass Storage Extension board init
    Avr_ms_board_init();
 
-   trace("Chips: ");    trace_u8(NF_N_DEVICES);    trace_nl;
-   
+#if (LUN_1 == ENABLE)
+   trace("Chips: ");    trace_u8(NF_N_DEVICES);    trace_nl();
    // NAND Flash Initialization
 #if (NF_AUTO_DETECT_2KB == FALSE) && (NF_AUTO_DETECT_512B == FALSE)
     trace("NF check type\n\r");
@@ -185,6 +186,7 @@ int main(void)
 
    //trace("NF test unit ready...\n\r");
    nf_test_unit_ready();
+#endif
 
    scheduler();
    return 0;

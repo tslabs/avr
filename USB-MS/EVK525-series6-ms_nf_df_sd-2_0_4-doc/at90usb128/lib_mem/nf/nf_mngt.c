@@ -49,7 +49,6 @@
 
 //_____  I N C L U D E S ___________________________________________________
 
-//#define _TRACE_        (DISABLE)
 #define NF_ECC_MNGT    (DISABLE)
 
 #include "config.h"
