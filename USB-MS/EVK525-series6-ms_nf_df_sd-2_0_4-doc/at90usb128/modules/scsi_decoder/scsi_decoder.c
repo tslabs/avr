@@ -143,8 +143,8 @@ Bool scsi_decode_command(void)
    if (g_scsi_command[0]>0)
    {
    trace("SCSI command: ");
-   for (i=0; i<16; i++)
-   //for (i=0; i<1; i++)
+   // for (i=0; i<16; i++)
+   for (i=0; i<1; i++)
    {
      trace_hex(g_scsi_command[i]); trace(" ");
    }
