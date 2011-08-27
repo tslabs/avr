@@ -56,6 +56,10 @@
 #endif
 
 
+// Debug options
+#define  _ASSERT_       (DISABLE)
+#define  _TRACE_        (ENABLE)
+ 
 //! @defgroup global_config Application configuration
 //! @{
 
@@ -95,7 +99,7 @@
 #include "lib_board/avr_ms_board/avr_ms_board_drv.h"
 
 //! CPU core frequency in kHz
-#define FOSC 8000
+#define FOSC 16000
 
 
 // -------- END Generic Configuration -------------------------------------

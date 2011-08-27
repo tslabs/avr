@@ -141,7 +141,6 @@
 #include "lib_mcu/power/power_drv.h"
 #include "lib_mem/nf/nf_mngt.h"
 #include "lib_mcu/uart/uart_lib.h"
-#define  _TRACE_        (DISABLE)
 #include "lib_mcu/debug.h"
 
 //_____ M A C R O S ________________________________________________________
@@ -159,10 +158,11 @@ int main(void)
 #ifdef __GNUC__
    fdevopen((int (*)(char, FILE*))(uart_putchar),(int (*)(FILE*))uart_getchar); //for printf redirection used in TRACE
 #endif
-   trace("\x0C-----------Start\n\r");
-   trace_nl();
+
+   trace("\x0C---  Start ---\n\r");    // trace_nl();
    
    // STK525 init
+//   trace("Inits\n\r");
    Leds_init();
    Joy_init();
    Hwb_button_init();
@@ -170,16 +170,22 @@ int main(void)
    // Mass Storage Extension board init
    Avr_ms_board_init();
 
+   trace("Chips: ");    trace_u8(NF_N_DEVICES);    trace_nl;
+   
    // NAND Flash Initialization
 #if (NF_AUTO_DETECT_2KB == FALSE) && (NF_AUTO_DETECT_512B == FALSE)
-   nb_device = nfc_check_type(NF_N_DEVICES);
-   while( NF_N_DEVICES != nb_device );
+    trace("NF check type\n\r");
+    nb_device = nfc_check_type(NF_N_DEVICES);
+    while( NF_N_DEVICES != nb_device );
 #else
+    trace("NF detect\n\r");
    nfc_detect();
 #endif
    nf_init();
 
+   //trace("NF test unit ready...\n\r");
    nf_test_unit_ready();
+
    scheduler();
    return 0;
 }

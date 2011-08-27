@@ -68,7 +68,8 @@
 
 //! ************ Static mode
 //!  To enable a reference, you shall define a NF_TYPE_X (X = reference)
-#define NF_TYPE_MT29F2G08AACWP
+#define NF_TYPE_K9F1G08U0A
+// #define NF_TYPE_HY27UF082G2M
 
 
 //! ************ For all mode

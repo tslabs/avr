@@ -138,7 +138,19 @@ static   void  sbc_header_mode_sense               ( Bool b_sense_10 , U8 u8_dat
 Bool scsi_decode_command(void)
 {
    Bool status;
-
+   U8 i;
+	// WARNING!!! This tracer conflicts with interrupts and causes spontaneous reboots
+   if (g_scsi_command[0]>0)
+   {
+   trace("SCSI command: ");
+   for (i=0; i<16; i++)
+   //for (i=0; i<1; i++)
+   {
+     trace_hex(g_scsi_command[i]); trace(" ");
+   }
+     trace_nl();
+   }
+   
    if (g_scsi_command[0] == SBC_CMD_WRITE_10)
    {
       Scsi_start_write_action();
@@ -270,6 +282,15 @@ Bool sbc_request_sense (void)
    Sbc_valid_write_usb( allocation_length );
 
    sbc_lun_status_is_good();
+   
+	// WARNING!!! This tracer conflicts with interrupts and causes spontaneous reboots
+   // trace("Requst sense: ");
+   // for (i=0; i<18; i++)
+   // {
+     // trace_hex(request_sens_output[i]); trace(" ");
+   // }
+     // trace_nl();
+	 
    return TRUE;
 }
 
@@ -427,13 +448,17 @@ Bool sbc_read_10 (void)
    MSB(mass_size) = g_scsi_command[7];    // read size
    LSB(mass_size) = g_scsi_command[8];
    
+   trace("Read_10 ");   trace("Address: "); trace_hex32(mass_addr);   trace(" Size: "); trace_hex16(mass_size); trace_nl();
+   
    if( Is_usb_ms_data_direction_out() )
    {
       sbc_lun_status_is_cdb_field();
       return FALSE;
    }
+   
    if( 0 == g_scsi_data_remaining )
    {
+      trace("0 == g_scsi_data_remaining");  trace_nl();
       if( mass_size == (g_scsi_data_remaining/512) )
       {
          sbc_lun_status_is_good();

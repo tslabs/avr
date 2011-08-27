@@ -43,7 +43,8 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define _TRACE_ (DISABLE)
+// #define _TRACE_ (ENABLE)
+
 //_____  I N C L U D E S ___________________________________________________
 #include "config.h"
 #include "debug.h"
@@ -102,11 +103,10 @@ void trace_u8( U8 val )
 void trace_hex( U8 val )
 {
    if( FALSE==g_trace_en ) return;
-   printf("0x%02X",val);
+   printf("%02X",val);
 }
-#endif
 
-#if (_TRACE_==ENABLE)
+
 //! Fonction used for send a texte on OCD/Serial Debug Interface
 //!
 //! @param str: texte to send (max. size = 256)
@@ -120,12 +120,12 @@ void trace( const U8* str )
 
 void trace_hex16(U16 val)
 {
-   printf("0x%04X",val);
+   printf("%04X",val);
 }
 
 void trace_hex32(U32 val)
 {
-   printf("0x%08lX",val);
+   printf("%08lX",val);
 }
 
 void trace_nl()

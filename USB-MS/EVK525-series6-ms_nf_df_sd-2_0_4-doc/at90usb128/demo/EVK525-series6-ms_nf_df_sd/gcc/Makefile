@@ -47,8 +47,8 @@ include $(MAKECFG)
 
 
 ## Build
-.PHONY: all
-all: $(TARGET) ../../../../../$(PROJECT).hex size
+.PHONY: build
+build: $(TARGET) ../../../../../$(PROJECT).hex size
 
 ## Clean target
 .PHONY: clean
@@ -59,6 +59,10 @@ clean:
 ## Rebuild the project.
 .PHONY: rebuild
 rebuild: clean all
+
+## Rebuild the project.
+.PHONY: all
+all: clean build
 
 
 ## Compile

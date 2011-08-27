@@ -49,7 +49,7 @@
 
 //_____  I N C L U D E S ___________________________________________________
 
-#define _TRACE_        (DISABLE)
+// #define _TRACE_        (DISABLE)
 #include "config.h"
 #include "conf_nf.h"
 #include "nf.h"              // NAND Flash informations (structure, parameters)
@@ -150,6 +150,7 @@ static void nf_init_buffer( void )
 //!
 void nf_init ( void )
 {
+   trace("NF init\n\r");
    g_nf_init=FALSE;
 //   s_pending_write=FALSE;
 
@@ -198,6 +199,7 @@ Status_bool nf_verify_resume( void )
    U8 u8_nb_loop;
    Bool status_bool;
 
+   trace("nf_verify_resume");    trace_nl();
 
 #if (ERASING_ALL==ENABLE)
    ut_nfc_erase_all();
@@ -318,6 +320,8 @@ static Status_bool nf_scan( void )
    g_fatal         =FALSE;
    g_n_real_sub_lut=0;
 
+   trace("nf_scan");    trace_nl();
+   
    // Scan all the devices and looks for:
    // - the sub-LUT blocks
    // - the recovery block
