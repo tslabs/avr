@@ -49,6 +49,7 @@
 #include  "conf_nf.h"         // global NAND Flash configuration file
 #include  "nf.h"              // NAND Flash informations (structure, parameters)
 #include  "nf_drv.h"          // declarations of constants, low levels routines, public prototypes
+#include  "lib_mcu/debug.h"
 
 //_____ D E C L A R A T I O N ______________________________________________
 //
@@ -184,7 +185,8 @@ void nf_XMCR_enable( void )
 #else
   XMCRB |= ((1<<XMM2) | (1<<XMM1));                // limit XRAM interface to A9 (release PC2..7)
 #endif  
-  XMCRA |= (1<<SRE);                  // enable the external memory
+  // XMCRA |= (1<<SRE);                  // enable the external memory
+  XMCRA |= ((1<<SRE) | (1<<SRW00) | (1<<SRW01) | (1<<SRW10) | (1<<SRW11));                  // enable the external memory
 }
 
 

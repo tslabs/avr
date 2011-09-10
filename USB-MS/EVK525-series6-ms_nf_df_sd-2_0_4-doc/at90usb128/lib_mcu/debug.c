@@ -109,7 +109,7 @@ void trace_hex( U8 val )
 //!
 //! @param str: texte to send (max. size = 256)
 //!
-void trace( const U8* str )
+void trace( const char* str )
 {
    if( FALSE==g_trace_en ) return;
    printf((const char*)str);

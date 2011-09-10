@@ -84,9 +84,14 @@
 #define   Nandflash0_unselect()      (PORTC |=  0x04)
 #define   Nandflash1_select()        (PORTC &= ~0x08)    // CS.1
 #define   Nandflash1_unselect()      (PORTC |=  0x08)
+#define   Nandflash_unselect()       (PORTC |=  0x0C)
 #define   Nandflash_powerdown()     Nandflash_unselect()
-#define   Is_nandflash_ready()      (((PORTC&0x40) != 0) ? TRUE : FALSE)
-#define   Is_nandflash_busy()       (((PORTC&0x40) == 0) ? TRUE : FALSE)
+#define   Is_nandflash_ready()     	 (((PINC&0x40) != 0) ? TRUE : FALSE)
+#define   Is_nandflash_busy()      	 (((PINC&0x40) == 0) ? TRUE : FALSE)
+#define   Is_nandflash0_ready()      (((PINC&0x40) != 0) ? TRUE : FALSE)
+#define   Is_nandflash0_busy()       (((PINC&0x40) == 0) ? TRUE : FALSE)
+#define   Is_nandflash1_ready()      (((PINC&0x80) != 0) ? TRUE : FALSE)
+#define   Is_nandflash1_busy()       (((PINC&0x80) == 0) ? TRUE : FALSE)
 
 #define   Nandflash_wp_enable()     
 #define   Nandflash_wp_disable()    

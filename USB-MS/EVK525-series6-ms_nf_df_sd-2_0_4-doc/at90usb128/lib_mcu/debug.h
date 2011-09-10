@@ -87,7 +87,7 @@
 extern U8 _MEM_TYPE_SLOW_ g_trace_en;
 
 #if (_TRACE_==ENABLE)
-void    trace        ( const U8* str );
+void    trace        ( const char* str );
 void    trace_nl     ( void    );
 void    trace_hex    ( U8  val );
 void    trace_hex16  ( U16 val );

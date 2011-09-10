@@ -49,6 +49,7 @@
 
 #include "conf/conf_access.h"
 #include "ctrl_status.h"
+#include "conf_nf.h"
 
 // Active interface between MEMORIES and RAM (e.g. Embedded File System)
 #ifndef  ACCESS_MEM_TO_RAM
@@ -98,8 +99,19 @@
 #define  LUN_0_NAME                              "VIRTUAL_MEM_ON_CHIP"
 
 // LUN 1 DEFINE
-#define  LUN_ID_NF                               LUN_ID_1
 #define  LUN_1_INCLUDE                           "lib_mem\nf\nf_mngt.h"
+#define  LUN_ID_NF                               LUN_ID_1
+#define  LUN_1_NAME                               "\"NAND Flash\""
+#if (NF_RAW == TRUE)
+#define  Lun_1_test_unit_ready()                 nf_raw_test_unit_ready()
+#define  Lun_1_read_capacity(nb_sect)            nf_raw_read_capacity(nb_sect)
+#define  Lun_1_wr_protect()                      nf_raw_wr_protect()
+#define  Lun_1_removal()                         nf_raw_removal()
+#define  Lun_1_read_10(ad, sec)                  nf_raw_read_10(ad, sec)
+#define  Lun_1_write_10(ad, sec)                 nf_raw_write_10(ad, sec)
+#define  Lun_1_ram_2_mem(addr , ram)             nf_raw_ram_2_nf(addr, ram)
+#define  Lun_1_mem_2_ram(addr , ram)             nf_raw_nf_2_ram(addr, ram)
+#else
 #define  Lun_1_test_unit_ready()                 nf_test_unit_ready()
 #define  Lun_1_read_capacity(nb_sect)            nf_read_capacity(nb_sect)
 #define  Lun_1_wr_protect()                      nf_wr_protect()
@@ -108,7 +120,7 @@
 #define  Lun_1_write_10(ad, sec)                 nf_write_10(ad, sec)
 #define  Lun_1_ram_2_mem(addr , ram)             nf_ram_2_nf(addr, ram)
 #define  Lun_1_mem_2_ram(addr , ram)             nf_nf_2_ram(addr, ram)
-#define  LUN_1_NAME                               "\"NAND Flash\""
+#endif
 
 // LUN 2 DEFINE
 #define  LUN_ID_DF                               LUN_ID_2

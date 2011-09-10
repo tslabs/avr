@@ -136,6 +136,7 @@
 //_____  I N C L U D E S ___________________________________________________
 
 #include "config.h"
+#include "conf_access.h"
 #include "modules/scheduler/scheduler.h"
 #include "lib_mcu/wdt/wdt_drv.h"
 #include "lib_mcu/power/power_drv.h"
@@ -151,7 +152,6 @@
        
 int main(void)
 { 
-   U8 nb_device;
    
    wdtdrv_disable();
    Clear_prescaler();
@@ -160,7 +160,7 @@ int main(void)
 #ifdef __GNUC__
    fdevopen((int (*)(char, FILE*))(uart_putchar),(int (*)(FILE*))uart_getchar); //for printf redirection used in TRACE
 #endif
-   trace("\x0C---  Start ---\n\r");    // trace_nl();
+   trace("\x0C---  Start ---\n\r");
    
    // STK525 init
 //   trace("Inits\n\r");
@@ -171,21 +171,47 @@ int main(void)
    // Mass Storage Extension board init
    Avr_ms_board_init();
 
-#if (LUN_1 == ENABLE)
-   trace("Chips: ");    trace_u8(NF_N_DEVICES);    trace_nl();
-   // NAND Flash Initialization
-#if (NF_AUTO_DETECT_2KB == FALSE) && (NF_AUTO_DETECT_512B == FALSE)
-    trace("NF check type\n\r");
-    nb_device = nfc_check_type(NF_N_DEVICES);
-    while( NF_N_DEVICES != nb_device );
-#else
-    trace("NF detect\n\r");
-   nfc_detect();
-#endif
-   nf_init();
 
-   //trace("NF test unit ready...\n\r");
-   nf_test_unit_ready();
+   // NAND Flash Initialization
+
+  // Legacy
+#if (LUN_1 == ENABLE && NF_RAW == FALSE)
+	trace("Number of chips: ");    trace_u8(NF_N_DEVICES);    trace_nl();
+	
+	#if (NF_AUTO_DETECT_2KB == FALSE) && (NF_AUTO_DETECT_512B == FALSE)
+    U8 nb_device;
+		trace("NF check type\n\r");
+		nb_device = nfc_check_type(NF_N_DEVICES);
+		while( NF_N_DEVICES != nb_device );
+	#else
+		trace("NF detect\n\r");
+	nfc_detect();
+	#endif
+	nf_init();
+
+	//trace("NF test unit ready\n\r");
+	nf_test_unit_ready();
+#endif
+
+
+  // New
+#if (LUN_1 == ENABLE && NF_RAW == TRUE)
+
+	// trace("NF_RAW Driver ON\n\r");
+
+	// while(1)
+	// {
+		// trace_hex(PINC);
+	// }
+	
+	 // while(1)
+	// {
+		trace_hex32(nf_raw_read_id()); trace_nl();
+	// }
+	 // while(1);
+
+
+
 #endif
 
    scheduler();
@@ -206,7 +232,7 @@ extern "C" {
 #endif
 char __low_level_init()
 {
-  Clear_prescaler();
+  // Clear_prescaler();
   return 1;
 }
 #ifdef __cplusplus

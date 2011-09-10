@@ -24,6 +24,7 @@ CSRCS = \
   ../../../lib_mem/nf/nf_drv.c\
   ../../../lib_mem/nf/nf_mngt.c\
   ../../../lib_mem/nf/nf_unusual.c\
+  ../../../lib_mem/nf/nf_raw.c\
   ../../../lib_mcu/power/power_drv.c\
   ../../../lib_mcu/debug.c\
   ../../../lib_mcu/usb/usb_drv.c\

@@ -77,6 +77,13 @@
 #define NF_N_DEVICES            1
 
 
+// This enables RAW access to NAND bulk
+// (instead of messy 'chinese-flash-stick-controller' type)
+// It does not allow to write data, only to read (at least by now)
+// TSL'2011
+#define NF_RAW TRUE
+
+
 // ******** Exemples **********
 //
 // You have connected one MT29F2G08AACWP, you shall set
@@ -102,15 +109,14 @@
 #define ERASING_ALL            DISABLE // erase the whole flash then hangs
 #define NF_CACHE_LUT_LOG_SZ         64 // number of logical blocks cached from the LUT
 #define NF_CACHE_FBB_LOG_SZ         32 // number of logical blocks cached from the Free-blocks Block
-#define _ASSERT_  DISABLE
 
 //! Function linker for NF access indications
 //!
 //! Values :   Nf_access_signal_on()      The linked function is called when a read/write operation to NF starts
 //!            Nf_access_signal_off()     The linked function is called when the read/write operation to NF ends
 //!
-#define  Nf_access_signal_on()
-#define  Nf_access_signal_off()
+#define  Nf_access_signal_on()		Led0_on();
+#define  Nf_access_signal_off()		Led0_off();
 
 
 //! External Memory Interface settings
@@ -125,7 +131,7 @@
 //!         DISABLED :  the port driven by XMCR is not shared, so it is dedicated to the NF and is not accessible for direct user access
 //!
 #define  NF_XMCR_MODULE_SHARED         DISABLED
-#define  NF_CLE_ALE_MANUAL             ENABLED
+#define  NF_CLE_ALE_MANUAL             DISABLED
 
 
 

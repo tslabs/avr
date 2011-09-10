@@ -53,6 +53,7 @@
 #include "nf.h"
 #include "modules/control_access/ctrl_status.h"
 #include "nf_drv.h"
+#include "nf_raw.h"
 
 //_____ M A C R O S ________________________________________________________
 

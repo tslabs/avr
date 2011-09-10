@@ -52,6 +52,7 @@
 #include "lib_mcu/usb/usb_drv.h"
 #include "modules/control_access/ctrl_status.h"
 #include "modules/control_access/ctrl_access.h"
+#include "lib_mcu/debug.h"
 
 
 //_____ D E F I N I T I O N S ______________________________________________
@@ -61,7 +62,18 @@ U8  g_scsi_status;
 U32 g_scsi_data_remaining;
 
 code    U8    g_sbc_vendor_id[8]   = SBC_VENDOR_ID;
-code    U8    g_sbc_product_id[16] = SBC_PRODUCT_ID;
+#     if (LUN_0 == ENABLE)
+code    U8    g_sbc_product_id0[16] = SBC_PRODUCT_ID_0;
+#     endif
+#     if (LUN_1 == ENABLE)
+code    U8    g_sbc_product_id1[16] = SBC_PRODUCT_ID_1;
+#     endif
+#     if (LUN_2 == ENABLE)
+code    U8    g_sbc_product_id2[16] = SBC_PRODUCT_ID_2;
+#     endif
+#     if (LUN_3 == ENABLE)
+code    U8    g_sbc_product_id3[16] = SBC_PRODUCT_ID_3;
+#     endif
 code    U8    g_sbc_revision_id[4] = SBC_REVISION_ID;
 
 extern  U8    usb_LUN;
@@ -138,18 +150,18 @@ static   void  sbc_header_mode_sense               ( Bool b_sense_10 , U8 u8_dat
 Bool scsi_decode_command(void)
 {
    Bool status;
-   U8 i;
 	// WARNING!!! This tracer conflicts with interrupts and causes spontaneous reboots
-   if (g_scsi_command[0]>0)
-   {
-   trace("SCSI command: ");
+   // U8 i;
+   // if (g_scsi_command[0]>0)
+   // {
+   // trace("SCSI: ");
    // for (i=0; i<16; i++)
-   for (i=0; i<1; i++)
-   {
-     trace_hex(g_scsi_command[i]); trace(" ");
-   }
-     trace_nl();
-   }
+   // for (i=0; i<8; i++)
+        // trace_hex(g_scsi_command[i]); trace(" ");
+   // }
+   // trace_nl();
+   
+   trace_hex(g_scsi_command[0]);
    
    if (g_scsi_command[0] == SBC_CMD_WRITE_10)
    {
@@ -158,6 +170,7 @@ Bool scsi_decode_command(void)
       Scsi_stop_write_action();
       return status;
    }
+   
    if (g_scsi_command[0] == SBC_CMD_READ_10 )
    {
       Scsi_start_read_action();
@@ -166,6 +179,8 @@ Bool scsi_decode_command(void)
       return status;
    }
 
+		// if (g_scsi_command[0]>0) trace_nl();
+		
    switch (g_scsi_command[0])
    {
       case SBC_CMD_REQUEST_SENSE:               // 0x03 - Mandatory
@@ -352,7 +367,29 @@ Bool sbc_inquiry (void)
       }
       if( 16 == i )
       {  // send product id (16 to 32)
-         ptr = (code U8 *) &g_sbc_product_id;
+      switch( usb_LUN )
+      {
+#     if (LUN_0 == ENABLE)
+         case LUN_ID_0:
+         ptr = (code U8 *) &g_sbc_product_id0;
+		 break;
+#     endif
+#     if (LUN_1 == ENABLE)
+         case LUN_ID_1:
+         ptr = (code U8 *) &g_sbc_product_id1;
+		 break;
+#     endif
+#     if (LUN_2 == ENABLE)
+         case LUN_ID_2:
+         ptr = (code U8 *) &g_sbc_product_id2;
+		 break;
+#     endif
+#     if (LUN_3 == ENABLE)
+         case LUN_ID_3:
+         ptr = (code U8 *) &g_sbc_product_id3;
+		 break;
+#     endif
+	  }
       }
       if( 32 == i )
       {  // send revision id (32 to 36)
@@ -448,7 +485,7 @@ Bool sbc_read_10 (void)
    MSB(mass_size) = g_scsi_command[7];    // read size
    LSB(mass_size) = g_scsi_command[8];
    
-   trace("Read_10 ");   trace("Address: "); trace_hex32(mass_addr);   trace(" Size: "); trace_hex16(mass_size); trace_nl();
+   // trace("Read_10 ");   trace("Address: "); trace_hex32(mass_addr);   trace(" Size: "); trace_hex16(mass_size); trace_nl();
    
    if( Is_usb_ms_data_direction_out() )
    {
