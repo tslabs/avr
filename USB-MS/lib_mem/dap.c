@@ -15,9 +15,9 @@
 //_____ D E C L A R A T I O N ______________________________________________
 
 #ifndef __GNUC__
-  extern __no_init volatile xdata Byte dap_data At(DAP_DATA);
+  __no_init volatile xdata Byte dap_data At(DAP_DATA);
 #else
-  extern volatile unsigned char dap_data __attribute__ ((section (".dap_dat")));
+  volatile unsigned char dap_data __attribute__ ((section (".dap_dat")));
 #endif
 
 const U32 dap_sectors_number = 16L*2048L;		//size of bulk = 16MB
