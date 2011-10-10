@@ -27,11 +27,11 @@ CSRCS = \
   ../lib_misc/scheduler.c           \
   ../lib_misc/scsi_decoder.c        \
   ../lib_misc/storage_task.c        \
-  ../lib_misc/usb_descriptors.c     \
-  ../lib_misc/usb_device_task.c     \
-  ../lib_misc/usb_specific_request.c\
-  ../lib_misc/usb_standard_request.c\
-  ../lib_misc/usb_task.c            \
+  ../lib_usb/usb_descriptors.c     \
+  ../lib_usb/usb_device_task.c     \
+  ../lib_usb/usb_specific_request.c\
+  ../lib_usb/usb_standard_request.c\
+  ../lib_usb/usb_task.c            \
 
 
 # Assembler source files

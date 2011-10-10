@@ -42,11 +42,11 @@
 			<SOURCEFILE>..\lib_misc\scheduler.c                      </SOURCEFILE>
 			<SOURCEFILE>..\lib_misc\scsi_decoder.c                   </SOURCEFILE>
 			<SOURCEFILE>..\lib_misc\storage_task.c                   </SOURCEFILE>
-			<SOURCEFILE>..\lib_misc\usb_descriptors.c                </SOURCEFILE>
-			<SOURCEFILE>..\lib_misc\usb_device_task.c                </SOURCEFILE>
-			<SOURCEFILE>..\lib_misc\usb_specific_request.c           </SOURCEFILE>
-			<SOURCEFILE>..\lib_misc\usb_standard_request.c           </SOURCEFILE>
-			<SOURCEFILE>..\lib_misc\usb_task.c                       </SOURCEFILE>
+			<SOURCEFILE>..\lib_usb\usb_descriptors.c                </SOURCEFILE>
+			<SOURCEFILE>..\lib_usb\usb_device_task.c                </SOURCEFILE>
+			<SOURCEFILE>..\lib_usb\usb_specific_request.c           </SOURCEFILE>
+			<SOURCEFILE>..\lib_usb\usb_standard_request.c           </SOURCEFILE>
+			<SOURCEFILE>..\lib_usb\usb_task.c                       </SOURCEFILE>
 			<OTHERFILE>Makefile</OTHERFILE></FILES>
 		<CONFIGS>
 			<CONFIG>
@@ -65,6 +65,8 @@
 			<INCLUDE>..\lib_misc</INCLUDE>
 			<INCLUDE>..\lib_mcu</INCLUDE>
 			<INCLUDE>..\lib_mem</INCLUDE>
+			<INCLUDE>..\lib_fat</INCLUDE>
+			<INCLUDE>..\lib_usb</INCLUDE>
 			<INCLUDE>..\lib_board</INCLUDE>
 			</INCDIRS><LIBDIRS/>
 			<LIBS/><LINKOBJECTS/>
@@ -94,9 +96,9 @@
     <Name>..\lib_misc\scheduler.c           </Name>
     <Name>..\lib_misc\scsi_decoder.c        </Name>
     <Name>..\lib_misc\storage_task.c        </Name>
-    <Name>..\lib_misc\usb_descriptors.c     </Name>
-    <Name>..\lib_misc\usb_device_task.c     </Name>
-    <Name>..\lib_misc\usb_specific_request.c</Name>
-    <Name>..\lib_misc\usb_standard_request.c</Name>
-    <Name>..\lib_misc\usb_task.c            </Name>
+    <Name>..\lib_usb\usb_descriptors.c     </Name>
+    <Name>..\lib_usb\usb_device_task.c     </Name>
+    <Name>..\lib_usb\usb_specific_request.c</Name>
+    <Name>..\lib_usb\usb_standard_request.c</Name>
+    <Name>..\lib_usb\usb_task.c            </Name>
 	</Files></ProjectFiles><IOView><usergroups/><sort sorted="0" column="0" ordername="1" orderaddress="1" ordergroup="1"/></IOView><Files><File00000><FileId>00000</FileId><FileName>d:\_Heap\Work\SVN\TSL-AVR\USB-MS\avr_usb_ms-2_0_4-doc\at90usb128\demo\avr_usb_ms\main.c</FileName><Status>3</Status></File00000></Files><Events><Bookmarks></Bookmarks></Events><Trace><Filters></Filters></Trace></AVRStudio>

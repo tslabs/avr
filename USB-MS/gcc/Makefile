@@ -27,12 +27,14 @@ LDFLAGS += -Wl,-Map=$(PROJECT).map,--cref,--gc-sections,--relax
 LDFLAGS += -Wl,-section-start=.nf_add=0x803200
 LDFLAGS += -Wl,-section-start=.nf_cmd=0x803100
 LDFLAGS += -Wl,-section-start=.nf_dat=0x803000
+LDFLAGS += -Wl,-section-start=.dap_dat=0x803000
 
 # Intel Hex file production flags
 HEX_FLASH_FLAGS = -R .eeprom
 HEX_FLASH_FLAGS += --set-section-flags=.nf_cmd="noload"
 HEX_FLASH_FLAGS += --set-section-flags=.nf_add="noload"
 HEX_FLASH_FLAGS += --set-section-flags=.nf_dat="noload"
+HEX_FLASH_FLAGS += --set-section-flags=.dap_dat="noload"
 
 # Eeprom file production flags
 HEX_EEPROM_FLAGS = -j .eeprom
@@ -40,7 +42,7 @@ HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0
 
 # Include Directories
-INCLUDES = -I"./.." -I"../ms_conf" -I"../lib_board" -I"../lib_mcu" -I"../lib_misc" -I"../lib_mem" 
+INCLUDES = -I"./.." -I"../ms_conf" -I"../lib_board" -I"../lib_mcu" -I"../lib_misc" -I"../lib_mem" -I"../lib_fat" -I"../lib_usb"
 
 # Include Source files list and part informations
 include $(MAKECFG)

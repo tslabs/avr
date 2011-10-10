@@ -20,21 +20,9 @@
 #include "conf_dap.h"
 #include "ctrl_status.h"
 
+//________ DEFINES _______________________
 
-//___________ LOW LEVEL DESCRIPTION _________________________________________
-
-//************************** XMCR Addresses *********************
-//************ A10  A9   A8   
-//************ PC2  PC1  PC0  
-//************ CE   AE   DE  
-//--------------------------------------------------------------------
-//************ x    1    0   | ADDR
-//************ x    0    1   | DATA
-//
-// We need to set bits A13:12 to get an address > 0x2100 (=external memory)
-// The CE is driven by manual pin IO control
-#define  DAP_DATA      0x3800
-
+#define  DAP_DATA           0x3000
 
 //_____ FUNCTIONS __________________________________________________
 

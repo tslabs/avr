@@ -403,6 +403,8 @@
           <state>$PROJ_DIR$/../lib_mem/</state>
           <state>$PROJ_DIR$/../lib_board/</state>
           <state>$PROJ_DIR$/../lib_misc/</state>
+          <state>$PROJ_DIR$/../lib_usb/</state>
+          <state>$PROJ_DIR$/../lib_fat/</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -640,6 +642,8 @@
           <state>$PROJ_DIR$/../ms_conf/</state>
           <state>$PROJ_DIR$/../lib_mcu/</state>
           <state>$PROJ_DIR$/../lib_mem/</state>
+          <state>$PROJ_DIR$/../lib_usb/</state>
+          <state>$PROJ_DIR$/../lib_fat/</state>
           <state>$PROJ_DIR$/../lib_board/</state>
           <state>$PROJ_DIR$/../lib_misc/</state>
         </option>
@@ -1954,11 +1958,11 @@
   <file><name>$PROJ_DIR$\..\lib_misc\scheduler.c           </name></file>
   <file><name>$PROJ_DIR$\..\lib_misc\scsi_decoder.c        </name></file>
   <file><name>$PROJ_DIR$\..\lib_misc\storage_task.c        </name></file>
-  <file><name>$PROJ_DIR$\..\lib_misc\usb_descriptors.c     </name></file>
-  <file><name>$PROJ_DIR$\..\lib_misc\usb_device_task.c     </name></file>
-  <file><name>$PROJ_DIR$\..\lib_misc\usb_specific_request.c</name></file>
-  <file><name>$PROJ_DIR$\..\lib_misc\usb_standard_request.c</name></file>
-  <file><name>$PROJ_DIR$\..\lib_misc\usb_task.c            </name></file>
+  <file><name>$PROJ_DIR$\..\lib_usb\usb_descriptors.c     </name></file>
+  <file><name>$PROJ_DIR$\..\lib_usb\usb_device_task.c     </name></file>
+  <file><name>$PROJ_DIR$\..\lib_usb\usb_specific_request.c</name></file>
+  <file><name>$PROJ_DIR$\..\lib_usb\usb_standard_request.c</name></file>
+  <file><name>$PROJ_DIR$\..\lib_usb\usb_task.c            </name></file>
 </project>
 
 

@@ -43,13 +43,24 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "config.h"
+
 #ifndef _CONF_EXPLORER_H_
 #define _CONF_EXPLORER_H_
+
+//! INCLUDE PATH and compile options (don't touch)
+#define LIB_MEM         "lib_system\memory\memory.h"
+#define LIB_CTRLACCESS  "modules\control_access\ctrl_access.h"
+#define STACK_OPTIMIZATION       // ram_2_memory() interface change
 
 //! FAT supported (ENABLED or DISABLE)
 #define  FS_FAT_12   ENABLED
 #define  FS_FAT_16   ENABLED
 #define  FS_FAT_32   ENABLED
+
+//! The explorer may be support the string in format ASCII or UNICODE, or the both
+#define  FS_ASCII    ENABLED
+#define  FS_UNICODE  DISABLED
 
 //! The navigator may be support only the first partition (DISABLED), or the multiple partion (ENABLED)
 #define  FS_MULTI_PARTITION    DISABLED
@@ -66,13 +77,15 @@
 //! Number of cache used to store a cluster list of files (interresting in case of many "open file")
 #define  FS_NB_CACHE_CLUSLIST 1  // In usual mode, 1 is OK (shall be > 0)
 
+//! *** Define the affiliation of navigator
 //! Maximum of navigator
-#define  FS_NB_NAVIGATOR      3
-
-//! *** Define the affiliation of navigator (Rq: the explorer has always the navigator ID 0)
-// The play list use the navigator ID 1
-#define  FS_NAV_ID_PLAYLIST   1
-// The explorer use the navigator ID 2 to open the "copy file" and ID 0 to open the "paste file"
+#define  FS_NB_NAVIGATOR         3
+// ID 0 used by ushell command and to explore the "copy source directory"
+#define  FS_NAV_ID_USHELL_CMD    0
+#define  FS_NAV_ID_COPY_SRC_DIR  0
+// ID 1 used to explore the "copy destination directory"
+#define  FS_NAV_ID_COPY_DST_DIR  1
+// ID 2 uses by routine copy file to open the copy source file
 #define  FS_NAV_ID_COPYFILE   2
 
 

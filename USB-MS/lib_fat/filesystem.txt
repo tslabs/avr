@@ -1,0 +1,1012 @@
+
+//! @defgroup FileSystem File System
+//! @{
+
+   //! @defgroup FeaturesLimitations Features & limitations
+   //! @{
+
+/*! \page FeaturesCore Main Features
+- FAT12, FAT16, FAT32
+- multi partitions
+- All disk sector sizes
+- ASCII and UNICODE
+- More than one file/disk opened at a time (each file only uses 40B of data)
+- Copy/paste feature
+- Disk management
+  - disk information
+  - format FAT12, FAT16, FAT32 (with or without MBR)
+- Directory management
+  - path management (\link #nav_setcwd() \endlink ,\link #nav_getcwd() \endlink )
+  - directory information
+  - enter
+  - go to root
+  - exit
+  - create
+  - delete
+  - rename
+- File list management (file list = files in directory)
+  - navigation (next, previous, search...)
+- File management
+  - file information
+  - I/O access (DMA compatible)
+  - create
+  - copy
+  - paste
+  - delete
+  - rename
+*/
+
+/*! \page  Limitations Limitations
+- File System does not include the algorithm to check the FAT integrity at startup
+- Only supports a "FAT number" of 2
+<br>It is still highly recommended by Microsoft that no value other than 2 should be used
+*/
+
+/*! \page  FeaturesPlugIn Plug-IN Features
+- Text reader (type *.txt)
+  - read only
+  - ASCII, UTF16, UTF16BE, UTF8 support
+- Play list file (type *.m3u, *.m3u8, *.txt)
+  - read only
+  - ASCII, UTF16, UTF16BE, UTF8 support
+- Navigation plug-in to manage :
+  - a filter list
+  - a flat mode 
+  - an easy navigation which includes repeat and random features
+*/
+
+/*! \page  FeaturesPosix POSIX Features
+The file system core support a POSIX interface.
+*/
+   //! @}
+
+   //! @defgroup Overview Overview
+   //! @{
+/*! \page Intro Introduction
+The ATMEL File System is a module optimized for the C51/AVR8/AVR32 chip from ATMEL.<br>
+The footprint is very small, many features are included, and specific caches are implemented to optimize the speed.<br>
+The particularities of ATMEL File System are the <B>Navigator Identifier</B>, the <B>"file list"</B> and the <B>File index</B> :
+*/
+
+/*! \page NavigatorID Navigator ID
+One navigator ID allows to explore a disk or open a file.<br>
+If you want to open 2 files at the same time then you must use 2 navigators ID.<br>
+If you want to explore 2 directories at the same time then you must use 2 navigators ID.<br>
+If you want to explore 1 directory and open 1 file at the same time then you must use 2 navigators ID.<br>
+Thus the advantages are :
+- possibility to open many files at the same time
+- possibility to explore many disks at the same time
+<br>
+The switch between the navigations is very fast.<br>
+The navigator is the same to open and to explore, but if you open a file then the navigation routines (next,...) are not autorized.<br>
+The number of ID navigators is defined by \ref CoreConfiguration "FS_NB_NAVIGATOR".<br>
+Each navigator uses only 40B of RAM space.<br>
+A good example to understand the advantage of navigation ID is \ref CopyDisk "copy a disk to another disk" .
+*/
+
+/*! \page FileList File List
+Two information allow the navigation, the <B>"current folder"</B> and the <B>"file selected"</B>.<br>
+The "File list" is the list of all folders and all files present in "current folder" like a Windows explorer (the sub folder and sub file aren't included).<br>
+The "file selected" is a cursor on the "File list" (The unselect position exists).<br>
+When the \link nav_dir_cd() \endlink and \link nav_dir_gotoparent() \endlink routines are called, the "current folder" and "File list" change.<br>
+<br>
+After a nav_partition_mount() :
+- the "current folder" is the Root directory
+- "File list" contains all folders and all files included in Root directory
+- "file selected" is at position "unselect"
+<br>
+About order in the "File list" :
+- directories are stored before the file
+- the order of directories or files is the creation order
+
+Example:
+\code
+// A disk architecture
+folder1
+|  folder3
+|  |  file4
+|  file5
+file1
+file2
+folder2
+|  file6
+file3
+
+// The "File list" provides by the navigator when the "root" is the "current folder"
+folder1
+folder2
+file1
+file2
+file3
+
+// The "File list" provides by the navigator when the "folder1" is the "current folder" (via nav_dir_cd())
+folder3
+file5
+\endcode
+*/
+
+/*! \page FileIndex File Index
+A \link #Fs_index File Index \endlink is a small pointer structure which contains a file position.<br>
+This structure allows to store a file list in a small memory space, and allows a fast access to the file.<br>
+The following routines are used to manage file index : \link #nav_getindex() \endlink, \link #nav_gotoindex() \endlink.
+*/
+
+/*! \page ErrorControl Error control
+Many routines return a status TRUE or FALSE.<br>
+In case of FALSE status, the \link #fs_g_status \endlink contains the error identifier to retrieve more information about the error.<br>
+The error list is available \ref Fs_status "here".
+*/
+   //! @}
+
+   //! @defgroup Architecture Architecture
+   //! @{
+
+      //! @defgroup Core Core
+      //! @{
+
+/*! \page CoreOrganisation Organisation
+\image html core.gif
+*/
+
+
+/*! \page CoreConfiguration Configuration
+
+The following defines must be included in a conf_explorer.h header file :
+
+\code
+// Include header file to provide the memory routines (e.g. memset(), memcpy_ram2ram() ...)
+#define LIB_MEM               <string.h>
+// Include header file to provide the disk access routines (e.g. ram_2_memory(), mem_wr_protect() ...)
+#define LIB_CTRLACCESS        "ctrl_access.h"
+
+// Supported FATs (\c ENABLED or \c DISABLED).
+#define FS_FAT_12             ENABLED
+#define FS_FAT_16             ENABLED
+#define FS_FAT_32             ENABLED
+
+// The explorer may support either the ASCII or the UNICODE string format, or both.
+#define FS_ASCII              DISABLED
+#define FS_UNICODE            ENABLED
+
+// The navigator may support only the first partition (\c DISABLED), or multiple partitions (\c ENABLED).
+#define FS_MULTI_PARTITION    DISABLED
+
+// Level of features in File system core.
+// Select among:
+//  - FSFEATURE_READ:           All read functions.
+//  - FSFEATURE_WRITE:          nav_file_copy(), nav_file_paste(), nav_file_del(), file_create(), file_open(MODE_WRITE), file_write(), file_putc().
+//  - FSFEATURE_WRITE_COMPLET:  FSFEATURE_WRITE functions and nav_drive_format(), nav_dir_make(), nav_file_rename(), nav_file_dateset(), nav_file_attributset().
+//  - FSFEATURE_ALL:            All functions.
+#define FS_LEVEL_FEATURES     (FSFEATURE_READ | FSFEATURE_WRITE_COMPLET)
+
+// Number of caches used to store a cluster list of files (interesting in case of many `open file').
+// In player mode, 1 is OK (shall be > 0).
+#define FS_NB_CACHE_CLUSLIST  3
+
+// Maximal number of simultaneous navigators.
+#define FS_NB_NAVIGATOR       3
+
+// The navigator use the following ID to open the `copy file' and the current ID to create the `paste file'.
+#define FS_NAV_ID_COPYFILE    2 // Must be different of current ID used when the paste routine is called.
+
+\endcode
+*/
+
+/*! \page CoreInterfaces Interfaces
+\par FAT System
+It is the module low level, this one decodes the FAT structure.<br>
+All routines of the module are private and can't be called by a user.
+See \link fat.c \endlink,\link fat_unusual.c \endlink
+
+\par Navigation
+This module provides the routines :
+  - to select an ID navigator
+  - to move in directory tree
+  - to modify directory tree
+  - to get information about disk/dir/file
+<br><I>The complete user interface is the public routine provided in the \link navigation.c \endlink C files.</I>
+
+\par File
+This module provides the file I/O control.<br>
+The routines \link file_getc() \endlink and \link file_putc() \endlink are too slow to transfer many data.<br>
+The \link file_read_buf() \endlink and \link file_write_buf() \endlink are developed to transfer many data between the RAM and a file on a memory.<br>
+\note These routines optimize the transfer and if a DMA exists between RAM and memory then it is used.<br>
+
+The \link file_read() \endlink and \link file_write() \endlink are developed to transfer many data between a file and another memory or a specific interface.<br>
+\note These routines don't transfer data, but provide an information on the disk segment corresponding to the file.<br>
+Overside, it is not necessary to transfer data in the RAM and the chip can use a DMA between two disks to save time.<br>
+
+<I>The complete user interface is the public routine provided in the \link file.c \endlink C files.</I>
+
+\par Memory interface
+The interfaces with the memory are :
+- \link #mem_test_unit_ready() \endlink
+- \link #mem_wr_protect() \endlink
+- \link #memory_2_ram() \endlink
+- \link #ram_2_memory() \endlink
+*/
+      //! @}
+
+      //! @defgroup Plugin Plug-ins
+      //! @{
+
+/*! \page PluginOrganisation Organisation
+\image html plugin.gif
+*/
+
+
+/*! \page PluginDescription Description
+
+\par Text reader
+This plug-in allows to open a basic text file.<br>
+The text format supported are ASCII, UTF16, UTF16BE, and UTF8.<br>
+The multi open text file is supported.<br>
+<I>The complete user interface is the public routine provided in the \link reader_txt.c \endlink C files.</I>
+\note the modification routines are not developed.
+
+\par Play list
+This plug-in allows to open a file play list included in a text file.<br>
+The extension supported are *.m3u, *.m3u8, *.txt.<br>
+The file format supported are ASCII, UTF16, UTF16BE, and UTF8.<br>
+<br>
+The plug-in opens the play list file in a specific navigator (see \ref PluginConfiguration "Configuration") and selects a file (included in the play list) in current navigator.
+<br><I>The complete user interface is the public routine provided in the \link play_list.c \endlink C files.</I>
+\note
+- The line with the character '#' at beginning are ignored.
+- It isn't possible to open many play list files in same time.
+- The modification routines are not developed.
+
+\par Automatic Navigation 
+Automatic navigation has been developed for the player/viewer module.
+The plug-in provides a specific "file list".
+The "file list" contains all files included in a playlist or it is built with the following user specifications :
+- extension filter
+- limitation scan (folder, folder and sub folder, one disk, all disks)
+
+The plug-in can manage a random feature.
+<br><I>The complete user interface is the public routine provided in the \link nav_automatic.c \endlink C files.</I>
+\note The play list limitations is 65535 files.
+
+\par Filter list
+This plug-in has the same navigation routines as the ones included in navigation.c, but it filters the files with an extension filter.<br>
+<I>The complete user interface is the public routine provided in the \link nav_filterlist.c \endlink C files.</I><br>
+Example:
+\code
+// A disk architecture
+folder1
+|  folder3
+|  |  file4.mp3
+|  file5.txt
+folder2
+|  file6.txt
+file1.mp3
+file2.txt
+file3.mp3
+
+// The "File list" provided by basic navigator when the "root" is the "current folder"
+folder1
+folder2
+file1.mp3
+file2.txt
+file3.mp3
+
+// The "File list" provided by basic navigator when the "folder1" is the "current folder" (via nav_dir_cd())
+folder3
+file5.txt
+
+// The "File list" provided by Filter navigator when the "root" is the "current folder"
+folder1
+folder2
+file1.mp3
+file3.mp3
+
+// The "File list" provided by Filter navigator when the "folder1" is the "current folder" (via nav_dir_cd())
+folder3
+\endcode
+
+\par Flat mode
+The FLAT mode ignores the folder level and displays in the navigation list all files/folders present in sub folder of current folder.<br>
+Example:
+\code
+// A disk architecture
+folder1
+|  folder3
+|  |  file4
+|  file5
+folder2
+|  file6
+file1
+file2
+file3
+
+// The "File list" provided by basic navigator when the "root" is the "current folder"
+folder1
+folder2
+file1
+file2
+file3
+
+// The "File list" provided by basic navigator when the "folder1" is the "current folder" (via nav_dir_cd())
+folder3
+file5
+
+// The "File list" provided by FLAT navigator when the "root" is the "current folder"
+folder1
+folder3
+file4
+file5
+folder2
+file6
+file1
+file2
+file3
+
+// The "File list" provided by FLAT navigator when the "folder1" is the "current folder" (via nav_dir_cd())
+folder3
+file4
+file5
+\endcode
+<I>The complete user interface is the public routine provided in the \link nav_flat.c \endlink C files.</I>
+
+\par Filter & Flat mode
+This plug-in includes the feature of plug-in "Filter list" and "Flat mode".
+<br><I>The complete user interface is the public routine provided in the \link nav_filterflat.c \endlink C files.</I>
+
+*/
+
+
+/*! \page PluginConfiguration Configuration
+
+The following defines must be included in a conf_explorer.h header file :
+
+// Play list
+\code
+// Navigator used to open the file playlist
+#define FS_NAV_ID_PLAYLIST    2
+// Playlist Interface to allocate a space to store the current path included in play list
+// Example with alloc library
+#define  PLAYLIST_BUF_ALLOC( size )    malloc( size )
+#define  PLAYLIST_BUF_FREE( buf )      free( buf )
+// Example with no alloc library
+#define  PLAYLIST_BUF_ALLOC( size )    ((sizeof(g_buffer_512)>512)? NULL : g_buffer_512)
+#define  PLAYLIST_BUF_FREE( buf )
+\endcode
+
+// Automatic Navigation 
+\code
+// The feature "count all files available" may be disabled to save time at startup
+#define  FS_NAV_AUTOMATIC_NBFILE  ENABLE
+// Specify the file order in the list provided by the plug-in "Automatic Navigation" (nav_automatic.c)
+#define  NAV_AUTO_FILE_IN_FIRST     // Uncomment to disable feature
+// Size of the split for the random (Unit 8 files)
+#define  NAVAUTO_MAX_RANGE_RAND   8     // 8*8= 64 file
+// Random value methode (byte value)
+#include "rand.h"
+#define  NAVAUTO_GET_RAND( value )   (value=rand())
+\endcode
+
+// Navigation Flat
+\code
+// Allow modules FLAT mode (nav_flat.c & navfilterflat.c)
+#define  NAVIGATION_MODE_FLAT       // Uncomment to disable feature
+\endcode
+
+*/
+      //! @}
+
+      //! @defgroup Posix POSIX
+      //! @{
+/*! \page PosixPage POSIX
+\image html posix.gif
+*/
+      //! @}
+
+   //! @}
+
+   //! @defgroup Examples Examples
+   //! @{
+/*!
+\note All examples assume that the ATMEL file system is initialized (see \link #nav_reset() \endlink)
+*/
+
+/*! \defgroup Startup Power ON/OFF sequence
+Sequences to initialize ATMEL File System:
+\code
+   nav_reset();
+\endcode
+
+Sequences to execute before stop ATMEL File System:
+\code
+   // If you have opened files then close them
+   // Flush data eventually present in FAT cache
+   nav_exit();
+\endcode
+
+\note If you have a system which shares disks between ATMEL File System and another File System, then you must stop ATMEL FS before jumping to other FS and reinit ATMEL FS after exit to other FS .<br>
+Example: In mode USB Device Mass Storage, it is a FileSystem from USB Host which is used.<br>
+You must stop ATMEL FS before start USB Device and reinit ATMEL FS after USB Device exit.
+*/
+
+/*! \defgroup CheckPresenceDisk Check the disk state
+Two routines are necessary to check the disk.<br>
+\link #nav_drive_set() \endlink or \link #nav_drive_nb() \endlink allows to detect the presence of a memory driver.<br>
+The memory driver may always be present or present only when memory can be accessed (e.g. memory card or USB disk).<br>
+\link #nav_partition_mount() \endlink checks the presence of memory and tries to mount partition.
+
+\code
+Bool check_disk( U8 lun )
+{
+   nav_select(0); // Select navigator ID 0 for this sequence
+
+   if( !nav_drive_set(lun) )
+   {
+      printf("Driver memory no available\n");
+      return FALSE;
+   }
+   // Here the memory is selected
+   
+   if( !nav_partition_mount() )
+   {
+      switch( fs_g_status )
+      {
+         case FS_ERR_HW_NO_PRESENT:
+         printf("Disk not present\n");
+         break;
+         case FS_ERR_HW:
+         printf("Disk access error\n");
+         break;
+         case FS_ERR_NO_FORMAT:
+         printf("Disk no formated\n");
+         break;
+         case FS_ERR_NO_PART:
+         printf("No partition available on disk\n");
+         break;
+         case FS_ERR_NO_SUPPORT_PART:
+         printf("Partition no supported\n");
+         break;
+         default :
+         printf("Other system error\n");
+         break;
+      }
+      return FALSE;
+   }
+   // Here the partition on memory is mounted and the navigator is on root dir
+   
+   return TRUE;
+}
+\endcode
+*/
+
+
+/*! \defgroup ChangeDate Change the date of a file
+This example changes the creation date and last access date.
+
+\code
+Bool changedate( void )
+{
+// Example to modify a file date
+   const U8 _MEM_TYPE_SLOW_ date_create[]="2005122512301050"; // Date = 12/25/2005 12h30mn10.5s
+   const U8 _MEM_TYPE_SLOW_ date_write[]="2006072319005130";  // Date = 07/23/2006 19h51mn30s
+   
+   nav_select(0); // Select navigator ID 0 for this sequence
+
+   if( !nav_drive_set( LUN_ID_NF_DISKMASS ))
+      return FALSE;
+   if( !nav_partition_mount() )
+      return FALSE;
+   // Select the first file or directory
+   if( !nav_filelist_set( 0 , FS_FIND_NEXT ) )
+      return FALSE;
+   // Modify the creation date
+   if( !nav_file_dateset( date_create , FS_DATE_CREATION) )
+      return FALSE;
+   // Modify the last access date
+   if( !nav_file_dateset( date_write , FS_DATE_LAST_WRITE) )
+      return FALSE;
+
+   return TRUE;
+}
+\endcode
+*/
+
+
+/*! \defgroup Setcwd Use setcwd
+You can use a text path (ASCII or UNICODE) to access a file or path.<br>
+\link #nav_setcwd() \endlink allow following string :
+- "name.txt" to search a file or directory in current directory
+- "nam*" to search the first file or directory corresponding in current directory
+- '\' '/' is egal and supported
+- "name\" to search a directory in current directory and enter in directory
+- "name\name2.txt" to search a path in current directory
+- "\name\name2.txt" to search a path in root directory
+- "./" is supported at beginning but it is not mandatory
+- "../../" is supported at beginning
+- "A:\" is supported at beginning, 'A' corresponding at disk 0
+
+\code
+Bool search_path( void )
+{
+   const _MEM_TYPE_SLOW_ U8 path[]="dir1/file.txt";
+   
+   nav_select(0);                         // Choose a free navigator
+   
+   // Select a disk and mount it
+   nav_drive_set(1);
+   nav_partition_mount();
+   // HERE the navigator is in root dir
+
+#if( (FS_ASCII == ENABLED) && (FS_UNICODE == ENABLED) )
+   nav_string_ascii();  // Select a ASCII name format
+#endif
+
+   if( !nav_setcwd( (FS_STRING)path , TRUE, FALSE ) )   // search file "dir1/file.txt" in root dir of disk 1
+      return FALSE;
+}
+\endcode
+*/
+
+
+/*! \defgroup CopyDisk Copy a disk on other disk
+This example uses three navigators :
+- to move on source disk
+- to move on destination disk
+- for the copy/paste feature (navigator defined by \link #FS_NAV_ID_COPYFILE \endlink)
+
+\code
+Bool copydisk( void )
+{
+   const UNICODE _MEM_TYPE_SLOW_ name[50];
+   U8 u8_folder_level = 0;
+
+//trace("Mount drive\n");
+   //** Use three navigators (0 to explore SD, 1 to explore NF disk, 2 used by copy file routine)
+   nav_select( 0 );
+   if( !nav_drive_set( LUN_ID_MMC_SD ))
+      return FALSE;
+   if( !nav_partition_mount() )
+      return FALSE;
+   nav_select( 1 );
+   if( !nav_drive_set( LUN_ID_NF_DISKMASS ))
+      return FALSE;
+   if( !nav_partition_mount() )
+      return FALSE;
+  
+   // loop to scan and create ALL folders and files
+   while(1)
+   {
+      // No dir in current dir then go to parent dir on SD and NandFlash disk
+      while(1)
+      {
+//trace("Search files or dir\n");
+         // Reselect SD
+         nav_select( 0 );
+         if( nav_filelist_set( 0 , FS_FIND_NEXT ) )
+            break;   // a next file and directory is found
+   
+         // No other dir or file in current dir then go to parent dir on SD and NandFlash disk
+         if( 0 == u8_folder_level )
+         {
+            // end of update folder
+//trace("End of copy\n");
+            return TRUE;   //********* END OF COPY **************
+         }
+
+//trace("Go to parent\n");
+         // Remark, nav_dir_gotoparent() routine go to in parent dir and select the children dir in list
+         u8_folder_level--;
+         if( !nav_dir_gotoparent() )
+            return FALSE;
+         // Select NandFlash navigator and go to the same dir of SD
+         nav_select( 1 );
+         if( !nav_dir_gotoparent() )
+            return FALSE;
+      } // end of while (1)
+      
+      if( nav_file_isdir())
+      {
+//trace("Dir found - create dir & CD\n");
+         //** here, a new directory is found and is selected
+         // Get name of current selection (= dir name on SD)
+         if( !nav_file_name( (FS_STRING )name , 50  , FS_NAME_GET, FALSE  ))
+            return FALSE;
+         // Enter in dir (on SD)
+         if( !nav_dir_cd())
+            return FALSE;
+         u8_folder_level++;
+         // Select NandFlash disk
+         nav_select( 1 );
+         // Create folder in NandFlash disk
+         if( !nav_dir_make( (FS_STRING )name ))
+         {
+            if( FS_ERR_FILE_EXIST != fs_g_status )
+               return FALSE;
+            // here, error the name exist
+         }
+         // Here the navigator have selected the folder on NandFlash
+         if( !nav_dir_cd())
+         {
+            if( FS_ERR_NO_DIR == fs_g_status )
+            {
+               // FYC -> Copy impossible, because a file have the same name of folder
+            }
+            return FALSE;
+         }
+         // here, the folder is created and the navigatorS is entered in this dir
+      }
+      else
+      {
+//trace("File found - copy file\n");
+         //** here, a new file is found and is selected
+         // Get name of current selection (= file name on SD)
+         if( !nav_file_name( (FS_STRING )name , 50  , FS_NAME_GET , FALSE  ))
+            return FALSE;
+         if( !nav_file_copy())
+            return FALSE;
+
+         // Paste file in current dir of NandFlash disk
+         nav_select( 1 );
+         while( !nav_file_paste_start( (FS_STRING)name ) )
+         {
+            // Error
+            if( fs_g_status != FS_ERR_FILE_EXIST )
+               return FALSE;
+//trace("del file\n");
+            // File exists then deletes this one
+            if( !nav_file_del( TRUE ) )
+               return FALSE;
+            // here, retry PASTE                   
+         }
+         // Copy running
+         {
+         U8 status;
+         do{
+            status = nav_file_paste_state(FALSE);
+         }while( COPY_BUSY == status );
+
+         if( COPY_FINISH != status )
+            return FALSE;
+         }
+      } // if dir OR file
+   } // end of first while(1)
+}
+\endcode
+*/
+
+
+
+/*! \defgroup AccelerateFileWrite Accelerate multi write file
+\par Overview
+The routines \link file_getc() \endlink and \link file_putc() \endlink are too slow to transfer many data.<br>
+<br>
+The \link file_read_buf() \endlink and \link file_write_buf() \endlink are developed to transfer many data between the RAM and file on a memory.<br>
+This routines optimize the transfer and if a DMA exists between RAM and memory then it is used.<br>
+<br>
+The \link file_read() \endlink and \link file_write() \endlink are developed to transfer many data between a file and another memory or a specific interface.<br>
+This routines don't transfer data, but provide an information on the disk segment corresponding to the file.<br>
+Overside, it is not necessary to transfer data in the RAM and the chip can use a DMA between two disks to save time.<br>
+<br>
+In case of many "file_write_buf() or file_putc()" call (e.g. log file), the execution may be slow because the number of write access on the disk is important.
+So, the following section gives a solution to accelerate the execution and reduces the number of write access.<br>
+<br>
+Also, it is important to know that FAT time creation depends of FAT type used. The allocation in FAT is more fast on FAT (FAT12,FAT16) than FAT32.
+If you have a disk size < 2GB then you can force the type FAT when you call nav_drive_format(FS_FORMAT_FAT).<br>
+<br>
+Also, you can call \link nav_checkdisk_disable() \endlink before many file IN/OUT routines access.<br>
+Because the "test unit ready" routine can reduce the speed of IN/OUT routines.
+
+\par Examples
+
+If you write many data in a file and you split the write access (e.g. log file),
+then it may be interresting to prealloc once the space in file (FAT table).
+
+This example is the usual sequence to fill a file :<br>
+\code
+// File fill >1MB
+#define  FILL_FILE_NB_WRITE   855L
+#define  FILL_FILE_BUF_SIZE   120L
+
+Bool fill_file( void )
+{
+   const UNICODE _MEM_TYPE_SLOW_ name[50]={'l','o','g','.','b','i','n',0};
+   U16 u16_nb_write;
+
+   memset( g_trans_buffer , 0x55 , FILL_FILE_BUF_SIZE );
+   
+   if( !nav_drive_set(LUN_DISK))    // Enter in disk
+      return FALSE;
+   if( !nav_partition_mount())      // Mount partition of disk
+      return FALSE;
+   
+   if( !nav_file_create( (const FS_STRING) name )) // Create file  
+      return FALSE;
+   if( !file_open(FOPEN_MODE_W))    // Open file in write mode with force file size 0
+      return FALSE;
+   
+   for( u16_nb_write=0; u16_nb_write<FILL_FILE_NB_WRITE; u16_nb_write++ )
+   {
+      // HERE, at each write file, a allocation in FAT area is run
+      // so, if you have many buffer to write the execution may be slow.
+      if( !file_write_buf( g_trans_buffer , FILL_FILE_BUF_SIZE ))
+      {
+         file_close();
+         return FALSE;
+      }
+   }
+   file_close();
+   return TRUE;
+}
+\endcode
+
+This example allow to accelerate write access with a prealloc routine :
+\code
+// File fill >1MB
+#define  FILL_FILE_NB_WRITE   855L
+#define  FILL_FILE_BUF_SIZE   120L
+
+Bool fill_file_fast( void )
+{
+   const UNICODE _MEM_TYPE_SLOW_ name[50]={'l','o','g','_','f','a','s','t','.','b','i','n',0};
+   _MEM_TYPE_SLOW_ Fs_file_segment g_recorder_seg;
+   U16 u16_nb_write;
+   
+   memset( g_trans_buffer , 0x55 , FILL_FILE_BUF_SIZE );
+
+   if( !nav_drive_set(LUN_DISK))    // Enter in disk
+      return FALSE;
+   if( !nav_partition_mount())      // Mount partition of disk
+      return FALSE;
+   
+   if( !nav_file_create( (const FS_STRING) name )) // Create file  
+      return FALSE;
+   if( !file_open(FOPEN_MODE_W))    // Open file in write mode and forces the file size to 0
+      return FALSE;
+   
+   // Define the size of segment to prealloc (unit 512B)
+   // Note: you can alloc more in case of you don't know total size
+   g_recorder_seg.u16_size = (FILL_FILE_NB_WRITE*FILL_FILE_BUF_SIZE + 512L)/512L;
+
+   // ****PREALLLOC****** the segment to fill
+   if( !file_write( &g_recorder_seg ))
+   {
+      file_close();
+      return FALSE;
+   }
+
+   // Check the size of segment allocated
+   if( g_recorder_seg.u16_size < ((FILL_FILE_NB_WRITE*FILL_FILE_BUF_SIZE + 512L)/512L) )
+   {
+      file_close();
+      return FALSE;
+   }
+
+   // Close/open file to reset size
+   file_close();                    // Closes file. This routine don't remove the previous allocation.
+   if( !file_open(FOPEN_MODE_W))    // Opens file in write mode and forces the file size to 0
+      return FALSE;
+
+   for( u16_nb_write=0; u16_nb_write<FILL_FILE_NB_WRITE; u16_nb_write++ )
+   {
+      // HERE, the file cluster list is already allocated and the write routine is more fast.
+      if( !file_write_buf( g_trans_buffer , FILL_FILE_BUF_SIZE ))
+      {
+         file_close();
+         return FALSE;
+      }
+   }
+   file_close();
+   return TRUE;
+}
+
+\endcode
+
+\par Statistic
+
+A FAT32 has need to write more (x4) sectors in FAT table than FAT16 for the same file size and same disk size.
+
+Create a file of 100.2KB (buffer 120B * nb write 855) on a disk 256MB (FAT16-cluster 4KB):
+- with fill_file()    , the write access on a same sector in FAT is <B>50 maximum and 25 average</B>.
+- with fill_filefast(), the write access on a same sector in FAT is <B>2 maximum and 1 average</B>.
+
+Create a file of 1.1MB (buffer 120B * nb write 10000) on a disk 256MB (FAT16-cluster 4KB):
+- with fill_file()    , the write access on a same sector in FAT is <B>255 maximum and 147 average</B>.
+- with fill_filefast(), the write access on a same sector in FAT is <B>2 maximum and 1 average</B>.
+
+
+*/
+
+
+/*! \defgroup UseNavigationAuto Use automatic navigation 
+
+If you want to play all files (*.mp3 and *.mp2) available in all disks or one disk :
+\code
+use_explorer()
+{
+   Navauto_mov_state status_mov;
+   _MEM_TYPE_SLOW_   U8    ext_filemusic[]    = "mp3,mp2";
+   
+   // Init explorer mode
+   navauto_init( ext_filemusic );         // Init filter to use 
+   navauto_setmode( NAVAUTO_MODE_DISK );  // Scan only the current disk (sub folder include)
+   navauto_setrand( NAVAUTO_RAND_OFF );   // Init random mode
+
+   nav_select(0);                         // Choose a free navigator
+   
+   // Select your disk
+   nav_drive_set(1);
+   nav_partition_mount();
+      
+   // Open automatic navigation
+   // This one take the current position to init the file list
+   if( !navauto_open( FALSE, 0 ))             // Here, the folder level param is ignored because the mode disk is selected
+      return FALSE;
+
+   // NOW EXPLORER
+   do
+   {
+      // HERE a file is selected
+      // You can play file or display file or ...
+   
+      // Play file finish then go to next
+      status_mov = navauto_mov( FS_FIND_NEXT );      
+      if( NAVAUTO_MOV_OK_LOOP  == status_mov )
+      {
+         if( FALSE == repeat_mode )
+            break; // Exit loop
+      }
+   }while(  (NAVAUTO_MOV_OK       == status_mov )
+   ||       (NAVAUTO_MOV_OK_LOOP  == status_mov ) );
+
+   switch( status_mov )
+   {
+      case NAVAUTO_MOV_OK_LOOP:         // End of loop
+      case NAVAUTO_MOV_EMPTY:           // loop empty
+      case NAVAUTO_MOV_DISKNOPRESENT:   // All disks or a disk is not present (depends of NAVAUTO_MODE)
+      case NAVAUTO_MOV_DISKERROR:       // Access error on all or one disk (depends of NAVAUTO_MODE)
+   }
+   navauto_close();
+}
+\endcode
+
+
+If you want to play all files (*.mp3 and *.mp2) available in a first dir (and subdir) :
+\code
+use_explorer()
+{
+   Navauto_mov_state status_mov;
+   _MEM_TYPE_SLOW_   U8    ext_filemusic[]    = "mp3,mp2";
+   
+   // Init explorer mode
+   navauto_init( ext_filemusic );         // Init filter to use 
+   navauto_setmode( NAVAUTO_MODE_DIRSUB );// Scan folder and sub folder
+   navauto_setrand( NAVAUTO_RAND_OFF );   // Init random mode
+
+   nav_select(0);                         // Choose a free navigator
+   
+   // Enter in first dir of a disk
+   nav_drive_set(1);
+   nav_partition_mount();
+   nav_filelist_first( FS_DIR );
+   nav_dir_cd();
+   
+   // Explore current dir and sub dir
+   if( !navauto_open( FALSE , 0 ))        // The param folder level is 0 because the current folder is the base of navigation
+      return FALSE;
+
+   // NOW EXPLORER
+   do
+   {
+      // HERE a file is selected
+      // You can play file or display file or ...
+   
+      // Play file finish then go to next
+      status_mov = navauto_mov( FS_FIND_NEXT );      
+      if( NAVAUTO_MOV_OK_LOOP  == status_mov )
+      {
+         if( FALSE == repeat_mode )
+            break; // Exit loop
+      }
+   }while(  (NAVAUTO_MOV_OK       == status_mov )
+   ||       (NAVAUTO_MOV_OK_LOOP  == status_mov ) );
+
+   switch( status_mov )
+   {
+      case NAVAUTO_MOV_OK_LOOP:         // End of loop
+      case NAVAUTO_MOV_EMPTY:           // loop empty
+      case NAVAUTO_MOV_DISKNOPRESENT:   // All disks or a disk is not present (depends of NAVAUTO_MODE)
+      case NAVAUTO_MOV_DISKERROR:       // Access error on all or one disk (depends of NAVAUTO_MODE)
+   }
+   navauto_close();
+}
+\endcode
+
+
+If you want to play all files available in a playlist :
+\code
+use_explorer()
+{
+   Navauto_mov_state status_mov;
+   const _MEM_TYPE_SLOW_ U8 name[]="playlist.mu3";
+   
+   // Init explorer mode
+   //navauto_init( ext_filemusic );          // Init filter to use, NO USED in play list
+   //navauto_setmode( NAVAUTO_MODE_DIRSUB ); // Scan folder and sub folder, NO USED in play list
+   navauto_setrand( NAVAUTO_RAND_OFF );      // Init random mode
+   
+   nav_select(0);                            // Choose a free navigator
+   
+   // Select your play list file
+   nav_drive_set(1);
+   nav_partition_mount();
+#if( (FS_ASCII == ENABLED) && (FS_UNICODE == ENABLED) )
+   nav_string_ascii();  // Select a ASCII name format
+#endif
+   if( !nav_filelist_findname( (FS_STRING)name , FALSE ) )   // search file "playlist.mu3" in root dir
+      return FALSE;
+   
+   // Explore all disks available
+   if( !navauto_open( TRUE , 0 ))            // param O to select the first file of the play list
+      return FALSE;
+
+   // NOW EXPLORER
+   do
+   {
+      // HERE a file is selected
+      // You can play file or display file or ...
+   
+      // Play file finish then go to next
+      status_mov = navauto_mov( FS_FIND_NEXT );      
+      if( NAVAUTO_MOV_OK_LOOP  == status_mov )
+      {
+         if( FALSE == repeat_mode )
+            break; // Exit loop
+      }
+   }while(  (NAVAUTO_MOV_OK       == status_mov )
+   ||       (NAVAUTO_MOV_OK_LOOP  == status_mov ) );
+
+   switch( status_mov )
+   {
+      case NAVAUTO_MOV_OK_LOOP:         // End of loop
+      case NAVAUTO_MOV_EMPTY:           // loop empty
+      case NAVAUTO_MOV_DISKNOPRESENT:   // All disks or a disk is not present (depends of NAVAUTO_MODE)
+      case NAVAUTO_MOV_DISKERROR:       // Access error on all or one disk (depends of NAVAUTO_MODE)
+   }
+   navauto_close();
+}
+\endcode
+
+If you want to save and restore a automatic navigation (e.g. save before Power OFF and restore after power ON):
+\code
+power_off()
+{
+   setting_field.navauto_mode = navauto_getmode(); // Get explorer mode
+   setting_field.navauto_rand = navauto_getrand(); // Get random mode
+   setting_field.navauto_pos  = navauto_close();   // Get current dir level         or playlist position
+   setting_field.nav_index    = nav_getindex();    // Get current position in disk  or playlist file index
+
+   setting_save();
+}
+
+power_on()
+{
+   _MEM_TYPE_SLOW_   U8    ext_filemusic[]    = "mp3,mp2";
+   setting_load();
+   
+   // Restore navigation configuration
+   navauto_init( ext_filemusic );
+   navauto_setmode( setting_field.navauto_mode );
+   navauto_setrand( setting_field.navauto_rand );
+  
+   // Restore navigation position
+   nav_select(0)  
+   // Go to last position in disk or go to paly list file
+   nav_gotoindex( &setting_field.nav_index );
+   // Restore navigation with the last directory level or last playlist position
+   if( !navauto_open( nav_file_checkext(ext_playlist) , setting_field.navauto_pos ))
+      return FALSE;
+}
+\endcode
+*/
+*/
+   //! @}
+//! @}
+

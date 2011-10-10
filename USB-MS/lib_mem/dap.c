@@ -15,9 +15,9 @@
 //_____ D E C L A R A T I O N ______________________________________________
 
 // #ifndef __GNUC__
-  // extern __no_init volatile xdata Byte nf_data At(nf_data);  // Address
+  extern __no_init volatile xdata Byte dap_data At(DAP_DATA);  // Address
 // #else
-  extern volatile unsigned char nf_data __attribute__ ((section (".nf_dat")));
+  extern volatile unsigned char dap_data __attribute__ ((section (".dap_dat")));
 // #endif
 
 const U32 dap_sectors_number = 16L*2048L;		//size of bulk = 16MB
@@ -122,7 +122,7 @@ void dap_read_sector_to_usb(U8 nb_sectors)
       Disable_interrupt();
       for (i = 0; i<64; i++)
 	  {
-		Usb_write_byte(nf_data);                         // read 64 bytes from card
+		Usb_write_byte(dap_data);                         // read 64 bytes from card
 	  }
       Enable_interrupt();
 
@@ -144,9 +144,9 @@ void dap_set_sect(U32 sect)
 
 void dap_set_addr(U32 addr)
 {
-	nf_data = (addr & 0xFF);
-	nf_data = (addr>>8 & 0xFF);
-	nf_data = (addr>>16 & 0xFF);
+	dap_data = (addr & 0xFF);
+	dap_data = (addr>>8 & 0xFF);
+	dap_data = (addr>>16 & 0xFF);
 
 }
 
