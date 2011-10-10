@@ -101,4 +101,4 @@
     <Name>..\lib_usb\usb_specific_request.c</Name>
     <Name>..\lib_usb\usb_standard_request.c</Name>
     <Name>..\lib_usb\usb_task.c            </Name>
-	</Files></ProjectFiles><IOView><usergroups/><sort sorted="0" column="0" ordername="1" orderaddress="1" ordergroup="1"/></IOView><Files><File00000><FileId>00000</FileId><FileName>d:\_Heap\Work\SVN\TSL-AVR\USB-MS\avr_usb_ms-2_0_4-doc\at90usb128\demo\avr_usb_ms\main.c</FileName><Status>3</Status></File00000></Files><Events><Bookmarks></Bookmarks></Events><Trace><Filters></Filters></Trace></AVRStudio>
+	</Files></ProjectFiles><IOView><usergroups/><sort sorted="0" column="0" ordername="1" orderaddress="1" ordergroup="1"/></IOView><Files><File00000><FileId>00000</FileId><FileName>..\lib_misc\main.c</FileName><Status>3</Status></File00000></Files><Events><Bookmarks></Bookmarks></Events><Trace><Filters></Filters></Trace></AVRStudio>
