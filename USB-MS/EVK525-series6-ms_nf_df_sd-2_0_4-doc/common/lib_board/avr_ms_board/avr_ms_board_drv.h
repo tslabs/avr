@@ -86,6 +86,8 @@
 #define   Nandflash1_unselect()      (PORTC |=  0x08)
 #define   Nandflash_unselect()       (PORTC |=  0x0C)
 #define   Nandflash_powerdown()     Nandflash_unselect()
+#define   Dap_select()               (PORTC &= ~0x04)    // CS
+#define   Dap_unselect()             (PORTC |=  0x04)
 #define   Is_nandflash_ready()     	 (((PINC&0x40) != 0) ? TRUE : FALSE)
 #define   Is_nandflash_busy()      	 (((PINC&0x40) == 0) ? TRUE : FALSE)
 #define   Is_nandflash0_ready()      (((PINC&0x40) != 0) ? TRUE : FALSE)

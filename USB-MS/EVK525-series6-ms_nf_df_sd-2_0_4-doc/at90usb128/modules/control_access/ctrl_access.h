@@ -148,6 +148,19 @@
 #define  Lun_3_mem_2_ram(addr , ram)             mmc_mmc_2_ram(addr, ram)
 #define  LUN_3_NAME                               "\"MMC\""
 
+// LUN 4 DEFINE
+#define  LUN_ID_DAP		                         LUN_ID_4
+#define  LUN_4_INCLUDE                           "lib_mem\dap\dap.h"
+#define  Lun_4_test_unit_ready()                 dap_test_unit_ready()
+#define  Lun_4_read_capacity(nb_sect)            dap_read_capacity(nb_sect)
+#define  Lun_4_wr_protect()                      dap_wr_protect()
+#define  Lun_4_removal()                         dap_removal()
+#define  Lun_4_read_10(ad, sec)                  dap_read_10(ad, sec)
+#define  Lun_4_write_10(ad, sec)                 dap_write_10(ad, sec)
+#define  Lun_4_ram_2_mem(addr , ram)             dap_ram_2_dap(addr, ram)
+#define  Lun_4_mem_2_ram(addr , ram)             dap_dap_2_ram(addr, ram)
+#define  LUN_4_NAME                               "\"AVR DAP\""
+
 // LUN USB DEFINE
 #define  LUN_USB_INCLUDE                           "lib_mem\host_mem\host_mem.h"
 #define  Lun_usb_get_lun()                         host_mem_get_lun()

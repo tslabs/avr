@@ -51,9 +51,10 @@
 
 // Active the Logical Unit
 #define  LUN_0                DISABLE   // On-Chip flash vitual memory
-#define  LUN_1                ENABLE    // Nand FLash
-#define  LUN_2                DISABLE    // Data Flash
-#define  LUN_3                ENABLE    // SD MMC
+#define  LUN_1                DISABLE   // Nand FLash
+#define  LUN_2                DISABLE   // Data Flash
+#define  LUN_3                DISABLE   // SD MMC
+#define  LUN_4                ENABLE    // AVR-DAP
 #define  LUN_USB              DISABLE   // HOST mass storage memory
 
 #endif  //! _CONF_ACCESS_H_

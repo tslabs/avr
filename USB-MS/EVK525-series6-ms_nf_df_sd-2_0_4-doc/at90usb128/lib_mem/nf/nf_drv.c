@@ -180,13 +180,14 @@ void nfc_reset_nands( U8 nb_dev )
 
 void nf_XMCR_enable( void )
 {
-#if (NF_CLE_ALE_MANUAL == ENABLED)
-  XMCRB |= ((1<<XMM2) | (1<<XMM1) | (1<<XMM0));   // limit XRAM interface to A7 (release PC0..7)
-#else
   XMCRB |= ((1<<XMM2) | (1<<XMM1));                // limit XRAM interface to A9 (release PC2..7)
-#endif  
-  // XMCRA |= (1<<SRE);                  // enable the external memory
-  XMCRA |= ((1<<SRE) | (1<<SRW00) | (1<<SRW01) | (1<<SRW10) | (1<<SRW11));                  // enable the external memory
+
+// enable the external memory 
+//no delay:  RE_n, WE_n = 62.5ns (1 clk 16MHz)
+  XMCRA |= (1<<SRE);                  		
+
+//max delay  RE_n, WE_n = 187.5ns (3 clks 16MHz)
+  // XMCRA |= ((1<<SRE) | (1<<SRW00) | (1<<SRW01) | (1<<SRW10) | (1<<SRW11));
 }
 
 

@@ -134,6 +134,7 @@
 #define SBC_PRODUCT_ID_1      {'A','T','9','0','U','S','B','1','2','8','7',' ','N','F',' ',' '}  // 16 Bytes only
 #define SBC_PRODUCT_ID_2      {'A','T','9','0','U','S','B','1','2','8','7',' ','D','F',' ',' '}  // 16 Bytes only
 #define SBC_PRODUCT_ID_3      {'A','T','9','0','U','S','B','1','2','8','7',' ','S','D',' ',' '}  // 16 Bytes only
+#define SBC_PRODUCT_ID_4      {'A','T','9','0','U','S','B','1','2','8','7',' ','D','P',' ',' '}  // 16 Bytes only
 #define SBC_REVISION_ID       {'1','.','0','0'}  // 4 Bytes only
 
 // MMC/SD configuration ____________________________________________

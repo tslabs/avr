@@ -74,6 +74,9 @@ code    U8    g_sbc_product_id2[16] = SBC_PRODUCT_ID_2;
 #     if (LUN_3 == ENABLE)
 code    U8    g_sbc_product_id3[16] = SBC_PRODUCT_ID_3;
 #     endif
+#     if (LUN_4 == ENABLE)
+code    U8    g_sbc_product_id4[16] = SBC_PRODUCT_ID_4;
+#     endif
 code    U8    g_sbc_revision_id[4] = SBC_REVISION_ID;
 
 extern  U8    usb_LUN;
@@ -387,6 +390,11 @@ Bool sbc_inquiry (void)
 #     if (LUN_3 == ENABLE)
          case LUN_ID_3:
          ptr = (code U8 *) &g_sbc_product_id3;
+		 break;
+#     endif
+#     if (LUN_4 == ENABLE)
+         case LUN_ID_4:
+         ptr = (code U8 *) &g_sbc_product_id4;
 		 break;
 #     endif
 	  }
