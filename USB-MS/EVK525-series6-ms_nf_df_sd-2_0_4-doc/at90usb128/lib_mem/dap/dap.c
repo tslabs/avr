@@ -138,7 +138,7 @@ void dap_read_sector_to_usb(U8 nb_sectors)
 
 void dap_set_sect(U32 sect)
 {
-	dap_set_addr(sect<<9);
+	dap_set_addr(sect<<8);
 }
 
 
