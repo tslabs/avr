@@ -156,11 +156,12 @@ void dap_XMCR_enable(void)
   XMCRB |= ((1<<XMM2) | (1<<XMM1));                // limit XRAM interface to A9 (release PC2..7)
 
 // enable the external memory 
-//no delay:  RE_n, WE_n = 62.5ns (1 clk 16MHz)
+// SRWn[1:0] delay: 00 - 1 tact / 01 - 2 tacts / 10 - 3 tacts
+//RE_n, WE_n = 62.5ns (1 clk 16MHz)
   XMCRA |= (1<<SRE);                  		
 
-//max delay  RE_n, WE_n = 187.5ns (3 clks 16MHz)
-  // XMCRA |= ((1<<SRE) | (1<<SRW00) | (1<<SRW01) | (1<<SRW10) | (1<<SRW11));
+//RE_n, WE_n = 187.5ns (3 clks 16MHz)
+  // XMCRA |= ((1<<SRE) | (1<<SRW01) | (0<<SRW00) | (1<<SRW11) | (0<<SRW10));
 }
 
 
