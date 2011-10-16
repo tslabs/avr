@@ -1,3 +1,6 @@
+'for calculating of free tacts
+'needs some debug info from RS-232
+
 CLS
 DIM c AS STRING * 1
 
