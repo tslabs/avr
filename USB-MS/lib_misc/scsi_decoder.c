@@ -146,7 +146,7 @@ static   void  sbc_header_mode_sense               ( Bool b_sense_10 , U8 u8_dat
  *
  * @param nonr
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -254,7 +254,7 @@ Bool scsi_decode_command(void)
  *
  * @param none
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -328,7 +328,7 @@ Bool sbc_request_sense (void)
  *
  * @param none
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -623,7 +623,7 @@ Bool sbc_write_10 (void)
  *
  * @param b_sens_10 ( TRUE = sense 10, TRUE = sense 6)
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -747,7 +747,7 @@ void sbc_header_mode_sense( Bool b_sense_10 , U8 u8_data_length )
  *
  * @param none
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -776,7 +776,7 @@ void send_informational_exceptions_page (void)
  *
  * @param none
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */
@@ -812,7 +812,7 @@ void send_read_write_error_recovery_page (U8 length)
  *
  * @param none
  *
- * @return  FALSE: result KO,
+ * @return  FALSE: result ERR,
  *          TRUE:  result OK
  *
  */

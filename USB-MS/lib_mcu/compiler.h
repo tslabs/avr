@@ -263,7 +263,7 @@ typedef char      r_uart_ptchar;
 #define false   FALSE
 
 
-#define KO      0
+#define ERR      0
 #define OK      1
 #define OFF     0
 #define ON      1

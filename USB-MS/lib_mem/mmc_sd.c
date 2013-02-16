@@ -126,7 +126,7 @@ bit mmc_sd_init (void)
     // do retry counter
     retry++;
     if(retry > 100)
-      return KO;
+      return ERR;
   }
   while(r1 != 0x01);   // check memory enters idle_state
 
@@ -155,7 +155,7 @@ bit mmc_sd_init (void)
       // do retry counter
       retry++;
       if(retry > 100)
-        return KO;
+        return ERR;
     }
     while(r1 != 0x01);   // check memory enters idle_state
   }
@@ -171,7 +171,7 @@ bit mmc_sd_init (void)
      // do retry counter
      retry++;
      if(retry == 50000)    // measured approx. 500 on several cards
-        return KO;
+        return ERR;
   }
   while (r1);
 
@@ -183,19 +183,19 @@ bit mmc_sd_init (void)
   r1 = mmc_sd_send_command(MMC_SET_BLOCKLEN, 512);
   Spi_write_data(0xFF);            // write dummy byte
   if (r1 != 0x00)
-    return KO;    // card unsupported if block length of 512b is not accepted
+    return ERR;    // card unsupported if block length of 512b is not accepted
 
   // GET CARD SPECIFIC DATA
-  if (KO ==  mmc_sd_get_csd(csd))
-    return KO;
+  if (ERR ==  mmc_sd_get_csd(csd))
+    return ERR;
 
   // GET CARD CAPACITY and NUMBER OF SECTORS
   mmc_sd_get_capacity();
 
   // GET CARD IDENTIFICATION DATA IF REQUIRED
 #if (MMC_SD_READ_CID == ENABLED)
-  if (KO ==  mmc_sd_get_cid(cid))
-    return KO;
+  if (ERR ==  mmc_sd_get_cid(cid))
+    return ERR;
 #endif
 
   mmc_sd_init_done = TRUE;
@@ -291,15 +291,15 @@ U8 mmc_sd_send_and_read(U8 data_to_send)
 //! @param  buffer to fill
 //!
 //! @return bit
-//!         OK / KO
+//!         OK / ERR
 //!/
 bit mmc_sd_get_csd(U8 *buffer)
 {
 U8 retry;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();                  // select MMC_SD
   // issue command
@@ -309,7 +309,7 @@ U8 retry;
   {
     Mmc_sd_unselect();     // unselect MMC_SD
     mmc_sd_init_done = FALSE;
-    return KO;
+    return ERR;
   }
   // wait for block start
   retry = 0;
@@ -318,7 +318,7 @@ U8 retry;
     if (retry > 8)
     {
       Mmc_sd_unselect();     // unselect MMC_SD
-      return KO;
+      return ERR;
     }
     retry++;
   }
@@ -344,15 +344,15 @@ U8 retry;
 //! @param  buffer to fill
 //!
 //! @return bit
-//!         OK / KO
+//!         OK / ERR
 //!/
 bit mmc_sd_get_cid(U8 *buffer)
 {
 U8 retry;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();                  // select MMC_SD
   // issue command
@@ -362,7 +362,7 @@ U8 retry;
   {
     Mmc_sd_unselect();     // unselect MMC_SD
     mmc_sd_init_done = FALSE;
-    return KO;
+    return ERR;
   }
   // wait for data block start
   retry = 0;
@@ -371,7 +371,7 @@ U8 retry;
     if (retry > 8)
     {
       Mmc_sd_unselect();     // unselect MMC_SD
-      return KO;
+      return ERR;
     }
     retry++;
   }
@@ -474,8 +474,8 @@ bit     mmc_sd_get_status(void)
   U8 retry, spireg;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();       // select MMC_SD
 
@@ -499,7 +499,7 @@ bit     mmc_sd_get_status(void)
     if(retry > 10)
     {
       Mmc_sd_unselect();
-      return KO;
+      return ERR;
     }
   }
   r2 = ((U16)(spireg) << 8) + mmc_sd_send_and_read(0xFF);    // first byte is MSb
@@ -534,7 +534,7 @@ bit mmc_sd_wait_not_busy(void)
     if (retry == 50000)
     {
       Mmc_sd_unselect();
-      return KO;
+      return ERR;
     }
   }
   Mmc_sd_unselect();
@@ -554,7 +554,7 @@ bit mmc_sd_wait_not_busy(void)
 //!
 //! @return bit
 //!   The memory is present (OK)
-//!   The memory does not respond (disconnected) (KO)
+//!   The memory does not respond (disconnected) (ERR)
 //!/
 bit mmc_sd_check_presence(void)
 {
@@ -570,7 +570,7 @@ bit mmc_sd_check_presence(void)
       Spi_write_data(0xFF);            // write dummy byte
       retry++;
       if (retry > 10)
-        return KO;
+        return ERR;
     }
     return OK;
   }
@@ -590,7 +590,7 @@ bit mmc_sd_check_presence(void)
         else
         {
           mmc_sd_init_done = FALSE;
-          return KO;
+          return ERR;
         }
       }
       retry++;
@@ -599,10 +599,10 @@ bit mmc_sd_check_presence(void)
     if ((r1 = mmc_sd_send_command(MMC_CRC_ON_OFF,0)) == 0x00)
       return OK;
     mmc_sd_init_done = FALSE;
-    return KO;
+    return ERR;
   }
 
-  return KO;
+  return ERR;
 }
 
 
@@ -616,7 +616,7 @@ bit mmc_sd_check_presence(void)
 //!
 //! @return bit
 //!   The memory is ready     -> OK
-//!   The memory check failed -> KO
+//!   The memory check failed -> ERR
 //!/
 bit mmc_sd_mem_check(void)
 {
@@ -629,9 +629,9 @@ bit mmc_sd_mem_check(void)
     if (mmc_sd_init_done == TRUE)
       return OK;
     else
-      return KO;
+      return ERR;
   }
-  return KO;
+  return ERR;
 }
 
 
@@ -648,21 +648,21 @@ bit mmc_sd_mem_check(void)
 //!
 //! @return bit
 //!   Password protected         -> OK
-//!   NOT password protected     -> KO (or card not initialized)
+//!   NOT password protected     -> ERR (or card not initialized)
 //!/
 bit is_mmc_sd_write_pwd_locked(void)
 {
   if (card_type == MMC_CARD)
   {
     if (((csd[0] >> 2) & 0x0F) < 2) // lock feature is not present on the card since the MMC is v1.x released !
-      return KO;
+      return ERR;
   }
-  if (KO == mmc_sd_get_status())    // get STATUS response
-    return KO;
+  if (ERR == mmc_sd_get_status())    // get STATUS response
+    return ERR;
   if ((r2&0x0001) != 0)             // check "card is locked" flag in R2 response
     return OK;
 
-  return KO;
+  return ERR;
 }
 
 
@@ -693,31 +693,33 @@ bit is_mmc_sd_write_pwd_locked(void)
 //!
 //! @return bit
 //!   Operation succeeded       -> OK
-//!   Operation failed          -> KO
+//!   Operation failed          -> ERR
 //!/
 bit mmc_sd_lock_operation(U8 operation, U8 pwd_lg, U8 * pwd)
 {
   bit status = OK;
   U8 retry;
 
-  // check parameters validity
-  if ((operation != OP_FORCED_ERASE) && (pwd_lg == 0))  // password length must be > 0
-    return KO;
-
   // wait card not busy
-  if (mmc_sd_wait_not_busy() == KO)
-    return KO;
+  if (mmc_sd_wait_not_busy() == ERR)
+    return ERR;
 
   // set block length
   if (operation == OP_FORCED_ERASE)
     r1 = mmc_sd_send_command(MMC_SET_BLOCKLEN, 1);   // CMD
   else
+  {
+	// check parameters validity
+	if (!pwd_lg)  // password length must be > 0
+		return ERR;
     r1 = mmc_sd_send_command(MMC_SET_BLOCKLEN, pwd_lg+2);   // CMD + PWDSLEN + PWD
+  }
+  
   Spi_write_data(0xFF);            // write dummy byte
   Spi_write_data(0xFF);            // write dummy byte
   Spi_write_data(0xFF);            // write dummy byte
   if (r1 != 0x00)
-    return KO;
+	return ERR;
 
   // send the lock command to the card
   Mmc_sd_select();                // select MMC_SD
@@ -727,9 +729,8 @@ bit mmc_sd_lock_operation(U8 operation, U8 pwd_lg, U8 * pwd)
 
   // check for valid response
   if(r1 != 0x00)
-  {
-    status = KO;
-  }
+	status = ERR;
+
   // send dummy
   Spi_write_data(0xFF);   // give clock again to end transaction
 
@@ -742,7 +743,7 @@ bit mmc_sd_lock_operation(U8 operation, U8 pwd_lg, U8 * pwd)
     Spi_write_data(pwd_lg);
     for(retry=0 ; retry<pwd_lg ; retry++)
     {
-      Spi_write_data(*(pwd+retry));
+      Spi_write_data(pwd[retry]);
     }
   }
   Spi_write_data(0xFF);    // send CRC (field required but value ignored)
@@ -752,7 +753,7 @@ bit mmc_sd_lock_operation(U8 operation, U8 pwd_lg, U8 * pwd)
   retry = 0;
   r1 = mmc_sd_send_and_read(0xFF);
   if ((r1 & MMC_DR_MASK) != MMC_DR_ACCEPT)
-    status = KO;
+    status = ERR;
 
   Spi_write_data(0xFF);    // dummy byte
   Mmc_sd_unselect();
@@ -762,27 +763,27 @@ bit mmc_sd_lock_operation(U8 operation, U8 pwd_lg, U8 * pwd)
     retry = 100;
   else
     retry = 10;
-  while (mmc_sd_wait_not_busy() == KO)
+  while (mmc_sd_wait_not_busy() == ERR)
   {
     retry--;
     if (retry == 0)
     {
-      status = KO;
+      status = ERR;
       break;
     }
   }
 
   // get and check status of the operation
-  if (KO == mmc_sd_get_status())    // get STATUS response
-    status = KO;
+  if (ERR == mmc_sd_get_status())    // get STATUS response
+    status = ERR;
   if ((r2&0x0002) != 0)   // check "lock/unlock cmd failed" flag in R2 response
-    status = KO;
+    status = ERR;
 
   // set original block length
   r1 = mmc_sd_send_command(MMC_SET_BLOCKLEN, 512);
   Spi_write_data(0xFF);            // write dummy byte
   if (r1 != 0x00)
-    status = KO;
+    status = ERR;
 
   return status;
 }
@@ -905,7 +906,7 @@ bit mmc_sd_read_sector(U16 nb_sector)
     if(r1 != 0x00)
     {
        Mmc_sd_unselect();                  // unselect MMC_SD
-       return KO;
+       return ERR;
     }
 
     // wait for token (may be a datablock start token OR a data error token !)
@@ -916,7 +917,7 @@ bit mmc_sd_read_sector(U16 nb_sector)
        if (read_time_out == 0)   // TIME-OUT
        {
          Mmc_sd_unselect();               // unselect MMC_SD
-         return KO;
+         return ERR;
        }
     }
 
@@ -925,7 +926,7 @@ bit mmc_sd_read_sector(U16 nb_sector)
     {
       Spi_write_data(0xFF);
       Mmc_sd_unselect();                  // unselect MMC_SD
-      return KO;
+      return ERR;
     }
 
     //#
@@ -1012,7 +1013,7 @@ bit mmc_sd_read_sector(U16 nb_sector)
        while(Is_usb_write_enabled()==FALSE)
        {
           if(!Is_usb_endpoint_enabled())
-             return KO; // USB Reset
+             return ERR; // USB Reset
        }
     } // for (i = 8; i != 0; i--)
 
@@ -1064,11 +1065,11 @@ U8 i;
   {
     // wait card not busy
     i=0;
-    while (KO == mmc_sd_wait_not_busy())
+    while (ERR == mmc_sd_wait_not_busy())
     {
       i++;
       if (i == 10)
-        return KO;
+        return ERR;
     }
 
     Mmc_sd_select();                  // select MMC_SD
@@ -1078,7 +1079,7 @@ U8 i;
     if(r1 != 0x00)
     {
       Mmc_sd_unselect();                  // unselect MMC_SD
-      return KO;
+      return ERR;
     }
     // send dummy
     Spi_write_data(0xFF);   // give clock again to end transaction
@@ -1094,7 +1095,7 @@ U8 i;
       while(!Is_usb_read_enabled())
       {
          if(!Is_usb_endpoint_enabled())
-           return KO; // USB Reset
+           return ERR; // USB Reset
       }
 
       Disable_interrupt();    // Global disable.
@@ -1198,11 +1199,11 @@ U8 i;
 
   // wait card not busy after last programming operation
   i=0;
-  while (KO == mmc_sd_wait_not_busy())
+  while (ERR == mmc_sd_wait_not_busy())
   {
     i++;
     if (i == 10)
-      return KO;
+      return ERR;
   }
 
   return OK;                  // Write done
@@ -1293,15 +1294,15 @@ bit mmc_sd_host_read_sector (U16 nb_sector)
 //!
 //! @return bit
 //!   The erase operation succeeded (has been started)  -> OK
-//!   The erase operation failed (not started)  -> KO
+//!   The erase operation failed (not started)  -> ERR
 //!/
 bit mmc_sd_erase_sector_group(U32 adr_start, U32 adr_end)
 {
   U8 cmd;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();          // select MMC_SD
 
@@ -1313,7 +1314,7 @@ bit mmc_sd_erase_sector_group(U32 adr_start, U32 adr_end)
   if ((r1 = mmc_sd_command(cmd,(adr_start << 9))) != 0)
   {
     Mmc_sd_unselect();
-    return KO;
+    return ERR;
   }
   Spi_write_data(0xFF);
 
@@ -1325,7 +1326,7 @@ bit mmc_sd_erase_sector_group(U32 adr_start, U32 adr_end)
   if ((r1 = mmc_sd_command(cmd,(adr_end << 9))) != 0)
   {
     Mmc_sd_unselect();
-    return KO;
+    return ERR;
   }
   Spi_write_data(0xFF);
 
@@ -1333,7 +1334,7 @@ bit mmc_sd_erase_sector_group(U32 adr_start, U32 adr_end)
   if ((r1 = mmc_sd_command(MMC_ERASE,0)) != 0)
   {
     Mmc_sd_unselect();
-    return KO;
+    return ERR;
   }
   Spi_write_data(0xFF);
 
@@ -1358,7 +1359,7 @@ bit mmc_sd_erase_sector_group(U32 adr_start, U32 adr_end)
 //!
 //! @return bit
 //!   The read succeeded   -> OK
-//!   The read failed (bad address, etc.)  -> KO
+//!   The read failed (bad address, etc.)  -> ERR
 //!/
 bit mmc_sd_read_sector_to_ram(U8 *ram)
 {
@@ -1366,8 +1367,8 @@ bit mmc_sd_read_sector_to_ram(U8 *ram)
   U16  read_time_out;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();          // select MMC_SD
   // issue command
@@ -1377,7 +1378,7 @@ bit mmc_sd_read_sector_to_ram(U8 *ram)
   if (r1 != 0x00)
   {
     Mmc_sd_unselect();     // unselect MMC_SD
-    return KO;
+    return ERR;
   }
 
   // wait for token (may be a datablock start token OR a data error token !)
@@ -1388,7 +1389,7 @@ bit mmc_sd_read_sector_to_ram(U8 *ram)
      if (read_time_out == 0)   // TIME-OUT
      {
        Mmc_sd_unselect();               // unselect MMC_SD
-       return KO;
+       return ERR;
      }
   }
 
@@ -1397,7 +1398,7 @@ bit mmc_sd_read_sector_to_ram(U8 *ram)
   {
     Spi_write_data(0xFF);
     Mmc_sd_unselect();                  // unselect MMC_SD
-    return KO;
+    return ERR;
   }
 
   // store datablock
@@ -1441,15 +1442,15 @@ bit mmc_sd_read_sector_to_ram(U8 *ram)
 //!
 //! @return bit
 //!   The write succeeded   -> OK
-//!   The write failed      -> KO
+//!   The write failed      -> ERR
 //!
 bit mmc_sd_write_sector_from_ram(U8 *ram)
 {
   U16 i;
 
   // wait for MMC not busy
-  if (KO == mmc_sd_wait_not_busy())
-    return KO;
+  if (ERR == mmc_sd_wait_not_busy())
+    return ERR;
 
   Mmc_sd_select();                  // select MMC_SD
   // issue command
@@ -1458,7 +1459,7 @@ bit mmc_sd_write_sector_from_ram(U8 *ram)
   if(r1 != 0x00)
   {
     Mmc_sd_unselect();
-    return KO;
+    return ERR;
   }
   // send dummy
   Spi_write_data(0xFF);   // give clock again to end transaction
@@ -1482,7 +1483,7 @@ bit mmc_sd_write_sector_from_ram(U8 *ram)
      Spi_write_data(0xFF);    // send dummy bytes
      Spi_write_data(0xFF);
      Mmc_sd_unselect();
-     return KO;
+     return ERR;
 //     return r1;             // return ERROR byte
   }
 
@@ -1495,11 +1496,11 @@ bit mmc_sd_write_sector_from_ram(U8 *ram)
 
   // wait card not busy after last programming operation
   i=0;
-  while (KO == mmc_sd_wait_not_busy())
+  while (ERR == mmc_sd_wait_not_busy())
   {
     i++;
     if (i == 10)
-      return KO;
+      return ERR;
   }
 
   return OK;                  // Write done

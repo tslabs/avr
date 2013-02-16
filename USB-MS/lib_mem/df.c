@@ -192,7 +192,7 @@ static U32 df_translate_addr(Uint32 log_sect_addr)
 //!
 //! @return bit
 //!   The memory is ready     -> OK
-//!   The memory check failed -> KO
+//!   The memory check failed -> ERR
 //!
 Bool df_mem_check (void)
 {
@@ -212,7 +212,7 @@ Bool df_mem_check (void)
       {   
         // Unexpected value.
         Df_desel_all();
-        return (KO);
+        return (ERR);
       }
       Df_desel_all();
    }
@@ -417,7 +417,7 @@ Bool df_read_sector (Uint16 nb_sector)
          while(Is_usb_write_enabled()==FALSE)
          {
             if(!Is_usb_endpoint_enabled())
-               return KO; // USB Reset
+               return ERR; // USB Reset
          }         
       }
       gl_ptr_mem += 512;         // increment global address pointer
@@ -574,7 +574,7 @@ Bool df_write_sector (Uint16 nb_sector)
          while(!Is_usb_read_enabled())
          {
             if(!Is_usb_endpoint_enabled())
-              return KO; // USB Reset
+              return ERR; // USB Reset
          }
    
          Disable_interrupt();    // Global disable.

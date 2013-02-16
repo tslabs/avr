@@ -195,7 +195,7 @@ Ctrl_status df_read_10( U32 addr , U16 nb_sector )
 #endif
    
    df_read_close();
-   if(status == KO)
+   if(status == ERR)
       return CTRL_FAIL;
    return CTRL_GOOD;
 }
@@ -221,7 +221,7 @@ Ctrl_status df_write_10( U32 addr , U16 nb_sector )
 
 #if      (DF_NB_MEM == 1)  /* 1 DATAFLASH */
    df_write_open(addr);                    // wait device is not busy, then send command & address
-   if( KO == df_write_sector(nb_sector) )  // transfer data from memory to USB
+   if( ERR == df_write_sector(nb_sector) )  // transfer data from memory to USB
    {
       df_mem_init();
       return CTRL_FAIL;
@@ -231,7 +231,7 @@ Ctrl_status df_write_10( U32 addr , U16 nb_sector )
    while (nb_sectors_remaining != 0)
    {
       df_write_open(next_sector_addr);     // wait device is not busy, then send command & address
-      if( KO == df_write_sector(1))        // transfer the page from memory to USB
+      if( ERR == df_write_sector(1))        // transfer the page from memory to USB
       {
          df_mem_init();
          return CTRL_FAIL;
@@ -248,7 +248,7 @@ Ctrl_status df_write_10( U32 addr , U16 nb_sector )
       {
         if (nb_sectors_remaining == 1)
         {
-          if( KO == df_write_sector(1))    // transfer the page from memory to USB
+          if( ERR == df_write_sector(1))    // transfer the page from memory to USB
           {
              df_mem_init();
              return CTRL_FAIL;
@@ -259,7 +259,7 @@ Ctrl_status df_write_10( U32 addr , U16 nb_sector )
         }
         else
         {
-          if( KO == df_write_sector(2))    // transfer the page from memory to USB
+          if( ERR == df_write_sector(2))    // transfer the page from memory to USB
           {
              df_mem_init();
              return CTRL_FAIL;
@@ -271,7 +271,7 @@ Ctrl_status df_write_10( U32 addr , U16 nb_sector )
       }
       else
       {
-        if( KO == df_write_sector(1))      // transfer the page from memory to USB
+        if( ERR == df_write_sector(1))      // transfer the page from memory to USB
         {
            df_mem_init();
            return CTRL_FAIL;

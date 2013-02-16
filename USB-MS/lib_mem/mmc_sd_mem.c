@@ -47,6 +47,7 @@
 #include "conf_sdmmc.h"
 #include "mmc_sd_mem.h"
 #include "mmc_sd.h"
+#include "debug.h"
 
 //_____ M A C R O S ________________________________________________________
 
@@ -82,6 +83,17 @@ extern            bit mmc_sd_init_done;
 void mmc_sd_mem_init(void)
 {
    mmc_sd_init();        // Init the SPI bus and the MMC/SD card
+
+// Uncomment following lines for card force erase procedure
+   // trace("\n\rErasing SD card: ");
+   // U8 rc1 = mmc_sd_lock_operation(OP_FORCED_ERASE, 0, 0);
+   // trace_hex(rc1); trace("\n\r");
+   // trace("\n\rSetting PWD: ");
+   // U8 rc1 = mmc_sd_lock_operation(OP_SET_PWD | OP_LOCK, 1, (U8*)"1");
+   // trace_hex(rc1); trace("\n\r");
+   // trace("\n\rErasing SD card: ");
+   // U8 rc1 = mmc_sd_lock_operation(OP_FORCED_ERASE, 0, 0);
+   // trace_hex(rc1); trace("\n\r");
 }
 
 
@@ -343,7 +355,7 @@ Ctrl_status    mmc_ram_2_mmc(U32 addr, U8 *ram)
    if (mmc_sd_init_done == TRUE)
    {
      mmc_sd_write_open(addr);
-     if (KO == mmc_sd_write_sector_from_ram(ram))
+     if (ERR == mmc_sd_write_sector_from_ram(ram))
      {
        mmc_sd_write_close();
        Sdmmc_access_signal_off();
@@ -383,7 +395,7 @@ Ctrl_status    mmc_mmc_2_ram( U32 addr, U8 *ram)
    if (mmc_sd_init_done == TRUE)
    {
      mmc_sd_read_open(addr);
-     if (KO == mmc_sd_read_sector_to_ram(ram))
+     if (ERR == mmc_sd_read_sector_to_ram(ram))
      {
        mmc_sd_write_close();
        Sdmmc_access_signal_off();
