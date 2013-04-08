@@ -1,0 +1,18 @@
+TS-Labs (2013)
+
+Patch for USBTinyISP to use PD2 as 12MHz clock out for programming AVR chips with external clock.
+
+Changes to USBTinyISP ATtiny2313 pinout:
+	- D- moved to PD1 (was PD3)
+	- D+ moved to PD3 (was PD2)
+	- PD2 used as CKOUT
+
+Changes to USBTinyISP connector:
+	- pin 3 now used as 12MHz out (was NC)
+
+MUST be compiled with Winavr-20060421 (http://sourceforge.net/projects/winavr/files/WinAVR/20060421/).
+WinAVR-20100110 produces non-working code!!!
+
+Fuses for ATtiny2313:
+CKOUT enabled:	3F DF BF FF
+CKOUT disabled:	3F DF FF FF
