@@ -19,6 +19,10 @@
 #define TCCR0B  TCCR0
 #endif
 
+#ifdef __AVR_ATmega16__
+#define TCCR0B  TCCR0
+#endif
+
 /* set prescaler to 64 */
 #define clockInit()  TCCR0B = (1 << CS01) | (1 << CS00);
 

@@ -7,7 +7,8 @@
 # TARGET=atmega8    HFUSE=0xc9  LFUSE=0xef
 # TARGET=atmega48   HFUSE=0xdd  LFUSE=0xff
 # TARGET=at90s2313
-TARGET=atmega8
+TARGET=atmega16
+# TARGET=atmega8
 HFUSE=0xc9
 LFUSE=0xef
 
@@ -60,7 +61,7 @@ clean:
 
 # file targets:
 main.bin:	$(OBJECTS)
-	$(COMPILE) -o main.bin $(OBJECTS) -Wl,-Map,main.map
+	$(COMPILE) -o main.bin $(OBJECTS) -Wl,-Map,main.map,--relax
 
 main.hex:	main.bin
 	rm -f main.hex main.eep.hex
