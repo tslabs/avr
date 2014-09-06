@@ -7,8 +7,8 @@
 # TARGET=atmega8    HFUSE=0xc9  LFUSE=0xef
 # TARGET=atmega48   HFUSE=0xdd  LFUSE=0xff
 # TARGET=at90s2313
-TARGET=atmega16
-# TARGET=atmega8
+# TARGET=atmega16
+TARGET=atmega8
 HFUSE=0xc9
 LFUSE=0xef
 
@@ -18,7 +18,7 @@ LFUSE=0xef
 # ISP=stk500   PORT=/dev/ttyS1
 # ISP=usbasp   PORT=/dev/usb/ttyUSB0
 # ISP=stk500v2 PORT=/dev/ttyUSB0
-ISP=usbasp
+ISP=usbtiny
 PORT=/dev/usb/ttyUSB0
 
 help:
@@ -77,7 +77,7 @@ cpp:
 	$(COMPILE) -E main.c
 
 flash:
-	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -U flash:w:main.hex
+	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -B 0.5 -U flash:w:main.hex
 
 fuses:
 	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -u -U hfuse:w:$(HFUSE):m -U lfuse:w:$(LFUSE):m
