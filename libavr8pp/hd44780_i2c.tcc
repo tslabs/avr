@@ -33,9 +33,13 @@ namespace hd44780
     delay_us(40);
     write_byte(CMD_FUNC_SET | CMD_FUNC_SET_N);        // D/L = 0, N = 1, F = 0
     write_byte(CMD_DISP_CTR);                         // D = 0, C = 0, B = 0
+    DEVICE::sendStop();
     cls();
+    DEVICE::sendStart();
+    DEVICE::sendByte(DEVICE_ADDR << 1);
     write_byte(CMD_ENT_MD_SET | CMD_ENT_MD_SET_I_D);  // I/D = 1, S = 0
     write_byte(CMD_DISP_CTR | CMD_DISP_CTR_D);        // D = 1, C = 0, B = 0
+    DEVICE::sendStop();
   }
 
   // Clear screen
@@ -43,8 +47,11 @@ namespace hd44780
   void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::cls()
   {
     x = y = 0;
+    DEVICE::sendStart();
+    DEVICE::sendByte(DEVICE_ADDR << 1);
     set_ir_mode();
     write_byte(CMD_CLR_DISP);
+    DEVICE::sendStop();
     delay_us(1640);
   }
 
@@ -70,15 +77,21 @@ namespace hd44780
         return;
     }
 
+    DEVICE::sendStart();
+    DEVICE::sendByte(DEVICE_ADDR << 1);
     set_ddr_addr(addr);
+    DEVICE::sendStop();
   }
 
   // Put character on the screen
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
   void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::putchr(u8 c)
   {
+    DEVICE::sendStart();
+    DEVICE::sendByte(DEVICE_ADDR << 1);
     set_dr_mode();
     write_byte(c);
+    DEVICE::sendStop();
   }
 
   // Move cursor to a new line

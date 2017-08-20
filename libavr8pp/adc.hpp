@@ -18,9 +18,13 @@ namespace adc
   class Functions
   {
     public:
-      static inline u8 read();
+      static inline u8 read8(); // !!! deprecated
 
     private:
       Functions();
   };
+
+  void initialize(u8, u8);
+  void selectChannel(u8);
+  u16 read16();
 }

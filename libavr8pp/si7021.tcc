@@ -99,12 +99,12 @@ namespace si7021
   // returns normalized humidity value in 8.8 fixed point format: bits 8..15 - integer part, bits 0..7 - fractal part
   u16 calculateHumidity(u16 val)
   {
-    return ((125 * (u32)val) >> 8) - (6 << 8);   // %RH = ((125 * hum) / 65536) - 6
+    return ((125 * (u32)val) >> 8) - (6 << 8);   // %RH = ((125 * val) / 65536) - 6
   }
 
   // returns normalized temperature value in 8.8 fixed point format: bits 8..15 - integer part, bits 0..7 - fractal part
   u16 calculateTemperature(u16 val)
   {
-    return ((44984 * (u32)val) >> 16) - 11993;   // 'C = ((175.72 * hum) / 65536) - 46.85
+    return ((44984 * (u32)val) >> 16) - 11993;   // 'C = ((175.72 * val) / 65536) - 46.85
   }
 }
