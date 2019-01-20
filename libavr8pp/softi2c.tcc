@@ -12,7 +12,7 @@ namespace softi2c
 {
   // initialize IOs
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::initialize()
+  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::Initialize()
   {
     SDA::setIn();
     SCL::setIn();
@@ -33,7 +33,7 @@ namespace softi2c
 
   // send I2C START condition
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::sendStart()
+  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::SendStart()
   {
     SDA::setIn();
     delay(DELAY);
@@ -47,7 +47,7 @@ namespace softi2c
 
   // send I2C STOP condition
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::sendStop()
+  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::SendStop()
   {
     SDA::setOut();
     delay(DELAY);
@@ -60,7 +60,7 @@ namespace softi2c
   // send byte
   // returns ACK status: 0 - NACK, 1 - ACK
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::sendByte(u8 d)
+  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::SendByte(u8 d)
   {
     for (u8 i = 0; i < 8; i++)
     {
@@ -87,7 +87,7 @@ namespace softi2c
   // receive byte
   // input: return 0 - NACK, 1 - ACK
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  u8 Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::recvByte(bool ack)
+  u8 Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::RecvByte(bool ack)
   {
     u8 d = 0;
     SDA::setIn();
@@ -118,35 +118,35 @@ namespace softi2c
 
   // read register from device: <S><SLAW><reg><R><SLAR><data><P>
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::readReg(u8 addr, u8 reg, u8 &data)
+  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::ReadReg(u8 addr, u8 reg, u8 &data)
   {
-    sendStart();
-    if (!sendByte(addr << 1)) goto err;
-    if (!sendByte(reg)) goto err;
-    sendStart();
-    if (!sendByte((addr << 1) | 1)) goto err;
-    data = recvByte(false);
-    sendStop();
+    SendStart();
+    if (!SendByte(addr << 1)) goto err;
+    if (!SendByte(reg)) goto err;
+    SendStart();
+    if (!SendByte((addr << 1) | 1)) goto err;
+    data = RecvByte(false);
+    SendStop();
     return true;
 
   err:
-    sendStop();
+    SendStop();
     return false;
   }
 
   // write register to device: <S><SLAW><reg><data><P>
   template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
-  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::writeReg(u8 addr, u8 reg, u8 data)
+  bool Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ>::WriteReg(u8 addr, u8 reg, u8 data)
   {
-    sendStart();
-    if (!sendByte(addr << 1)) goto err;
-    if (!sendByte(reg)) goto err;
-    if (!sendByte(data)) goto err;
-    sendStop();
+    SendStart();
+    if (!SendByte(addr << 1)) goto err;
+    if (!SendByte(reg)) goto err;
+    if (!SendByte(data)) goto err;
+    SendStop();
     return true;
 
   err:
-    sendStop();
+    SendStop();
     return false;
   }
 }

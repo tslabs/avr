@@ -27,16 +27,15 @@ namespace softi2c
     typedef gpio::Pin<SDA_PORT, SDA_PIN> SDA;
 
     public:
-      static inline void initialize();
-      static inline void sendStart();
-      static inline void sendStop();
-      static inline bool sendByte(u8);
-      static inline u8 recvByte(bool);
-      static inline bool readReg(u8, u8, u8&);
-      static inline bool writeReg(u8, u8, u8);
+      static inline void Initialize();
+      static inline void SendStart();
+      static inline void SendStop();
+      static inline bool SendByte(u8);
+      static inline u8   RecvByte(bool);
+      static inline bool ReadReg(u8, u8, u8&);
+      static inline bool WriteReg(u8, u8, u8);
 
     private:
       static inline void waitScl();
-      Functions();
   };
 }
