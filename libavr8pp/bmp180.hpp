@@ -77,8 +77,8 @@ namespace bmp180
   class Functions
   {
     public:
-      bool Initialize(CALIB&);
-      bool Measure(s32&, s32&);
+      static bool Initialize(CALIB&);
+      static bool Measure(s32&, s32&);
 
     private:
   };
