@@ -77,11 +77,11 @@ namespace bmp180
   class Functions
   {
     public:
-      bool Initialize();
+      bool Initialize(CALIB&);
       bool Measure(s32&, s32&);
-      void CalculatePressure(s32, s32, s32&, s32&);
 
     private:
-      CALIB calib;
   };
+
+  void CalculatePressure(s32, s32, s32&, s32&, CALIB&);
 }

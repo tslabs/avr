@@ -50,21 +50,16 @@ namespace si7021
     REG_HCR
   };
  
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ>
+  template<typename I2C>
   class Functions
   {
-    typedef softi2c::Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ> DEVICE;
-
     public:
-      static inline void initialize();
-      static inline bool measure(u16&, u16&);
-      static inline bool readSn(u8*);
+      static bool Measure(u16&, u16&);
+      static bool ReadSn(u8*);
 
     private:
-      static inline void waitScl();
-      Functions();
   };
   
-  u16 calculateHumidity(u16);
-  u16 calculateTemperature(u16);
+  u16 CalculateHumidity(u16);
+  u16 CalculateTemperature(u16);
 }

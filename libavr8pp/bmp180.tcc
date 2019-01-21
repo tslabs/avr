@@ -11,7 +11,7 @@
 namespace bmp180
 {
   template<typename I2C>
-  bool Functions<I2C>::Initialize()
+  bool Functions<I2C>::Initialize(CALIB& calib)
   {
     u8 *c = (u8*)&calib;
     u8 reg;
@@ -54,8 +54,7 @@ namespace bmp180
     return true;
   }
 
-  template<typename I2C>
-  void Functions<I2C>::CalculatePressure(s32 ut, s32 up, s32 &t, s32 &p)
+  void CalculatePressure(s32 ut, s32 up, s32 &t, s32 &p, CALIB &calib)
   {
     #define _pow2(a) ((s32)((u32)1 << (a)))
 
