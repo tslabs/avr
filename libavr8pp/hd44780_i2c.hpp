@@ -74,35 +74,30 @@ namespace hd44780
     MODE_DR
   };
 
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
+  template<typename>
   class Functions
   {
-    enum
-    {
-      NY = (TP == TYPE_20x4) ? 4 : 2
-    };
-
-    typedef softi2c::Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ> DEVICE;
-
     public:
       u8 x, y;
 
-      inline void initialize();
-      inline void cls();
-      inline void setXY(u8, u8);
-      inline void putchr(u8);
-      inline void cr();
+      inline void Initialize(TYPE);
+      inline void Cls();
+      inline void SetXY(u8, u8);
+      inline void Putchar(u8);
+      inline void Cr();
 
     private:
       u8 pins;
       MODE mode;
+			TYPE type;
+			u8 lines;
 
-      inline void set_ir_mode();
-      inline void set_dr_mode();
-      inline void write_byte(u8);
-      inline void write_nibble(u8);
+      inline void setIrMode();
+      inline void setDrMode();
+      inline void writeByte(u8);
+      inline void writeNibble(u8);
       inline void clk();
-      inline void set_ddr_addr(u8);
-      inline void set_cgr_addr(u8);
+      inline void setDdrAddr(u8);
+      inline void setCgrAddr(u8);
   };
 }

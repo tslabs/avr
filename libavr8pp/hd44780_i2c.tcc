@@ -11,59 +11,61 @@
 namespace hd44780
 {
   // Initialize
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::initialize()
+  template<typename I2C>
+  void Functions<I2C>::Initialize(TYPE tp)
   {
-    DEVICE::initialize();
-    DEVICE::sendStart();
-    DEVICE::sendByte(DEVICE_ADDR << 1);
+    type = tp;
+		lines = (tp == TYPE_20x4) ? 4 : 2;
+		
+		I2C::SendStart();
+    I2C::SendByte(DEVICE_ADDR << 1);
 
     mode = MODE_XX;
     pins = BL_MASK;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
     delay_ms(15);   // Power delay
 
-    set_ir_mode();
-    write_nibble((CMD_FUNC_SET | CMD_FUNC_SET_DL) >> 4);    // 0x3x - set databus width 8
+    setIrMode();
+    writeNibble((CMD_FUNC_SET | CMD_FUNC_SET_DL) >> 4);    // 0x3x - set databus width 8
     delay_us(4100);
     clk();
     delay_us(100);
     clk();
-    write_nibble(CMD_FUNC_SET >> 4);                  // 0x2x - set databus width 4
+    writeNibble(CMD_FUNC_SET >> 4);                  // 0x2x - set databus width 4
     delay_us(40);
-    write_byte(CMD_FUNC_SET | CMD_FUNC_SET_N);        // D/L = 0, N = 1, F = 0
-    write_byte(CMD_DISP_CTR);                         // D = 0, C = 0, B = 0
-    DEVICE::sendStop();
-    cls();
-    DEVICE::sendStart();
-    DEVICE::sendByte(DEVICE_ADDR << 1);
-    write_byte(CMD_ENT_MD_SET | CMD_ENT_MD_SET_I_D);  // I/D = 1, S = 0
-    write_byte(CMD_DISP_CTR | CMD_DISP_CTR_D);        // D = 1, C = 0, B = 0
-    DEVICE::sendStop();
+    writeByte(CMD_FUNC_SET | CMD_FUNC_SET_N);        // D/L = 0, N = 1, F = 0
+    writeByte(CMD_DISP_CTR);                         // D = 0, C = 0, B = 0
+    I2C::SendStop();
+    Cls();
+    I2C::SendStart();
+    I2C::SendByte(DEVICE_ADDR << 1);
+    writeByte(CMD_ENT_MD_SET | CMD_ENT_MD_SET_I_D);  // I/D = 1, S = 0
+    writeByte(CMD_DISP_CTR | CMD_DISP_CTR_D);        // D = 1, C = 0, B = 0
+    I2C::SendStop();
   }
 
   // Clear screen
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::cls()
+  template<typename I2C>
+  void Functions<I2C>::Cls()
   {
     x = y = 0;
-    DEVICE::sendStart();
-    DEVICE::sendByte(DEVICE_ADDR << 1);
-    set_ir_mode();
-    write_byte(CMD_CLR_DISP);
-    DEVICE::sendStop();
+    I2C::SendStart();
+    I2C::SendByte(DEVICE_ADDR << 1);
+    setIrMode();
+    writeByte(CMD_CLR_DISP);
+    I2C::SendStop();
     delay_us(1640);
   }
 
   // Set screen coordinates
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::setXY(u8 x, u8 y)
+  template<typename I2C>
+  void Functions<I2C>::SetXY(u8 x, u8 y)
   {
     u8 addr;
     addr = (y & 1) ? 64 : 0;
     addr += x;
 
-    switch(TP)
+    switch(type)
     {
       case TYPE_20x4:
         addr += (y & 2) ? 20 : 0;
@@ -77,98 +79,98 @@ namespace hd44780
         return;
     }
 
-    DEVICE::sendStart();
-    DEVICE::sendByte(DEVICE_ADDR << 1);
-    set_ddr_addr(addr);
-    DEVICE::sendStop();
+    I2C::SendStart();
+    I2C::SendByte(DEVICE_ADDR << 1);
+    setDdrAddr(addr);
+    I2C::SendStop();
   }
 
   // Put character on the screen
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::putchr(u8 c)
+  template<typename I2C>
+  void Functions<I2C>::Putchar(u8 c)
   {
-    DEVICE::sendStart();
-    DEVICE::sendByte(DEVICE_ADDR << 1);
-    set_dr_mode();
-    write_byte(c);
-    DEVICE::sendStop();
+    I2C::SendStart();
+    I2C::SendByte(DEVICE_ADDR << 1);
+    setDrMode();
+    writeByte(c);
+    I2C::SendStop();
   }
 
   // Move cursor to a new line
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::cr()
+  template<typename I2C>
+  void Functions<I2C>::Cr()
   {
     x = 0; y++;
-    if (y >= NY) y = 0;
-    setXY(x, y);
+    if (y >= lines) y = 0;
+    SetXY(x, y);
   }
 
   // Set instruction mode
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::set_ir_mode()
+  template<typename I2C>
+  void Functions<I2C>::setIrMode()
   {
     if (mode == MODE_IR) return;
 
     pins &= ~RS_MASK;
     mode = MODE_IR;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
   }
 
   // Set data mode
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::set_dr_mode()
+  template<typename I2C>
+  void Functions<I2C>::setDrMode()
   {
     if (mode == MODE_DR) return;
 
     pins |= RS_MASK;
     mode = MODE_DR;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
   }
 
   // Write byte
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::write_byte(u8 d)
+  template<typename I2C>
+  void Functions<I2C>::writeByte(u8 d)
   {
-    write_nibble(d >> 4);
-    write_nibble(d & 0x0F);
+    writeNibble(d >> 4);
+    writeNibble(d & 0x0F);
     delay_us(40);
   }
 
   // Write half-byte
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::write_nibble(u8 d)
+  template<typename I2C>
+  void Functions<I2C>::writeNibble(u8 d)
   {
     pins &= ~DATA_MASK;
     pins |= d << DATA_LSB;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
     clk();
   }
 
   // Generate clock pulse
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::clk()
+  template<typename I2C>
+  void Functions<I2C>::clk()
   {
     pins |= E_MASK;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
     delay_us(2);
     pins &= ~E_MASK;
-    DEVICE::sendByte(pins);
+    I2C::SendByte(pins);
     delay_us(2);
   }
 
   // Set DDR (text) address
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::set_ddr_addr(u8 addr)
+  template<typename I2C>
+  void Functions<I2C>::setDdrAddr(u8 addr)
   {
-    set_ir_mode();
-    write_byte(CMD_SET_DDR_ADDR | addr);     // AC = DDRAM area address
+    setIrMode();
+    writeByte(CMD_SET_DDR_ADDR | addr);     // AC = DDRAM area address
   }
 
   // Set CGR (font) address
-  template<gpio::Address SCL_PORT, u8 SCL_PIN, gpio::Address SDA_PORT, u8 SDA_PIN, u32 FREQ, TYPE TP>
-  void Functions<SCL_PORT, SCL_PIN, SDA_PORT, SDA_PIN, FREQ, TP>::set_cgr_addr(u8 addr)
+  template<typename I2C>
+  void Functions<I2C>::setCgrAddr(u8 addr)
   {
-    set_ir_mode();
-    write_byte(CMD_SET_CGR_ADDR | addr);     // AC = DDRAM area address
+    setIrMode();
+    writeByte(CMD_SET_CGR_ADDR | addr);     // AC = DDRAM area address
   }
 }
