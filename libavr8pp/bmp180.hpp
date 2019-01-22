@@ -73,7 +73,7 @@ namespace bmp180
     REG_ID_VAL = 0x55
   };
 
-  template<typename I2C>
+  template<typename>
   class Functions
   {
     public:

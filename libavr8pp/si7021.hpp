@@ -50,7 +50,7 @@ namespace si7021
     REG_HCR
   };
  
-  template<typename I2C>
+  template<typename>
   class Functions
   {
     public:
