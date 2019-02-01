@@ -33,9 +33,9 @@ namespace softi2c
       static inline bool SendByte(u8);
       static inline u8   RecvByte(bool);
       static inline bool ReadReg(u8, u8, u8&);
-      static inline bool ReadReg(u8, u8, u8*, u8);
+      static inline bool ReadReg(u8, u8, void*, u8);
       static inline bool WriteReg(u8, u8, u8);
-      static inline bool WriteReg(u8, u8, u8*, u8);
+      static inline bool WriteReg(u8, u8, void*, u8);
 
     private:
       static inline void waitScl();

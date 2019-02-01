@@ -16,6 +16,7 @@
 
 namespace hdc1080
 {
+  // registers
   enum
   {
     REG_TEMP      = 0x00,  // Temperature 0x0000 Temperature measurement output
@@ -46,6 +47,7 @@ namespace hdc1080
   {
     public:
       static bool Initialize();
+      static bool ReadId(void*);
     private:
   };
 }
