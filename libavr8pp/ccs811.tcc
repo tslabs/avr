@@ -22,7 +22,7 @@ namespace ccs811
     // read calibration
     // for (u8 i = 0; i <= (REG_CALIB_21 - REG_CALIB_00); i++)
       // if (!I2C::ReadReg(DEVICE_ADDR, REG_CALIB_00 + i, c[i ^ 1])) return false;
-    
+
     return true;
   }
   template<typename I2C>
@@ -31,7 +31,7 @@ namespace ccs811
     if (!I2C::ReadReg(DEVICE_ADDR, REG_HW_VERSION, &ver.hw, 1)) return false;
     if (!I2C::ReadReg(DEVICE_ADDR, REG_FW_BOOT_VERSION, &ver.fw_boot, 2)) return false;
     if (!I2C::ReadReg(DEVICE_ADDR, REG_FW_APP_VERSION, &ver.fw_app, 2)) return false;
-    
+
     return true;
   }
 }

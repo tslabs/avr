@@ -14,7 +14,7 @@ namespace uart
   {
     u16 a = (1ULL * (F_CPU) / 8 / (BAUD) - 1) & 0x0FFF;
 
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
     UBRR0H = (u8)(a >> 8);
     UBRR0L = (u8)a;
     UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
@@ -31,7 +31,7 @@ namespace uart
   
   void Functions::sendByte(u8 d)
   {
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
     UDR0 = d;
 #else
     UDR = d;
@@ -40,7 +40,7 @@ namespace uart
   
   bool Functions::isSending()
   {
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
     return !(UCSR0A & _BV(UDRE0));
 #else
     return !(UCSRA & _BV(UDRE));

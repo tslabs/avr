@@ -41,7 +41,7 @@ namespace hdc1080
     REG_MF_ID_VAL  = 0x4954,
     REG_DEV_ID_VAL = 0x5010
   };
-  
+
   template<typename>
   class Functions
   {

@@ -13,12 +13,12 @@ namespace extint
   template<Int EXTINT>
   void Functions<EXTINT>::enable(SENSE mode)
   {
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
     EICRA = (EICRA & ~(3 << (EXTINT * 2))) | (mode << (EXTINT * 2));
     EIMSK |= 1 << (EXTINT + INT0);
 #else
     // MCUCR |= _BV(ISC01) | _BV(ISC00);
-  #ifdef __AVR_ATtiny13A__
+  #if defined __AVR_ATtiny13A__
       // GIMSK  |= _BV(INT0);
   #else
       MCUCR = (MCUCR & ~(3 << (EXTINT * 2))) | (mode << (EXTINT * 2));
@@ -30,7 +30,7 @@ namespace extint
   template<Int EXTINT>
   void Functions<EXTINT>::disable()
   {
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
     EIMSK &= ~(1 << EXTINT);
 #endif
   }

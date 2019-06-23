@@ -46,14 +46,14 @@ namespace ccs811
   {
     REG_HW_ID_VAL  = 0x81
   };
-  
+
   typedef struct
   {
     u8 hw;
     u16 fw_boot;
     u16 fw_app;
   } VERSION;
-  
+
   template<typename>
   class Functions
   {

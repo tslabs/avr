@@ -28,7 +28,7 @@ namespace extint
     EINT1
   };
 
-#ifdef __AVR_ATmega328P__
+#if defined __AVR_ATmega328P__ || defined __AVR_ATmega168P__
   enum Pcie
   {
     EPCIE0 = 0,
